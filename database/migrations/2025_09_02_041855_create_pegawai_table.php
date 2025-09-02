@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('pegawai', function (Blueprint $table) {
             $table->id('id_pegawai');
-            $table->string('nip_nik', 16)->nullable();
+            $table->string('nip_nik', 18)->nullable();
             $table->string('username')->unique();
             $table->string('password');
             $table->string('nama', 35);

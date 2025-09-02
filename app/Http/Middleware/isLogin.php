@@ -17,7 +17,7 @@ class isLogin
     public function handle(Request $request, Closure $next): Response
     {
         if (Auth::check()) {
-            return redirect()->route('dashboard')->with('success', 'Lu udah login kocak');
+            return redirect()->route('dashboard')->with('success', 'Anda Telah Login');
         } else {
             return $next($request);
         }

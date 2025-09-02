@@ -2,18 +2,19 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable; 
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Notifications\Notifiable;
 
-class Pegawai extends Model
+class Pegawai extends Authenticatable
 {
-    use SoftDeletes;
+    use SoftDeletes, Notifiable;
 
     protected $table = 'pegawai';
-
     protected $primaryKey = 'id_pegawai';
-
     protected $keyType = 'int';
+
+    public $timestamps = false;
 
     protected $fillable = [
         'nip_nik',
@@ -31,8 +32,6 @@ class Pegawai extends Model
     protected $hidden = [
         'password',
     ];
-
-    public $timestamps = false;
 
     protected $dates = ['deleted_at'];
 

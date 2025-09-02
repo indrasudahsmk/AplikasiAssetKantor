@@ -33,32 +33,31 @@
 
                 <div class="card o-hidden border-0 shadow-lg my-5">
                     <div class="card-body p-0">
-                        <!-- Nested Row within Card Body -->
                         <div class="row">
                             <div class="col-lg-12">
                                 <div class="p-5">
                                     <div class="text-center">
                                         <h1 class="h4 text-gray-900 mb-4">
-                                            <i class="fas fa-tasks mr-2"></i>
-                                            M-Togas
+                                            <i class="fas fa-user mr-2"></i>
+                                            Aplikasi Asset Kantor
                                         </h1>
                                     </div>
                                     <form class="user" method="post" action="{{ route('loginProses') }}">
                                         @csrf
                                         <div class="form-group">
-                                            <input type="email"
-                                                class="form-control form-control-user @error('email')
+                                            <input type=text"
+                                                class="form-control form-control-user @error('username')
                                                 is-invalid
                                             @enderror"
                                                 id="exampleInputEmail" aria-describedby="emailHelp"
-                                                placeholder="Masukkan email" name="email" value="{{ old('email') }}" autocomplete="off">
-                                            @error('email')
+                                                placeholder="Masukkan username" name="username" value="{{ old('username') }}" autocomplete="off">
+                                            @error('username')
                                                 <small class="text-danger">{{ $message }}</small>
                                             @enderror
                                         </div>
                                         <div class="form-group">
                                             <input type="password"
-                                                class="form-control form-control-user @error('email')
+                                                class="form-control form-control-user @error('username')
                                                 is-invalid
                                             @enderror"
                                                 id="exampleInputPassword" placeholder="Masukkan password"
