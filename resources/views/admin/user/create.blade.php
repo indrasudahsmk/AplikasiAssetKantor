@@ -8,7 +8,7 @@
     </h1>
     <div class="card">
         <div class="card-header bg-success">
-            <a href="{{ route('user') }}" class="btn btn-primary btn-sm">
+            <a href="{{ route('pegawai.index') }}" class="btn btn-success btn-sm">
                 <i class="fas fa-arrow-left mr-2"></i>
                 Kembali
             </a>
@@ -40,14 +40,14 @@
                             <span class="text-danger">
                                 *
                             </span>
-                            Email :
+                            Username :
                         </label>
-                        <input type="email" name="email"
+                        <input type="text" name="username"
                             class="form-control
-                        @error('email')
+                        @error('username')
                             is-invalid
-                        @enderror" value="{{ old('email') }}" autocomplete="off">
-                        @error('email')
+                        @enderror" value="{{ old('username') }}" autocomplete="off">
+                        @error('username')
                             <small class="text-danger">
                                 {{ $message }}
                             </small>
@@ -55,7 +55,7 @@
                     </div>
                 </div>
                 <div class="row mb-3">
-                    <div class="col-xl-12">
+                    <div class="col-xl-6 mb-1">
                         <label for="" class="form-label">
                             <span class="text-danger">
                                 *
@@ -69,13 +69,28 @@
                             name="jabatan" id="">
                             <option selected disabled>--PILIH JABATAN--</option>
                             <option value="Admin">Admin</option>
-                            <option value="Karyawan">Karyawan</option>
+                            <option value="Pegawai">Pegawai</option>
                         </select>
                         @error('jabatan')
                             <small class="text-danger">
                                 {{ $message }}
                             </small>
                         @enderror
+                    </div>
+                    <div class="col-xl-6 mb-1">
+                        <label for="" class="form-label">
+                            <span class="text-danger">
+                                *
+                            </span>
+                            Status Pegawai :
+                        </label>
+                        <br>
+                        <input type="radio" class="btn-check" name="status_pegawai" id="ASN" value="ASN"
+                            {{ old('status_pegawai') == 'ASN' ? 'checked' : '' }}>
+                        <label for="ASN" class="mr-3">ASN</label> 
+                        <input type="radio" class="btn-check" name="status_pegawai" id="Non ASN" value="Non ASN"
+                            {{ old('status_pegawai') == 'Non ASN' ? 'checked' : '' }}>
+                        <label for="Non ASN" class="mr-3">Non ASN</label>
                     </div>
                 </div>
                 <div class="row mb-3">

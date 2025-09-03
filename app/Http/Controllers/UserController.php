@@ -34,39 +34,49 @@ class UserController extends Controller
     }
 
     public function store(Request $request)
-    {
-        $request->validate([
-            'nama' => 'required',
-            'email' => 'required|unique:users,email',
-            'jabatan' => 'required',
-            'password' => 'required|confirmed|min:8',
-        ], [
-            'nama.required' => 'Nama Wajib Diisi',
-            'email.required' => 'Email Wajib Diisi',
-            'email.unique' => 'Email Sudah Terdaftar',
-            'jabatan.required' => 'Jabatan Wajib Di Pilih',
-            'password.required' => 'Password Wajib Diisi',
-            'password.confirmed' => 'Password Konfirmasi Tidak Sama',
-            'password.min' => 'Password Minimal 8 Karakter',
-        ]);
+{
+    $request->validate([
+        'nama'           => 'required',
+        'username'       => 'required|unique:pegawai,username',
+        'status_pegawai' => 'required',
+        'nip_nik'        => 'required|unique:pegawai,nip_nik',
+        'jabatan'        => 'required',
+        'bidang'         => 'required',
+        'password'       => 'required|confirmed|min:8',
+    ], [
+        'nama.required'           => 'Nama Wajib Diisi',
+        'username.required'       => 'Username Wajib Diisi',
+        'username.unique'         => 'Username Sudah Terdaftar',
+        'status_pegawai.required' => 'Status Pegawai Wajib Di Pilih',
+        'nip_nik.required'        => 'NIP/NIK Wajib Diisi',
+        'nip_nik.unique'          => 'NIP/NIK Sudah Terdaftar',
+        'jabatan.required'        => 'Jabatan Wajib Di Pilih',
+        'bidang.required'         => 'Bidang Wajib Di Pilih',
+        'password.required'       => 'Password Wajib Diisi',
+        'password.confirmed'      => 'Password Konfirmasi Tidak Sama',
+        'password.min'            => 'Password Minimal 8 Karakter',
+    ]);
 
-        $user = new User();
-        $user->nama = $request->nama;
-        $user->email = $request->email;
-        $user->jabatan = $request->jabatan;
-        $user->password = Hash::make($request->password);
-        $user->is_tugas = false;
-        $user->save();
+    $user = new Pegawai();
+    $user->nama           = $request->nama;
+    $user->username       = $request->username;
+    $user->status_pegawai = $request->status_pegawai;
+    $user->nip_nik        = $request->nip_nik;
+    $user->jabatan        = $request->jabatan;
+    $user->bidang         = $request->bidang;
+    $user->password       = Hash::make($request->password);
+    $user->save();
 
-        return redirect()->route('user')->with('success', 'Data Berhasil Ditambahkan');
-    }
+    return redirect()->route('pegawai.index')->with('success', 'Data Berhasil Ditambahkan');
+}
+
 
     public function edit($id)
     {
         $data = [
             'title' => 'Edit Data User',
             'menuAdminUser' => 'active',
-            'user' => User::findOrFail($id),
+            'user' => Pegawai::findOrFail($id),
         ];
         return view('admin/user/edit', $data);
     }
@@ -77,6 +87,7 @@ class UserController extends Controller
             'nama' => 'required',
             'email' => 'required|unique:users,email,' . $id,
             'jabatan' => 'required',
+            'bidang' => 'required',
             'password' => 'nullable|confirmed|min:8',
         ], [
             'nama.required' => 'Nama Wajib Diisi',
@@ -87,7 +98,7 @@ class UserController extends Controller
             'password.min' => 'Password Minimal 8 Karakter',
         ]);
 
-        $user = User::with('tugas')->findOrFail($id);
+        $user = Pegawai::with('tugas')->findOrFail($id);
         $user->nama = $request->nama;
         $user->email = $request->email;
         $user->jabatan = $request->jabatan;
@@ -120,7 +131,7 @@ class UserController extends Controller
     {
         $filename = now()->format('d-m-Y H.i.s');
         $data = [
-            'user' => User::get(),
+            'user' => Pegawai::get(),
             'date' => now()->format('d-m-Y'),
         ];
         $pdf = Pdf::loadView('admin/user/pdf', $data);
