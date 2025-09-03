@@ -19,7 +19,7 @@
     </li>
 
 
-    @if (auth()->user()->jabatan == 'Admin')
+    @if (auth()->user()->id_jabatan === 1)
         <!-- Divider -->
         <hr class="sidebar-divider">
         <!-- Heading -->

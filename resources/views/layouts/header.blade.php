@@ -22,6 +22,5 @@
 
     <link href="{{ asset('sbadmin2/vendor/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
 
-    <link rel="icon" type="image/png" href="{{ asset('image.png') }}">
 
 </head>

@@ -36,7 +36,7 @@
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="userDropdown">
                                 <a class="dropdown-item text-center" href="#">
-                                    @if (auth()->user()->jabatan == 'Admin')
+                                    @if (auth()->user()->id_jabatan === 1)
                                         <span class="bagde  badge-primary badge-pill">
                                             Admin
                                         </span>
@@ -78,7 +78,7 @@
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; By Indra 2025</span>
+                        <span>Copyright &copy; By DKIS 2025</span>
                     </div>
                 </div>
             </footer>
