@@ -24,7 +24,7 @@ Route::middleware('checkLogin')->group(function () {
     Route::get('karyawan/tugas/pdf', [TugasController::class, 'Karyawanpdf'])->name('tugasKaryawanPdf');
 
     Route::middleware('isAdmin')->group(function () {
-        Route::get('/user', [UserController::class, 'index'])->name('user');
+        Route::get('/user', [UserController::class, 'index'])->name('pegawai.index');
         Route::get('/user/create', [UserController::class, 'create'])->name('userCreate');
         Route::post('/user/store', [UserController::class, 'store'])->name('userStore');
 

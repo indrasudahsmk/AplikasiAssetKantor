@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Exports\UserExport;
+use App\Models\Pegawai;
 use Illuminate\Http\Request;
 
 use Barryvdh\DomPDF\Facade\Pdf;
@@ -16,9 +17,9 @@ class UserController extends Controller
     public function index()
     {
         $data = [
-            'title' => 'Data User',
+            'title' => 'Data Pegawai',
             'menuAdminUser' => 'active',
-            'user'          => User::orderBy('jabatan', 'asc')->get(),
+            'pegawai'          => Pegawai::orderBy('id_jabatan', 'desc')->get(),
         ];
         return view('admin/user/index', $data);
     }
@@ -90,7 +91,7 @@ class UserController extends Controller
         $user->nama = $request->nama;
         $user->email = $request->email;
         $user->jabatan = $request->jabatan;
-        if($request->jabatan=='Admin'){
+        if ($request->jabatan == 'Admin') {
             $user->is_tugas = false;
             $user->tugas()->delete();
         }
@@ -104,9 +105,9 @@ class UserController extends Controller
 
     public function destroy($id)
     {
-        $user = User::findOrFail($id);
-        $user->delete();
-        return redirect()->route('user')->with('success', 'Data Berhasil Dihapus');
+        $pegawai = Pegawai::findOrFail($id);
+        $pegawai->delete();
+        return redirect()->route('pegawai.index')->with('success', 'Data berhasil dihapus.');
     }
 
     public function excel()

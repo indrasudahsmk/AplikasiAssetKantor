@@ -29,9 +29,9 @@
 
         <!-- Nav Item - Charts -->
         <li class="nav-item {{ $menuAdminUser ?? '' }}">
-            <a class="nav-link" href="{{ route('user') }}">
+            <a class="nav-link" href="{{ route('pegawai.index') }}">
                 <i class="fas fa-fw fa-user"></i>
-                <span>Data User</span></a>
+                <span>Data Pegawai</span></a>
         </li>
 
         <!-- Nav Item - Tables -->

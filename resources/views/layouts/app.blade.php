@@ -42,7 +42,7 @@
                                         </span>
                                     @else
                                         <span class="bagde  badge-danger badge-pill">
-                                            Karyawan
+                                            Pegawai
                                         </span>
                                     @endif
                                 </a>

@@ -31,37 +31,69 @@
                     <thead class="text-center bg-primary text-white">
                         <tr>
                             <th>No</th>
+                            <th>NIP / NIK</th>
                             <th>Nama</th>
-                            <th>Email</th>
                             <th>Jabatan</th>
-                            <th>Status</th>
+                            <th>Bidang</th>
+                            <th>Status Pegawai</th>
                             <th>
                                 <i class="fas fa-cog"></i>
                             </th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($user as $item)
+                        @foreach ($pegawai as $item)
                             <tr>
                                 <td class="text-center">{{ $loop->iteration }}</td>
+                                <td class="text-center">
+                                    <span class="badge badge-info badge-pill">
+                                        {{ $item->nip_nik }}
+                                    </span>
+                                </td>
                                 <td>{{ $item->nama }}</td>
                                 <td class="text-center">
-                                    <span class="bagde  badge-info badge-pill">
-                                        {{ $item->email }}
+                                    @if ($item->id_jabatan === 1)
+                                        <span class="badge badge-primary badge-pill">
+                                            Admin
+                                        </span>
+                                    @else
+                                        <span class="badge badge-success badge-pill">
+                                            Pegawai
+                                        </span>
+                                    @endif
+
+                                </td>
+                                <td class="text-center">
+                                    <span class="badge badge-success badge-pill">
+                                        {{ $item->bidang->nama_bidang ?? '-' }}
                                     </span>
                                 </td>
                                 <td class="text-center">
-                                    @if ($item->jabatan == 'Admin')
-                                        <span class="bagde  badge-primary badge-pill">
-                                            {{ $item->jabatan }}
+                                    @if ($item->status_pegawai == 'ASN')
+                                        <span class="badge badge-info badge-pill">
+                                            ASN
                                         </span>
                                     @else
-                                        <span class="bagde  badge-danger badge-pill">
-                                            {{ $item->jabatan }}
+                                        <span class="badge badge-warning badge-pill">
+                                            NON ASN
                                         </span>
                                     @endif
                                 </td>
                                 <td class="text-center">
+                                    <a href="{{ route('userEdit', $item->id_pegawai) }}" class="btn btn-sm btn-primary">
+                                        <i class="fas fa-edit"></i>
+                                    </a>
+                                    <button class="btn btn-sm btn-danger" data-toggle="modal"
+                                        data-target="#ModalHapus{{ $item->id_pegawai }}">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                    @include('admin/user/modal')
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+
+                    {{-- <td class="text-center">
                                     @if ($item->is_tugas == false)
                                         <span class="bagde  badge-warning badge-pill">
                                             Belum Ditugaskan
@@ -81,11 +113,8 @@
                                         <i class="fas fa-trash"></i>
                                     </button>
                                     @include('admin/user/modal')
-                                </td>
+                                </td> --}}
 
-                            </tr>
-                        @endforeach
-                    </tbody>
                 </table>
             </div>
         </div>
