@@ -4,11 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Bidang;
+use App\Models\Jabatan;
 use App\Models\Pegawai;
-use App\Exports\UserExport;
 
+use App\Exports\UserExport;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Maatwebsite\Excel\Facades\Excel;
 use function Laravel\Prompts\password;
@@ -30,48 +32,54 @@ class UserController extends Controller
         $data = [
             'title' => 'Tambah Data User',
             'menuAdminUser' => 'active',
-            'user' => Pegawai::with(['bidang','jabatan'])->get(),
-            
+            'user'  => Pegawai::all(),
+            'jabatan' => Jabatan::all(),
+            'bidang' => Bidang::all(),
         ];
+
         return view('admin/user/create', $data);
     }
 
+
     public function store(Request $request)
-{
-    $request->validate([
-        'nama'           => 'required',
-        'username'       => 'required|unique:pegawai,username',
-        'status_pegawai' => 'required',
-        'nip_nik'        => 'required|unique:pegawai,nip_nik',
-        'jabatan'        => 'required',
-        'bidang'         => 'required',
-        'password'       => 'required|confirmed|min:8',
-    ], [
-        'nama.required'           => 'Nama Wajib Diisi',
-        'username.required'       => 'Username Wajib Diisi',
-        'username.unique'         => 'Username Sudah Terdaftar',
-        'status_pegawai.required' => 'Status Pegawai Wajib Di Pilih',
-        'nip_nik.required'        => 'NIP/NIK Wajib Diisi',
-        'nip_nik.unique'          => 'NIP/NIK Sudah Terdaftar',
-        'jabatan.required'        => 'Jabatan Wajib Di Pilih',
-        'bidang.required'         => 'Bidang Wajib Di Pilih',
-        'password.required'       => 'Password Wajib Diisi',
-        'password.confirmed'      => 'Password Konfirmasi Tidak Sama',
-        'password.min'            => 'Password Minimal 8 Karakter',
-    ]);
+    {
+        $request->validate([
+            'nama'           => 'required',
+            'username'       => 'required|unique:pegawai,username',
+            'status_pegawai' => 'required',
+            'nip_nik'        => 'required|unique:pegawai,nip_nik',
+            'jabatan'        => 'required',
+            'id_bidang'      => 'required',
+            'password'       => 'required|confirmed|min:8',
+        ], [
+            'nama.required'           => 'Nama Wajib Diisi',
+            'username.required'       => 'Username Wajib Diisi',
+            'username.unique'         => 'Username Sudah Terdaftar',
+            'status_pegawai.required' => 'Status Pegawai Wajib Di Pilih',
+            'nip_nik.required'        => 'NIP/NIK Wajib Diisi',
+            'nip_nik.unique'          => 'NIP/NIK Sudah Terdaftar',
+            'jabatan.required'        => 'Jabatan Wajib Di Pilih',
+            'id_bidang.required'      => 'Bidang Wajib Di Pilih',
+            'password.required'       => 'Password Wajib Diisi',
+            'password.confirmed'      => 'Password Konfirmasi Tidak Sama',
+            'password.min'            => 'Password Minimal 8 Karakter',
+        ]);
 
-    $user = new Pegawai();
-    $user->nama           = $request->nama;
-    $user->username       = $request->username;
-    $user->status_pegawai = $request->status_pegawai;
-    $user->nip_nik        = $request->nip_nik;
-    $user->jabatan        = $request->jabatan;
-    $user->bidang         = $request->bidang;
-    $user->password       = Hash::make($request->password);
-    $user->save();
+        $user = new Pegawai();
+        $user->nama           = $request->nama;
+        $user->username       = $request->username;
+        $user->status_pegawai = $request->status_pegawai;
+        $user->nip_nik        = $request->nip_nik;
+        $user->id_jabatan     = $request->jabatan;
+        $user->id_bidang      = $request->id_bidang;
+        $user->password       = Hash::make($request->password);
+        $user->created_id     = Auth::user()->id_pegawai;
+        $user->save();
 
-    return redirect()->route('pegawai.index')->with('success', 'Data Berhasil Ditambahkan');
-}
+
+        return redirect()->route('pegawai.index')->with('success', 'Data Berhasil Ditambahkan');
+    }
+
 
 
     public function edit($id)
@@ -120,7 +128,10 @@ class UserController extends Controller
     public function destroy($id)
     {
         $pegawai = Pegawai::findOrFail($id);
+        $pegawai->deleted_id = Auth::user()->id_pegawai;
+        $pegawai->save();
         $pegawai->delete();
+        
         return redirect()->route('pegawai.index')->with('success', 'Data berhasil dihapus.');
     }
 
