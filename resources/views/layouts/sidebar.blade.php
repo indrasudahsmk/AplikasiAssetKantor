@@ -34,6 +34,13 @@
                 <span>Data Pegawai</span></a>
         </li>
 
+        <!-- Nav Item - Charts -->
+        <li class="nav-item {{ $menuAdminUser ?? '' }}">
+            <a class="nav-link" href="{{ route('kantorIndex') }}">
+                <i class="fas fa-fw fa-building"></i>
+                <span>Data Kantor</span></a>
+        </li>
+
         <!-- Nav Item - Tables -->
         <li class="nav-item {{ $menuAdminTugas ?? '' }}">
             <a class="nav-link" href="{{ route('tugas') }}">

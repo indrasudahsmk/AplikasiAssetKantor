@@ -1,140 +1,52 @@
 @extends('layouts.app')
 
 @section('content')
-    <!-- Page Heading -->
-    <h1 class="h3 mb-4 text-gray-800">
-        <i class="fas fa-plus"></i>
-        {{ $title }}
-    </h1>
-    <div class="card">
-        <div class="card-header bg-success">
-            <a href="{{ route('pegawai.index') }}" class="btn btn-success btn-sm">
-                <i class="fas fa-arrow-left mr-2"></i>
-                Kembali
-            </a>
-        </div>
-        <div class="card-body">
-            <form action="{{ route('userStore') }}" method="post">
-                @csrf
-                <div class="row mb-3">
-                    <div class="col-xl-6 mb-1">
-                        <label class="form-label">
-                            <span class="text-danger">*</span> Nama :
-                        </label>
-                        <input type="text" name="nama" class="form-control @error('nama') is-invalid @enderror"
-                            value="{{ old('nama') }}" autocomplete="off">
-                        @error('nama')
-                            <small class="text-danger">{{ $message }}</small>
-                        @enderror
-                    </div>
-                    <div class="col-xl-6">
-                        <label class="form-label">
-                            <span class="text-danger">*</span> Username :
-                        </label>
-                        <input type="text" name="username" class="form-control @error('username') is-invalid @enderror"
-                            value="{{ old('username') }}" autocomplete="off">
-                        @error('username')
-                            <small class="text-danger">{{ $message }}</small>
-                        @enderror
-                    </div>
-                </div>
-
-                <div class="row mb-3">
-                    <div class="col-xl-6 mb-1">
-                        <label class="form-label">
-                            <span class="text-danger">*</span> NIP/NIK :
-                        </label>
-                        <input type="number" name="nip_nik" class="form-control @error('nip_nik') is-invalid @enderror"
-                            value="{{ old('nip_nik') }}" autocomplete="off">
-                        @error('nip_nik')
-                            <small class="text-danger">{{ $message }}</small>
-                        @enderror
-                    </div>
-
-                    <div class="col-xl-6 mb-1 @error('status_pegawai') is-invalid @enderror">
-                        <label class="form-label">
-                            <span class="text-danger">*</span> Status Pegawai :
-                        </label>
-                        <br>
-                        <input type="radio" class="btn-check" name="status_pegawai" id="ASN" value="ASN"
-                            {{ old('status_pegawai') == 'ASN' ? 'checked' : '' }}>
-                        <label for="ASN" class="mr-3">ASN</label>
-
-                        <input type="radio" class="btn-check" name="status_pegawai" id="NON_ASN" value="NON ASN"
-                            {{ old('status_pegawai') == 'NON ASN' ? 'checked' : '' }}>
-                        <label for="NON_ASN" class="mr-3">NON ASN</label>
-
-                        @error('status_pegawai')
-                            <br><small class="text-danger">{{ $message }}</small>
-                        @enderror
-                    </div>
-
-
-                </div>
-
-                <div class="row mb-3">
-                    <div class="col-xl-6 mb-1">
-                        <label class="form-label">
-                            <span class="text-danger">*</span> Jabatan :
-                        </label>
-                        <select class="form-control @error('jabatan') is-invalid @enderror" name="jabatan">
-                            <option disabled {{ old('jabatan') ? '' : 'selected' }}>-- PILIH JABATAN --</option>
-                            @foreach ($jabatan as $item)
-                                <option value="{{ $item->id_jabatan }}"
-                                    {{ old('jabatan') == $item->id_jabatan ? 'selected' : '' }}>
-                                    {{ $item->jabatan }}
-                                </option>
-                            @endforeach
-                        </select>
-                        @error('jabatan')
-                            <small class="text-danger">{{ $message }}</small>
-                        @enderror
-                    </div>
-
-                    <div class="col-xl-6 mb-1">
-                        <label class="form-label">
-                            <span class="text-danger">*</span> Bidang :
-                        </label>
-                        <select name="id_bidang" class="form-control w-100 @error('bidang') is-invalid @enderror">
-                            <option disabled {{ old('id_bidang') ? '' : 'selected' }}>-- PILIH BIDANG --</option>
-                            @foreach ($bidang as $item)
-                                <option value="{{ $item->id_bidang }}"
-                                    {{ old('id_bidang') == $item->id_bidang ? 'selected' : '' }}>
-                                    {{ $item->nama_bidang }}
-                                </option>
-                            @endforeach
-                        </select>
-                        @error('bidang')
-                            <small class="text-danger">{{ $message }}</small>
-                        @enderror
-                    </div>
-                </div>
-
-                <div class="row mb-3">
-                    <div class="col-xl-6 mb-1">
-                        <label class="form-label">
-                            <span class="text-danger">*</span> Password :
-                        </label>
-                        <input type="password" name="password" class="form-control @error('password') is-invalid @enderror">
-                        @error('password')
-                            <small class="text-danger">{{ $message }}</small>
-                        @enderror
-                    </div>
-                    <div class="col-xl-6 mb-1">
-                        <label class="form-label">
-                            <span class="text-danger">*</span> Konfirmasi Password :
-                        </label>
-                        <input type="password" name="password_confirmation"
-                            class="form-control @error('password') is-invalid @enderror">
-                    </div>
-                </div>
-
-                <div>
-                    <button type="submit" class="btn btn-success btn-sm">
-                        <i class="fas fa-save mr-2"></i> Simpan
-                    </button>
-                </div>
-            </form>
-        </div>
+<h1 class="h3 mb-4 text-gray-800">
+    <i class="fas fa-plus"></i>
+    {{ $title }}
+</h1>
+<div class="card">
+    <div class="card-header bg-success">
+        <a href="{{ route('kantorIndex') }}" class="btn btn-success btn-sm">
+            <i class="fas fa-arrow-left mr-2"></i>
+            Kembali
+        </a>
     </div>
+    <div class="card-body">
+        <form action="{{ route('kantorStore') }}" method="post">
+            @csrf
+            <div class="row mb-3">
+                <div class="col-xl-12 mb-1">
+                    <label class="form-label">
+                        <span class="text-danger">*</span> Nama Kantor :
+                    </label>
+                    <input type="text" name="kantor" class="form-control @error('kantor') is-invalid @enderror"
+                        value="{{ old('kantor') }}" autocomplete="off">
+                    @error('nama_kantor')
+                        <small class="text-danger">{{ $message }}</small>
+                    @enderror
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <div class="col-xl-12 mb-1">
+                    <label class="form-label">
+                        <span class="text-danger">*</span> Alamat :
+                    </label>
+                    <textarea name="alamat" rows="3" class="form-control @error('alamat') is-invalid @enderror"
+                        autocomplete="off">{{ old('alamat') }}</textarea>
+                    @error('alamat')
+                        <small class="text-danger">{{ $message }}</small>
+                    @enderror
+                </div>
+            </div>
+
+            <div>
+                <button type="submit" class="btn btn-success btn-sm">
+                    <i class="fas fa-save mr-2"></i> Simpan
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
 @endsection

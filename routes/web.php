@@ -5,6 +5,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\TugasController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\KantorController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -42,5 +43,15 @@ Route::middleware('checkLogin')->group(function () {
         Route::post('/tugas/destroy/{id}', [TugasController::class, 'destroy'])->name('tugasDestroy');
         Route::get('/tugas/excel', [TugasController::class, 'excel'])->name('tugasExcel');
         Route::get('/tugas/pdf', [TugasController::class, 'pdf'])->name('tugasPdf');
+
+         Route::get('/kantor', [KantorController::class, 'index'])->name('kantorIndex');
+Route::get('/kantor/create', [KantorController::class, 'create'])->name('kantorCreate');
+Route::post('/kantor/store', [KantorController::class, 'store'])->name('kantorStore');
+Route::get('/kantor/edit/{id}', [KantorController::class, 'edit'])->name('kantorEdit');
+Route::post('/kantor/update/{id}', [KantorController::class, 'update'])->name('kantorUpdate');
+Route::delete('/kantor/delete/{id}', [KantorController::class, 'destroy'])->name('kantorDelete');
+Route::get('/kantor/excel', [KantorController::class, 'excel'])->name('kantorExcel');
+Route::get('/kantor/pdf', [KantorController::class, 'pdf'])->name('kantorPdf');
+         
     });
 });

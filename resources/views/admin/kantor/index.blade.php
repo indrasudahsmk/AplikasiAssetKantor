@@ -1,26 +1,23 @@
 @extends('layouts.app')
 
 @section('content')
-    <!-- Page Heading -->
     <h1 class="h3 mb-4 text-gray-800">
-        <i class="fas fa-user"></i>
+        <i class="fas fa-building"></i>
         {{ $title }}
     </h1>
     <div class="card">
-        <div class="card-header d-flex flex-wrap justify-content-center justify-content-xl-between">
-            <div class="mb-1 mr-2">
-                <a href="{{ route('userCreate') }}" class="btn btn-primary btn-sm">
-                    <i class="fas fa-plus mr-2"></i>
-                    Tambah Data
-                </a>
-            </div>
+        <div class="card-header d-flex flex-wrap justify-content-between">
+            <a href="{{ route('kantorCreate') }}" class="btn btn-primary btn-sm">
+                <i class="fas fa-plus mr-2"></i>
+                Tambah Data
+            </a>
             <div>
-                <a href="{{ route('userExcel') }}" class="btn btn-success btn-sm">
+                <a href="{{ route('kantorExcel') }}" class="btn btn-success btn-sm">
                     <i class="fas fa-file-excel mr-2"></i>
                     Excel
                 </a>
-                <a href="{{ route('userPdf') }}" class="btn btn-danger btn-sm">
-                    <i class="fas fa-file-pdf mr-2" target='__blank'></i>
+                <a href="{{ route('kantorPdf') }}" class="btn btn-danger btn-sm" target="_blank">
+                    <i class="fas fa-file-pdf mr-2"></i>
                     PDF
                 </a>
             </div>
@@ -31,65 +28,28 @@
                     <thead class="text-center bg-primary text-white">
                         <tr>
                             <th>No</th>
-                            <th>NIP / NIK</th>
-                            <th>Nama</th>
-                            <th>Username</th>
-                            <th>Jabatan</th>
-                            <th>Bidang</th>
-                            <th>Status Pegawai</th>
-                            <th>
-                                <i class="fas fa-cog"></i>
-                            </th>
+                            <th>Kantor</th>
+                            <th>Alamat</th>
+                            <th>Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($pegawai as $item)
+                        @foreach ($kantor as $item)
                             <tr>
                                 <td class="text-center">{{ $loop->iteration }}</td>
+                                <td>{{ $item->kantor }}</td>
+                                <td>{{ $item->alamat }}</td>
                                 <td class="text-center">
-                                    <span class="badge badge-info badge-pill">
-                                        {{ $item->nip_nik }}
-                                    </span>
-                                </td>
-                                <td>{{ $item->nama }}</td>
-                                <td>{{ $item->username }}</td>
-                                <td class="text-center">
-                                    @if ($item->id_jabatan === 1)
-                                        <span class="badge badge-primary badge-pill">
-                                            Admin
-                                        </span>
-                                    @else
-                                        <span class="badge badge-success badge-pill">
-                                            Pegawai
-                                        </span>
-                                    @endif
-
-                                </td>
-                                <td class="text-center">
-                                    <span class="badge badge-success badge-pill">
-                                        {{ $item->bidang->nama_bidang ?? '-' }}
-                                    </span>
-                                </td>
-                                <td class="text-center">
-                                    @if ($item->status_pegawai == 'ASN')
-                                        <span class="badge badge-info badge-pill">
-                                            ASN
-                                        </span>
-                                    @else
-                                        <span class="badge badge-warning badge-pill">
-                                            NON ASN
-                                        </span>
-                                    @endif
-                                </td>
-                                <td class="text-center">
-                                    <a href="{{ route('userEdit', $item->id_pegawai) }}" class="btn btn-sm btn-primary">
+                                    <a href="{{ route('kantorEdit', $item->id) }}" class="btn btn-sm btn-primary">
                                         <i class="fas fa-edit"></i>
                                     </a>
-                                    <button class="btn btn-sm btn-danger" data-toggle="modal"
-                                        data-target="#ModalHapus{{ $item->id_pegawai }}">
-                                        <i class="fas fa-trash"></i>
-                                    </button>
-                                    @include('admin/user/modal')
+                                    <form action="{{ route('kantorDelete', $item->id) }}" method="POST" class="d-inline">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-sm btn-danger">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </form>
                                 </td>
                             </tr>
                         @endforeach
