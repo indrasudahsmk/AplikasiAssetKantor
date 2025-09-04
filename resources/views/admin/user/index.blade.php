@@ -33,6 +33,7 @@
                             <th>No</th>
                             <th>NIP / NIK</th>
                             <th>Nama</th>
+                            <th>Username</th>
                             <th>Jabatan</th>
                             <th>Bidang</th>
                             <th>Status Pegawai</th>
@@ -51,6 +52,7 @@
                                     </span>
                                 </td>
                                 <td>{{ $item->nama }}</td>
+                                <td>{{ $item->username }}</td>
                                 <td class="text-center">
                                     @if ($item->id_jabatan === 1)
                                         <span class="badge badge-primary badge-pill">
@@ -92,29 +94,6 @@
                             </tr>
                         @endforeach
                     </tbody>
-
-                    {{-- <td class="text-center">
-                                    @if ($item->is_tugas == false)
-                                        <span class="bagde  badge-warning badge-pill">
-                                            Belum Ditugaskan
-                                        </span>
-                                    @else
-                                        <span class="bagde  badge-info badge-pill">
-                                            Sudah Ditugaskan
-                                        </span>
-                                    @endif
-                                </td>
-                                <td class="text-center">
-                                    <a href="{{ route('userEdit', $item->id) }}" class="btn btn-sm btn-primary">
-                                        <i class="fas fa-edit"></i>
-                                    </a>
-                                    <button class="btn btn-sm btn-danger" data-toggle="modal"
-                                        data-target="#ModalHapus{{ $item->id }}">
-                                        <i class="fas fa-trash"></i>
-                                    </button>
-                                    @include('admin/user/modal')
-                                </td> --}}
-
                 </table>
             </div>
         </div>
