@@ -3,10 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-use App\Exports\UserExport;
+use App\Models\Bidang;
 use App\Models\Pegawai;
-use Illuminate\Http\Request;
+use App\Exports\UserExport;
 
+use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\Hash;
 use Maatwebsite\Excel\Facades\Excel;
@@ -29,6 +30,8 @@ class UserController extends Controller
         $data = [
             'title' => 'Tambah Data User',
             'menuAdminUser' => 'active',
+            'user' => Pegawai::with(['bidang','jabatan'])->get(),
+            
         ];
         return view('admin/user/create', $data);
     }

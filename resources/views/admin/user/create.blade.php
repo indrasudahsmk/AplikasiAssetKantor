@@ -55,6 +55,41 @@
                     </div>
                 </div>
                 <div class="row mb-3">
+                <div class="col-xl-6 mb-1">
+                        <label for="" class="form-label">
+                            <span class="text-danger">
+                                *
+                            </span>
+                            NIP/NIK :
+                        </label>
+                        <input type="text" name="nip_nik"
+                            class="form-control
+                        @error('nip_nik')
+                            is-invalid
+                        @enderror" value="{{ old('nip_nik') }}" autocomplete="off">
+                        @error('nip')
+                            <small class="text-danger">
+                                {{ $message }}
+                            </small>
+                        @enderror    
+                </div>   
+                <div class="col-xl-6 mb-1">
+                        <label for="" class="form-label">
+                            <span class="text-danger">
+                                *
+                            </span>
+                            Status Pegawai :
+                        </label>
+                        <br>
+                        <input type="radio" class="btn-check" name="status_pegawai" id="ASN" value="ASN"
+                            {{ old('status_pegawai') == 'ASN' ? 'checked' : '' }}>
+                        <label for="ASN" class="mr-3">ASN</label> 
+                        <input type="radio" class="btn-check" name="status_pegawai" id="NON ASN" value="NON ASN"
+                            {{ old('status_pegawai') == 'NON ASN' ? 'checked' : '' }}>
+                        <label for="Non ASN" class="mr-3">Non ASN</label>
+                    </div>
+                </div>
+                <div class="row mb-3">
                     <div class="col-xl-6 mb-1">
                         <label for="" class="form-label">
                             <span class="text-danger">
@@ -78,19 +113,21 @@
                         @enderror
                     </div>
                     <div class="col-xl-6 mb-1">
-                        <label for="" class="form-label">
-                            <span class="text-danger">
-                                *
-                            </span>
-                            Status Pegawai :
-                        </label>
-                        <br>
-                        <input type="radio" class="btn-check" name="status_pegawai" id="ASN" value="ASN"
-                            {{ old('status_pegawai') == 'ASN' ? 'checked' : '' }}>
-                        <label for="ASN" class="mr-3">ASN</label> 
-                        <input type="radio" class="btn-check" name="status_pegawai" id="NON ASN" value="NON ASN"
-                            {{ old('status_pegawai') == 'NON ASN' ? 'checked' : '' }}>
-                        <label for="Non ASN" class="mr-3">Non ASN</label>
+                        <label class="form-label">
+                        <span class="text-danger">*</span> Bidang :
+                    </label>
+                    <select name="user_id" class="form-control w-100 @error('id_bidang') is-invalid @enderror" 
+                     style="min-width: 100%;">
+                        <option selected disabled>-- PILIH BIDANG --</option>
+                        @foreach ($user as $item)
+                            <option value="{{ $item->id_bidang }}">
+                                {{ $item->nama_bidang }}
+                            </option>
+                        @endforeach
+                    </select>
+                    @error('id_bidang')
+                        <small class="text-danger">{{ $message }}</small>
+                    @enderror
                     </div>
                 </div>
                 <div class="row mb-3">
