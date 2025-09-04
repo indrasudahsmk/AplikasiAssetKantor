@@ -88,8 +88,8 @@
                         <input type="radio" class="btn-check" name="status_pegawai" id="ASN" value="ASN"
                             {{ old('status_pegawai') == 'ASN' ? 'checked' : '' }}>
                         <label for="ASN" class="mr-3">ASN</label> 
-                        <input type="radio" class="btn-check" name="status_pegawai" id="Non ASN" value="Non ASN"
-                            {{ old('status_pegawai') == 'Non ASN' ? 'checked' : '' }}>
+                        <input type="radio" class="btn-check" name="status_pegawai" id="NON ASN" value="NON ASN"
+                            {{ old('status_pegawai') == 'NON ASN' ? 'checked' : '' }}>
                         <label for="Non ASN" class="mr-3">Non ASN</label>
                     </div>
                 </div>
