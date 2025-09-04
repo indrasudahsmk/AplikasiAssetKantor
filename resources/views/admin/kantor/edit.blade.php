@@ -7,7 +7,7 @@
 </h1>
 <div class="card">
     <div class="card-header bg-primary">
-        <a href="{{ route('kantorIndex') }}" class="btn btn-success btn-sm">
+        <a href="{{ route('kantorIndex') }}" class="btn btn-primary btn-sm">
             <i class="fas fa-arrow-left mr-2"></i>
             Kembali
         </a>

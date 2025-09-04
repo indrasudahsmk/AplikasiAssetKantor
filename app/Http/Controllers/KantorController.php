@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Kantor;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class KantorController extends Controller
 {
@@ -29,17 +30,22 @@ class KantorController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'kantor' => 'required|max:100',
+            'kantor' => 'required',
             'alamat' => 'required',
+        ], [
+            'kantor.required' => 'Nama kantor tidak boleh kosong.',
+            'alamat.required' => 'Alamat tidak boleh kosong.',
         ]);
 
         $kantor = new Kantor();
         $kantor->kantor = $request->kantor;
         $kantor->alamat = $request->alamat;
+        $kantor->created_id = Auth::user()->id_pegawai;
         $kantor->save();
 
         return redirect()->route('kantorIndex')->with('success', 'Data berhasil ditambahkan');
     }
+
 
 
     public function edit($id)
@@ -57,19 +63,29 @@ class KantorController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'kantor' => 'required|max:100',
+            'kantor' => 'required',
             'alamat' => 'required',
+        ], [
+            'kantor.required' => 'Nama kantor tidak boleh kosong.',
+            'alamat.required' => 'Alamat tidak boleh kosong.',
         ]);
 
         $kantor = Kantor::findOrFail($id);
-        $kantor->update($request->only(['kantor', 'alamat']));
+        $kantor->kantor = $request->kantor;
+        $kantor->alamat = $request->alamat;
+        $kantor->updated_id = Auth::user()->id_pegawai;
+        $kantor->save();
 
         return redirect()->route('kantorIndex')->with('success', 'Data berhasil diperbarui');
     }
 
+
+
     public function destroy($id)
     {
         $kantor = Kantor::findOrFail($id);
+        $kantor->deleted_id = Auth::user()->id_pegawai;
+        $kantor->save();
         $kantor->delete();
 
         return redirect()->route('kantorIndex')->with('success', 'Data berhasil dihapus');

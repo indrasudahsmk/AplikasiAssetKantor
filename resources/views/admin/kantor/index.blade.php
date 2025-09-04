@@ -43,13 +43,15 @@
                                     <a href="{{ route('kantorEdit', $item->id) }}" class="btn btn-sm btn-primary">
                                         <i class="fas fa-edit"></i>
                                     </a>
-                                    <form action="{{ route('kantorDelete', $item->id) }}" method="POST" class="d-inline">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-sm btn-danger">
-                                            <i class="fas fa-trash"></i>
-                                        </button>
-                                    </form>
+
+                                    <!-- Tombol buka modal -->
+                                    <button class="btn btn-sm btn-danger" data-toggle="modal"
+                                        data-target="#ModalHapus{{ $item->id }}">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+
+                                    <!-- Panggil modal hapus -->
+                                    @include('admin.kantor.modal')
                                 </td>
                             </tr>
                         @endforeach
