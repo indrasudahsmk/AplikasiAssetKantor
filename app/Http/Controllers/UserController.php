@@ -96,23 +96,32 @@ class UserController extends Controller
     {
         $request->validate([
             'nama' => 'required',
-            'email' => 'required|unique:users,email,' . $id,
+            'username' => 'required|unique:pegawai,username,' . $id,
+            'status_pegawai' => 'required',
+            'nip_nik' => 'required|unique:pegawai,nip_nik,' . $id,
             'jabatan' => 'required',
-            'bidang' => 'required',
+            'id_bidang' => 'required',
             'password' => 'nullable|confirmed|min:8',
         ], [
             'nama.required' => 'Nama Wajib Diisi',
-            'email.required' => 'Email Wajib Diisi',
-            'email.unique' => 'Email Sudah Terdaftar',
+            'username.required' => 'username Wajib Diisi',
+            'username.unique' => 'username Sudah Terdaftar',
+            'status_pegawai.required' => 'Status Pegawai Wajib Di Pilih',
+            'nip_nik.required' => 'NIP/NIK Wajib Diisi',
+            'nip_nik.unique' => 'NIP/NIK Sudah Terdaftar',
             'jabatan.required' => 'Jabatan Wajib Di Pilih',
+            'id_bidang.required' => 'Bidang Wajib Di Pilih',
             'password.confirmed' => 'Password Konfirmasi Tidak Sama',
             'password.min' => 'Password Minimal 8 Karakter',
         ]);
 
         $user = Pegawai::with('tugas')->findOrFail($id);
         $user->nama = $request->nama;
-        $user->email = $request->email;
+        $user->username = $request->username;
+        $user->status_pegawai = $request->status_pegawai;
+        $user->nip_nik = $request->nip_nik; 
         $user->jabatan = $request->jabatan;
+        $user->id_bidang = $request->id_bidang;
         if ($request->jabatan == 'Admin') {
             $user->is_tugas = false;
             $user->tugas()->delete();
@@ -122,7 +131,7 @@ class UserController extends Controller
         }
         $user->save();
 
-        return redirect()->route('user')->with('success', 'Data Berhasil Di Edit');
+        return redirect()->route('pegawai.index')->with('success', 'Data Berhasil Di Edit');
     }
 
     public function destroy($id)

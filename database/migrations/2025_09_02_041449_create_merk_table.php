@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('merk', 100)->nullable();
             $table->timestamp('created_at')->nullable();
             $table->integer('created_id')->nullable();
-            $table->timestamp('updated_at')->nullable();
+            $table->timestamp('updated_at')->nullable()->useCurrentOnUpdate();
             $table->integer('updated_id')->nullable();
             $table->timestamp('deleted_at')->nullable();
             $table->integer('deleted_id')->nullable();

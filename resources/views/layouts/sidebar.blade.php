@@ -40,6 +40,30 @@
                 <i class="fas fa-fw fa-tasks"></i>
                 <span>Data Tugas</span></a>
         </li>
+
+        <!-- Nav Item - Tipe Barang -->
+        <li  class="nav-item {{ $menuAdminTipe ?? '' }}">
+            <a class="nav-link" href="{{ route('tipe') }}">
+                <i class="fas fa-fw fa-tasks"></i>
+                <span>Data Tipe</span>
+            </a>
+        </li>
+
+        <!-- Nav Item - Merk Barang -->
+        <li  class="nav-item {{ $menuAdminMerk ?? '' }}">
+            <a class="nav-link" href="{{ route('merk') }}">
+                <i class="fas fa-fw fa-tasks"></i>
+                <span>Data Merk</span>
+            </a>
+        </li>
+
+        <!-- Nav Item - Jenis Barang -->
+        <li  class="nav-item {{ $menuAdminJenis ?? '' }}">
+            <a class="nav-link" href="{{ route('jenis') }}">
+                <i class="fas fa-fw fa-tasks"></i>
+                <span>Data Jenis</span>
+            </a>
+        </li>
     @else
         <!-- Divider -->
         <hr class="sidebar-divider">
