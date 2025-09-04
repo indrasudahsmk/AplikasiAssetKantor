@@ -29,7 +29,7 @@ Route::middleware('checkLogin')->group(function () {
         Route::post('/user/store', [UserController::class, 'store'])->name('userStore');
 
         Route::get('/user/edit/{id}', [UserController::class, 'edit'])->name('userEdit');
-        Route::post('/user/update/{id}', [UserController::class, 'update'])->name('userUpdate');
+        Route::put('/user/update/{id}', [UserController::class, 'update'])->name('userUpdate');
         Route::post('/user/destroy/{id}', [UserController::class, 'destroy'])->name('userDestroy');
 
         Route::get('/user/excel', [UserController::class, 'excel'])->name('userExcel');
