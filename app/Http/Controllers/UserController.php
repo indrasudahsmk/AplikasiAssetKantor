@@ -122,10 +122,6 @@ class UserController extends Controller
         $user->nip_nik = $request->nip_nik; 
         $user->jabatan = $request->jabatan;
         $user->id_bidang = $request->id_bidang;
-        if ($request->jabatan == 'Admin') {
-            $user->is_tugas = false;
-            $user->tugas()->delete();
-        }
         if ($request->filled('password')) {
             $user->password = Hash::make($request->password);
         }
