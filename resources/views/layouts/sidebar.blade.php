@@ -35,7 +35,7 @@
         </li>
 
         <!-- Nav Item - Charts -->
-        <li class="nav-item {{ $menuAdminUser ?? '' }}">
+        <li class="nav-item {{ $menuAdminKantor ?? '' }}">
             <a class="nav-link" href="{{ route('kantorIndex') }}">
                 <i class="fas fa-fw fa-building"></i>
                 <span>Data Kantor</span></a>
