@@ -30,7 +30,7 @@
         <!-- Nav Item - Charts -->
         <li class="nav-item {{ $menuAdminUser ?? '' }}">
             <a class="nav-link" href="{{ route('pegawai.index') }}">
-                <i class="fas fa-fw fa-user"></i>
+                <i class="fas fa-fw fa-users"></i>
                 <span>Data Pegawai</span></a>
         </li>
 
@@ -46,6 +46,28 @@
             <a class="nav-link" href="{{ route('tugas') }}">
                 <i class="fas fa-fw fa-tasks"></i>
                 <span>Data Tugas</span></a>
+        </li>
+
+        <!-- Nav Item - Barang (Dropdown) -->
+        <li class="nav-item {{ $menuAdminBarang ?? '' }}">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseBarang"
+                aria-expanded="true" aria-controls="collapseBarang">
+                <i class="fas fa-fw fa-box"></i>
+                <span>Barang</span>
+            </a>
+            <div id="collapseBarang" class="collapse" aria-labelledby="headingBarang" data-parent="#accordionSidebar">
+                <div class="bg-primary py-2 collapse-inner rounded">
+                    <a class="dropdown-item bg-primary text-white" href="{{ route('tipe') }}">
+                        <i class="fas fa-fw fa-boxes"></i> Data Tipe
+                    </a>
+                    <a class="dropdown-item bg-primary text-white" href="{{ route('merk') }}">
+                        <i class="fas fa-fw fa-tags"></i> Data Merk
+                    </a>
+                    <a class="dropdown-item bg-primary text-white" href="{{ route('jenis') }}">
+                        <i class="fas fa-fw fa-th-large"></i> Data Jenis
+                    </a>
+                </div>
+            </div>
         </li>
     @else
         <!-- Divider -->

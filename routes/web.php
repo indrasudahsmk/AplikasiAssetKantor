@@ -1,9 +1,13 @@
 <?php
 
+use App\Models\Tipe;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\MerkController;
+use App\Http\Controllers\TipeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\TugasController;
+use App\Http\Controllers\JenisBController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\KantorController;
 
@@ -52,5 +56,26 @@ Route::middleware('checkLogin')->group(function () {
         Route::delete('/kantor/delete/{id}', [KantorController::class, 'destroy'])->name('kantorDelete');
         Route::get('/kantor/excel', [KantorController::class, 'excel'])->name('kantorExcel');
         Route::get('/kantor/pdf', [KantorController::class, 'pdf'])->name('kantorPdf');
+        
+        Route::get('/tipe', [TipeController::class, 'index'])->name('tipe');
+        Route::get('/tipe/create', [TipeController::class, 'create'])->name('tipeCreate');
+        Route::post('/tipe/store', [TipeController::class, 'store'])->name('tipeStore');
+        Route::post('/tipe/destroy/{id}', [TipeController::class, 'destroy'])->name('tipeDestroy');
+        Route::get('/tipe/edit/{id}', [TipeController::class, 'edit'])->name('tipeEdit');
+        Route::post('/tipe/update/{id}', [TipeController::class, 'update'])->name('tipeUpdate');
+
+        Route::get('/merk', [MerkController::class, 'index'])->name('merk');
+        Route::get('/merk/create', [MerkController::class, 'create'])->name('merkCreate');
+        Route::post('/merk/store', [MerkController::class, 'store'])->name('merkStore');
+        Route::post('/merk/destroy/{id}', [MerkController::class, 'destroy'])->name('merkDestroy');
+        Route::get('/merk/edit/{id}', [MerkController::class, 'edit'])->name('merkEdit');
+        Route::post('/merk/update/{id}', [MerkController::class, 'update'])->name('merkUpdate');
+
+        Route::get('/jenis', [JenisBController::class, 'index'])->name('jenis');
+        Route::get('/jenis/create', [JenisBController::class, 'create'])->name('jenisCreate');
+        Route::post('/jenis/store', [JenisBController::class, 'store'])->name('jenisStore');
+        Route::post('/jenis/destroy/{id}', [JenisBController::class, 'destroy'])->name('jenisDestroy');
+        Route::get('/jenis/edit/{id}', [JenisBController::class, 'edit'])->name('jenisEdit');
+        Route::post('/jenis/update/{id}', [JenisBController::class, 'update'])->name('jenisUpdate');
     });
 });
