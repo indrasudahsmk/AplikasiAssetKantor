@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('merk', function (Blueprint $table) {
             $table->id();
             $table->string('merk', 100)->nullable();
-            $table->timestamp('created_at')->nullable();
+            $table->timestamp('created_at')->useCurrent();
             $table->integer('created_id')->nullable();
             $table->timestamp('updated_at')->nullable()->useCurrentOnUpdate();
             $table->integer('updated_id')->nullable();

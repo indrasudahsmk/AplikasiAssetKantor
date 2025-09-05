@@ -12,7 +12,7 @@
                 <div class="row">
                     <div class="col-6">Jenis Barang</div>
                     <div class="col-6">
-                        : <span class="badge badge-dark">{{ $item->jenis }}</span>
+                        : <span class="badge badge-dark">{{ $item->jenis_barang }}</span>
                     </div>
                 </div>        
             </div>

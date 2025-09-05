@@ -88,47 +88,54 @@ class UserController extends Controller
             'title' => 'Edit Data User',
             'menuAdminUser' => 'active',
             'user' => Pegawai::findOrFail($id),
+            'jabatan' => Jabatan::all(),
+            'bidang' => Bidang::all(),
         ];
         return view('admin/user/edit', $data);
     }
+
 
     public function update(Request $request, $id)
     {
         $request->validate([
             'nama' => 'required',
-            'username' => 'required|unique:pegawai,username,' . $id,
+            'username' => 'required|unique:pegawai,username,' . $id . ',id_pegawai',
+            'nip_nik' => 'required',
             'status_pegawai' => 'required',
-            'nip_nik' => 'required|unique:pegawai,nip_nik,' . $id,
-            'jabatan' => 'required',
+            'id_jabatan' => 'required',
             'id_bidang' => 'required',
             'password' => 'nullable|confirmed|min:8',
         ], [
             'nama.required' => 'Nama Wajib Diisi',
-            'username.required' => 'username Wajib Diisi',
-            'username.unique' => 'username Sudah Terdaftar',
-            'status_pegawai.required' => 'Status Pegawai Wajib Di Pilih',
+            'username.required' => 'Username Wajib Diisi',
+            'username.unique' => 'Username Sudah Terdaftar',
             'nip_nik.required' => 'NIP/NIK Wajib Diisi',
-            'nip_nik.unique' => 'NIP/NIK Sudah Terdaftar',
-            'jabatan.required' => 'Jabatan Wajib Di Pilih',
-            'id_bidang.required' => 'Bidang Wajib Di Pilih',
+            'status_pegawai.required' => 'Status Pegawai Wajib Dipilih',
+            'id_jabatan.required' => 'Jabatan Wajib Dipilih',
+            'id_bidang.required' => 'Bidang Wajib Dipilih',
             'password.confirmed' => 'Password Konfirmasi Tidak Sama',
             'password.min' => 'Password Minimal 8 Karakter',
         ]);
 
-        $user = Pegawai::with('tugas')->findOrFail($id);
+        $user = Pegawai::findOrFail($id);
         $user->nama = $request->nama;
         $user->username = $request->username;
+        $user->nip_nik = $request->nip_nik;
         $user->status_pegawai = $request->status_pegawai;
-        $user->nip_nik = $request->nip_nik; 
-        $user->jabatan = $request->jabatan;
+        $user->id_jabatan = $request->id_jabatan;
         $user->id_bidang = $request->id_bidang;
+
         if ($request->filled('password')) {
             $user->password = Hash::make($request->password);
         }
+
+        $user->updated_id = Auth::user()->id_pegawai;
         $user->save();
 
-        return redirect()->route('pegawai.index')->with('success', 'Data Berhasil Di Edit');
+        return redirect()->route('pegawai.index')->with('success', 'Data Berhasil Diupdate');
     }
+
+
 
     public function destroy($id)
     {
@@ -136,7 +143,7 @@ class UserController extends Controller
         $pegawai->deleted_id = Auth::user()->id_pegawai;
         $pegawai->save();
         $pegawai->delete();
-        
+
         return redirect()->route('pegawai.index')->with('success', 'Data berhasil dihapus.');
     }
 
