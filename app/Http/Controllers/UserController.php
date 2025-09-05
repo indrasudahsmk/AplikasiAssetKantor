@@ -77,7 +77,7 @@ class UserController extends Controller
         $user->save();
 
 
-        return redirect()->route('pegawai.index')->with('success', 'Data Berhasil Ditambahkan');
+        return redirect()->route('pegawaiIndex')->with('success', 'Data Berhasil Ditambahkan');
     }
 
 
@@ -132,7 +132,7 @@ class UserController extends Controller
         $user->updated_id = Auth::user()->id_pegawai;
         $user->save();
 
-        return redirect()->route('pegawai.index')->with('success', 'Data Berhasil Diupdate');
+        return redirect()->route('pegawaiIndex')->with('success', 'Data Berhasil Diupdate');
     }
 
 
@@ -144,7 +144,7 @@ class UserController extends Controller
         $pegawai->save();
         $pegawai->delete();
 
-        return redirect()->route('pegawai.index')->with('success', 'Data berhasil dihapus.');
+        return redirect()->route('pegawaiIndex')->with('success', 'Data berhasil dihapus.');
     }
 
     public function excel()

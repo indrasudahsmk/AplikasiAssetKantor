@@ -6,7 +6,7 @@
 </h1>
 <div class="card">
     <div class="card-header bg-success">
-        <a href="{{ route('pegawai.index') }}" class="btn btn-success btn-sm">
+        <a href="{{ route('pegawaiIndex') }}" class="btn btn-success btn-sm">
             <i class="fas fa-arrow-left mr-2"></i> Kembali
         </a>
     </div>

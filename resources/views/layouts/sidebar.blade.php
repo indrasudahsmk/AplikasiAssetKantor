@@ -3,9 +3,9 @@
     <!-- Sidebar - Brand -->
     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/">
         <div class="sidebar-brand-icon">
-            <i class="fas fa-tasks"></i>
+            <i class="fas fa-cubes"></i>
         </div>
-        <div class="sidebar-brand-text mx-3">M-Togas<sup></sup></div>
+        <div class="sidebar-brand-text mx-3">Asset Kantor<sup></sup></div>
     </a>
 
     <!-- Divider -->
@@ -29,9 +29,16 @@
 
         <!-- Nav Item - Charts -->
         <li class="nav-item {{ $menuAdminUser ?? '' }}">
-            <a class="nav-link" href="{{ route('pegawai.index') }}">
+            <a class="nav-link" href="{{ route('pegawaiIndex') }}">
                 <i class="fas fa-fw fa-users"></i>
                 <span>Data Pegawai</span></a>
+        </li>
+
+        <!-- Nav Item - Charts -->
+        <li class="nav-item {{ $menuAdminBidang ?? '' }}">
+            <a class="nav-link" href="{{ route('bidangIndex') }}">
+                <i class="fas fa-project-diagram"></i>
+                <span>Data Bidang</span></a>
         </li>
 
         <!-- Nav Item - Charts -->
@@ -39,13 +46,6 @@
             <a class="nav-link" href="{{ route('kantorIndex') }}">
                 <i class="fas fa-fw fa-building"></i>
                 <span>Data Kantor</span></a>
-        </li>
-
-        <!-- Nav Item - Tables -->
-        <li class="nav-item {{ $menuAdminTugas ?? '' }}">
-            <a class="nav-link" href="{{ route('tugas') }}">
-                <i class="fas fa-fw fa-tasks"></i>
-                <span>Data Tugas</span></a>
         </li>
 
         <!-- Nav Item - Barang (Dropdown) -->
