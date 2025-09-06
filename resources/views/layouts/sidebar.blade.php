@@ -57,6 +57,9 @@
             </a>
             <div id="collapseBarang" class="collapse" aria-labelledby="headingBarang" data-parent="#accordionSidebar">
                 <div class="bg-primary py-2 collapse-inner rounded">
+                    <a class="dropdown-item bg-primary text-white" href="{{ route('barang') }}">
+                        <i class="fas fa-fw fa-box"></i> Data Barang
+                    </a>
                     <a class="dropdown-item bg-primary text-white" href="{{ route('tipe') }}">
                         <i class="fas fa-fw fa-boxes"></i> Data Tipe
                     </a>

@@ -25,9 +25,9 @@ return new class extends Migration
             $table->string('no_rangka', 50)->nullable();
             $table->string('no_mesin', 50)->nullable();
             $table->text('keterangan')->nullable();
-            $table->timestamp('created_at')->nullable();
+            $table->timestamp('created_at')->useCurrent();
             $table->integer('created_id')->nullable();
-            $table->timestamp('updated_at')->nullable();
+            $table->timestamp('updated_at')->nullable()->useCurrentOnUpdate();
             $table->integer('updated_id')->nullable();
             $table->timestamp('deleted_at')->nullable();
             $table->integer('deleted_id')->nullable();

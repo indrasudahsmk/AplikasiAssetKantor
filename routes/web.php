@@ -1,13 +1,11 @@
 <?php
 
-use App\Models\Tipe;
-use App\Models\Bidang;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\MerkController;
 use App\Http\Controllers\TipeController;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\TugasController;
+use App\Http\Controllers\BarangController;
 use App\Http\Controllers\BidangController;
 use App\Http\Controllers\JenisBController;
 use App\Http\Controllers\KantorController;
@@ -26,9 +24,7 @@ Route::middleware('isLogin')->group(function () {
 Route::middleware('checkLogin')->group(function () {
 
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-    Route::get('/tugas', [TugasController::class, 'index'])->name('tugas');
     Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
-    Route::get('karyawan/tugas/pdf', [TugasController::class, 'Karyawanpdf'])->name('tugasKaryawanPdf');
 
     Route::middleware('isAdmin')->group(function () {
         Route::get('/user', [UserController::class, 'index'])->name('pegawaiIndex');
@@ -36,12 +32,11 @@ Route::middleware('checkLogin')->group(function () {
         Route::post('/user/store', [UserController::class, 'store'])->name('userStore');
 
         Route::get('/user/edit/{id}', [UserController::class, 'edit'])->name('userEdit');
-        Route::put('/user/update/{id}', [UserController::class, 'update'])->name('userUpdate');
+        Route::post('/user/update/{id}', [UserController::class, 'update'])->name('userUpdate');
         Route::post('/user/destroy/{id}', [UserController::class, 'destroy'])->name('userDestroy');
 
         Route::get('/user/excel', [UserController::class, 'excel'])->name('userExcel');
         Route::get('/user/pdf', [UserController::class, 'pdf'])->name('userPdf');
-
 
         Route::get('/bidang', [BidangController::class, 'index'])->name('bidangIndex');
         Route::get('/bidang/create', [BidangController::class, 'create'])->name('bidangCreate');
@@ -81,5 +76,14 @@ Route::middleware('checkLogin')->group(function () {
         Route::post('/jenis/destroy/{id}', [JenisBController::class, 'destroy'])->name('jenisDestroy');
         Route::get('/jenis/edit/{id}', [JenisBController::class, 'edit'])->name('jenisEdit');
         Route::post('/jenis/update/{id}', [JenisBController::class, 'update'])->name('jenisUpdate');
+
+        Route::get('/barang', [BarangController::class, 'index'])->name('barang');
+        Route::get('/barang/create', [BarangController::class, 'create'])->name('barangCreate');
+        Route::post('/barang/store', [BarangController::class, 'store'])->name('barangStore');
+        Route::get('/barang/edit/{id}', [BarangController::class, 'edit'])->name('barangEdit');
+        Route::post('/barang/update/{id}', [BarangController::class, 'update'])->name('barangUpdate');
+        Route::post('/barang/delete/{id}', [BarangController::class, 'destroy'])->name('barangDestroy');
+        Route::get('/barang/excel', [BarangController::class, 'excel'])->name('barangExcel');
+        Route::get('/barang/pdf', [BarangController::class, 'pdf'])->name('barangPdf');
     });
 });

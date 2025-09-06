@@ -13,8 +13,6 @@
     <div class="card-body">
         <form action="{{ route('userUpdate', $user->id_pegawai) }}" method="post">
             @csrf
-            @method('PUT')
-
             <div class="row mb-3">
                 <div class="col-xl-6 mb-1">
                     <label class="form-label"><span class="text-danger">*</span> Nama :</label>
