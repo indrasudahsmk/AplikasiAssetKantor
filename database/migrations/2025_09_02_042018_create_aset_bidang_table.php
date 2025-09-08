@@ -16,9 +16,9 @@ return new class extends Migration
             $table->unsignedBigInteger('id_barang');
             $table->unsignedBigInteger('id_bidang');
             $table->string('status', 10)->nullable();
-            $table->timestamp('created_at')->nullable();
+            $table->timestamp('created_at')->useCurrent();
             $table->integer('created_id')->nullable();
-            $table->timestamp('updated_at')->nullable();
+            $table->timestamp('updated_at')->nullable()->useCurrentOnUpdate();
             $table->integer('updated_id')->nullable();
             $table->timestamp('deleted_at')->nullable();
             $table->integer('deleted_id')->nullable();
