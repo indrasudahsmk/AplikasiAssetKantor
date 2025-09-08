@@ -48,6 +48,20 @@
                 <span>Data Kantor</span></a>
         </li>
 
+        <!-- Nav Item - Tables -->
+        <li class="nav-item {{ $menuAdminAssetPegawai ?? '' }}">
+            <a class="nav-link" href="$">
+                <i class="fas fa-fw fa-boxes"></i>
+                <span>Asset Pegawai</span></a>
+        </li>
+
+        <!-- Nav Item - Tables -->
+        <li class="nav-item {{ $menuAdminAssetBidang ?? '' }}">
+            <a class="nav-link" href="$">
+                <i class="fas fa-fw fa-boxes"></i>
+                <span>Asset Bidang</span></a>
+        </li>
+
         <!-- Nav Item - Barang (Dropdown) -->
         <li class="nav-item {{ $menuAdminBarang ?? '' }}">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseBarang"
