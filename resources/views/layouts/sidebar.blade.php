@@ -83,10 +83,17 @@
 
 
         <!-- Nav Item - Tables -->
-        <li class="nav-item {{ $menuKaryawanTugas ?? '' }}">
-            <a class="nav-link" href="{{ route('tugas') }}">
-                <i class="fas fa-fw fa-tasks"></i>
-                <span>Data Tugas</span></a>
+        <li class="nav-item {{ $menuPegawaiAssetSaya ?? '' }}">
+            <a class="nav-link" href="$">
+                <i class="fas fa-fw fa-box"></i>
+                <span>Asset Saya</span></a>
+        </li>
+
+        <!-- Nav Item - Tables -->
+        <li class="nav-item {{ $menuPegawaiAssetBidang ?? '' }}">
+            <a class="nav-link" href="$">
+                <i class="fas fa-fw fa-boxes"></i>
+                <span>Asset Bidang</span></a>
         </li>
 
         <!-- Divider -->
