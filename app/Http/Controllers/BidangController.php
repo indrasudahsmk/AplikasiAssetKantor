@@ -32,10 +32,11 @@ class BidangController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'nama_bidang' => 'required',
+            'nama_bidang' => 'required|unique:bidang,nama_bidang',
             'kantor' => 'required',
         ], [
             'nama_bidang.required' => 'Nama kantor tidak boleh kosong.',
+            'nama_bidang.unique'   => 'Nama bidang sudah terdaftar.',
             'kantor.required' => 'Alamat tidak boleh kosong.',
         ]);
 
@@ -65,10 +66,11 @@ class BidangController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'nama_bidang' => 'required',
+            'nama_bidang' => 'required|unique:bidang,nama_bidang',
             'kantor' => 'required',
         ], [
             'nama_bidang.required' => 'Nama kantor tidak boleh kosong.',
+            'nama_bidang.unique'   => 'Nama bidang sudah terdaftar.',
             'kantor.required' => 'Alamat tidak boleh kosong.',
         ]);
 

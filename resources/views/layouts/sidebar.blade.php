@@ -84,7 +84,7 @@
 
         <!-- Nav Item - Tables -->
         <li class="nav-item {{ $menuPegawaiAssetSaya ?? '' }}">
-            <a class="nav-link" href="$">
+            <a class="nav-link" href="{{ route('assetsaya') }}">
                 <i class="fas fa-fw fa-box"></i>
                 <span>Asset Saya</span></a>
         </li>

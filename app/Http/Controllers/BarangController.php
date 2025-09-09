@@ -35,7 +35,7 @@ class BarangController extends Controller
     {
         $request->validate([
             'kode_barang' => 'required|max:35',
-            'nama_barang' => 'required|max:50',
+            'nama_barang' => 'required|max:50|unique:barang,nama_barang',
             'id_jenis'    => 'required|exists:jenis_barang,id',
             'id_merk'     => 'required|exists:merk,id',
             'id_tipe'     => 'required|exists:tipe,id',
@@ -48,7 +48,10 @@ class BarangController extends Controller
             'keterangan'      => 'nullable|string',
         ], [
             'kode_barang.required' => 'Kode barang tidak boleh kosong.',
+            'kode_barang.max'      => 'Panjang maksimal kode barang adalah 35 karakter.',
             'nama_barang.required' => 'Nama barang tidak boleh kosong.',
+            'nama_barang.max'      => 'Panjang maksimal nama barang adalah 50 karakter.',
+            'nama_barang.unique'   => 'Nama barang sudah terdaftar.',
             'id_jenis.required'    => 'Jenis barang harus dipilih.',
             'id_merk.required'     => 'Merk harus dipilih.',
             'id_tipe.required'     => 'Tipe harus dipilih.',

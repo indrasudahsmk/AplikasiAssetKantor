@@ -22,7 +22,7 @@
                     </label>
                     <input type="text" name="kantor" class="form-control @error('kantor') is-invalid @enderror"
                         value="{{ old('kantor') }}" autocomplete="off">
-                    @error('nama_kantor')
+                    @error('kantor')
                         <small class="text-danger">{{ $message }}</small>
                     @enderror
                 </div>

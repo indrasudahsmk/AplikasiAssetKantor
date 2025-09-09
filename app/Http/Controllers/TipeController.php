@@ -31,9 +31,10 @@ class TipeController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'tipe'           => 'required',
+            'tipe'           => 'required|unique:tipe,tipe',
         ], [
             'tipe.required'  => 'Nama Wajib Diisi',
+            'tipe.unique'    => 'Nama Sudah Terdaftar',
         ]);
 
         $tipe = new Tipe();
@@ -67,9 +68,10 @@ class TipeController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'tipe' => 'required',
+            'tipe' => 'required|unique:tipe,tipe',
         ], [
             'tipe.required' => 'Nama Wajib Diisi',
+            'tipe.unique'   => 'Nama Sudah Terdaftar',
         ]);
 
         $tipe = Tipe::findOrFail($id);

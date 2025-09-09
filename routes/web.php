@@ -1,10 +1,13 @@
 <?php
 
+use App\Http\Controllers\AsetController;
+use App\Models\Asset;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\MerkController;
 use App\Http\Controllers\TipeController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\AssetController;
 use App\Http\Controllers\BarangController;
 use App\Http\Controllers\BidangController;
 use App\Http\Controllers\JenisBController;
@@ -25,6 +28,13 @@ Route::middleware('checkLogin')->group(function () {
 
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
+
+    Route::get('/assetsaya', [AsetController::class, 'index'])->name('assetsaya');
+        Route::get('/assetsaya/create', [AsetController::class, 'create'])->name('assetsayaCreate');
+        Route::post('/assetsaya/store', [AsetController::class, 'store'])->name('assetsayaStore');
+        Route::get('/assetsaya/edit/{id}', [AsetController::class, 'edit'])->name('assetsayaEdit');
+        Route::post('/assetsaya/update/{id}', [AsetController::class, 'update'])->name('assetsayaUpdate');
+        Route::post('/assetsaya/destroy/{id}', [AsetController::class, 'destroy'])->name('assetsayaDestroy');
 
     Route::middleware('isAdmin')->group(function () {
         Route::get('/user', [UserController::class, 'index'])->name('pegawaiIndex');
@@ -85,5 +95,7 @@ Route::middleware('checkLogin')->group(function () {
         Route::post('/barang/delete/{id}', [BarangController::class, 'destroy'])->name('barangDestroy');
         Route::get('/barang/excel', [BarangController::class, 'excel'])->name('barangExcel');
         Route::get('/barang/pdf', [BarangController::class, 'pdf'])->name('barangPdf');
+
+        
     });
 });

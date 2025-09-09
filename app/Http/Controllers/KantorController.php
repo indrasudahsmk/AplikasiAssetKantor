@@ -30,10 +30,11 @@ class KantorController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'kantor' => 'required',
+            'kantor' => 'required|unique:kantor,kantor',
             'alamat' => 'required',
         ], [
             'kantor.required' => 'Nama kantor tidak boleh kosong.',
+            'kantor.unique'   => 'Nama kantor sudah terdaftar.',
             'alamat.required' => 'Alamat tidak boleh kosong.',
         ]);
 
@@ -63,10 +64,11 @@ class KantorController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'kantor' => 'required',
+            'kantor' => 'required|unique:kantor,kantor',
             'alamat' => 'required',
         ], [
             'kantor.required' => 'Nama kantor tidak boleh kosong.',
+            'kantor.unique'   => 'Nama kantor sudah terdaftar.',
             'alamat.required' => 'Alamat tidak boleh kosong.',
         ]);
 

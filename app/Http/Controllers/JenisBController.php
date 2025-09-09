@@ -30,9 +30,10 @@ class JenisBController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'jenis_barang'           => 'required',
+            'jenis_barang'           => 'required|unique:jenis_barang,jenis_barang',
         ], [
             'jenis_barang.required'  => 'Nama Wajib Diisi',
+            'jenis_barang.unique'    => 'Jenis Barang Ini Sudah Terdaftar',
         ]);
 
         $jenis = new JenisBarang();
@@ -66,9 +67,10 @@ class JenisBController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'jenis_barang' => 'required',
+            'jenis_barang' => 'required|unique:jenis_barang,jenis_barang',
         ], [
             'jenis_barang.required' => 'Nama Wajib Diisi',
+            'jenis_barang.unique'   => 'Jenis Barang Ini Sudah Terdaftar',
         ]);
 
         $jenis = JenisBarang::findOrFail($id);

@@ -30,9 +30,10 @@ class MerkController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'merk'           => 'required',
+            'merk'           => 'required|unique:merk,merk',
         ], [
             'merk.required'  => 'Nama Wajib Diisi',
+            'merk.unique'    => 'Merk Sudah Terdaftar',
         ]);
 
         $merk = new Merk();
@@ -66,9 +67,10 @@ class MerkController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'merk' => 'required',
+            'merk' => 'required|unique:merk,merk',
         ], [
             'merk.required' => 'Nama Wajib Diisi',
+            'merk.unique'   => 'Merk Sudah Terdaftar',
         ]);
 
         $merk = Merk::findOrFail($id);
