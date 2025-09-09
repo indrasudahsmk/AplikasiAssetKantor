@@ -10,6 +10,8 @@ use App\Http\Controllers\BidangController;
 use App\Http\Controllers\JenisBController;
 use App\Http\Controllers\KantorController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\JabatanController;
+ 
 
 Route::get('/', function () {
     return view('welcome');
@@ -55,7 +57,7 @@ Route::middleware('checkLogin')->group(function () {
         Route::delete('/kantor/delete/{id}', [KantorController::class, 'destroy'])->name('kantorDelete');
         Route::get('/kantor/excel', [KantorController::class, 'excel'])->name('kantorExcel');
         Route::get('/kantor/pdf', [KantorController::class, 'pdf'])->name('kantorPdf');
-        
+
         Route::get('/tipe', [TipeController::class, 'index'])->name('tipe');
         Route::get('/tipe/create', [TipeController::class, 'create'])->name('tipeCreate');
         Route::post('/tipe/store', [TipeController::class, 'store'])->name('tipeStore');
@@ -85,5 +87,14 @@ Route::middleware('checkLogin')->group(function () {
         Route::post('/barang/delete/{id}', [BarangController::class, 'destroy'])->name('barangDestroy');
         Route::get('/barang/excel', [BarangController::class, 'excel'])->name('barangExcel');
         Route::get('/barang/pdf', [BarangController::class, 'pdf'])->name('barangPdf');
+
+        Route::get('/jabatan', [JabatanController::class, 'index'])->name('jabatan');
+        Route::get('/jabatan/create', [JabatanController::class, 'create'])->name('jabatanCreate');
+        Route::post('/jabatan/store', [JabatanController::class, 'store'])->name('jabatanStore');
+        Route::get('/jabatan/edit/{id_jabatan}', [JabatanController::class, 'edit'])->name('jabatanEdit');
+        Route::post('/jabatan/update/{id_jabatan}', [JabatanController::class, 'update'])->name('jabatanUpdate');
+        Route::delete('/jabatan/destroy/{id_jabatan}', [JabatanController::class, 'destroy'])->name('jabatanDestroy');
+
+        
     });
 });

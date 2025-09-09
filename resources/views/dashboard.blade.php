@@ -110,7 +110,7 @@
                                 <i class="fas fa-times fa-2x text-gray-300"></i>
                             </div>
                         </div>
-                    </div>
+                    </div> 
                 </div>
             </div>
         @else

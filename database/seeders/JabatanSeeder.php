@@ -15,13 +15,43 @@ class JabatanSeeder extends Seeder
         // Data bisa kamu ubah sesuai kebutuhan
         $dataJabatan = [
             [
-                'jabatan' => 'Admin',
+                'jabatan' => 'Kepala Dinas',
                 'created_id' => 1,
                 'updated_id' => null,
                 'deleted_id' => null,
             ],
             [
-                'jabatan' => 'Pegawai',
+                'jabatan' => 'Sekretariat',
+                'created_id' => 1,
+                'updated_id' => null,
+                'deleted_id' => null,
+            ],
+            [
+                'jabatan' => 'Bidang Infrastruktur Teknologi Informasi dan Komunikasi',
+                'created_id' => 1,
+                'updated_id' => null,
+                'deleted_id' => null,
+            ],
+            [
+                'jabatan' => 'Bidang Layanan E-Government',
+                'created_id' => 1,
+                'updated_id' => null,
+                'deleted_id' => null,
+            ],
+            [
+                'jabatan' => 'Bidang Pengelolaan Informasi dan Komunikasi Publik',
+                'created_id' => 1,
+                'updated_id' => null,
+                'deleted_id' => null,
+            ],
+            [
+                'jabatan' => 'Bidang Persandian dan Keamanan Informasi',
+                'created_id' => 1,
+                'updated_id' => null,
+                'deleted_id' => null,
+            ],
+            [
+                'jabatan' => 'Bidang Statistik Sektoral',
                 'created_id' => 1,
                 'updated_id' => null,
                 'deleted_id' => null,
