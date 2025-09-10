@@ -105,7 +105,7 @@
 
         <!-- Nav Item - Tables -->
         <li class="nav-item {{ $menuPegawaiAssetBidang ?? '' }}">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="{{ route('assetBidangIndex') }}">
                 <i class="fas fa-fw fa-boxes"></i>
                 <span>Asset Bidang</span></a>
         </li>

@@ -27,6 +27,16 @@ Route::middleware('checkLogin')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
+    
+    Route::get('/assetbidang', [AssetBidangController::class, 'index'])->name('assetBidangIndex');
+    Route::get('/assetbidang/create', [AssetBidangController::class, 'create'])->name('assetBidangCreate');
+    Route::post('/assetbidang/store', [AssetBidangController::class, 'store'])->name('assetBidangStore');
+    Route::get('/assetbidang/edit/{id}', [AssetBidangController::class, 'edit'])->name('assetBidangEdit');
+    Route::post('/assetbidang/update/{id}', [AssetBidangController::class, 'update'])->name('assetBidangUpdate');
+    Route::delete('/assetbidang/delete/{id}', [AssetBidangController::class, 'destroy'])->name('assetBidangDelete');
+    Route::get('/assetbidang/excel', [AssetBidangController::class, 'excel'])->name('assetBidangExcel');
+    Route::get('/assetbidang/pdf', [AssetBidangController::class, 'pdf'])->name('assetBidangPdf');
+
     Route::middleware('isAdmin')->group(function () {
         Route::get('/user', [UserController::class, 'index'])->name('pegawaiIndex');
         Route::get('/user/create', [UserController::class, 'create'])->name('userCreate');
@@ -56,7 +66,7 @@ Route::middleware('checkLogin')->group(function () {
         Route::delete('/kantor/delete/{id}', [KantorController::class, 'destroy'])->name('kantorDelete');
         Route::get('/kantor/excel', [KantorController::class, 'excel'])->name('kantorExcel');
         Route::get('/kantor/pdf', [KantorController::class, 'pdf'])->name('kantorPdf');
-        
+
         Route::get('/tipe', [TipeController::class, 'index'])->name('tipe');
         Route::get('/tipe/create', [TipeController::class, 'create'])->name('tipeCreate');
         Route::post('/tipe/store', [TipeController::class, 'store'])->name('tipeStore');
@@ -86,15 +96,6 @@ Route::middleware('checkLogin')->group(function () {
         Route::post('/barang/delete/{id}', [BarangController::class, 'destroy'])->name('barangDestroy');
         Route::get('/barang/excel', [BarangController::class, 'excel'])->name('barangExcel');
         Route::get('/barang/pdf', [BarangController::class, 'pdf'])->name('barangPdf');
-
-        Route::get('/assetbidang', [AssetBidangController::class, 'index'])->name('assetBidangIndex');
-        Route::get('/assetbidang/create', [AssetBidangController::class, 'create'])->name('assetBidangCreate');
-        Route::post('/assetbidang/store', [AssetBidangController::class, 'store'])->name('assetBidangStore');
-        Route::get('/assetbidang/edit/{id}', [AssetBidangController::class, 'edit'])->name('assetBidangEdit');
-        Route::post('/assetbidang/update/{id}', [AssetBidangController::class, 'update'])->name('assetBidangUpdate');
-        Route::delete('/assetbidang/delete/{id}', [AssetBidangController::class, 'destroy'])->name('assetBidangDelete');
-        Route::get('/assetbidang/excel', [AssetBidangController::class, 'excel'])->name('assetBidangExcel');
-        Route::get('/assetbidang/pdf', [AssetBidangController::class, 'pdf'])->name('assetBidangPdf');
 
         Route::get('/assetpegawai', [AssetBidangController::class, 'index'])->name('assetPegawaiIndex');
         Route::get('/assetpegawai/create', [AssetBidangController::class, 'create'])->name('assetPegawaiCreate');

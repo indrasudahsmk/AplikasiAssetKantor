@@ -27,8 +27,8 @@ class AssetBidangSeeder extends Seeder
                 'created_id' => 1,
             ],
             [
-                'id_barang' => 3, // misalnya Mobil
-                'id_bidang' => 3, // misalnya Bidang Operasional
+                'id_barang' => 1, // misalnya Mobil
+                'id_bidang' => 1, // misalnya Bidang Operasional
                 'status'    => 'nonaktif',
                 'created_id' => 1,
             ],

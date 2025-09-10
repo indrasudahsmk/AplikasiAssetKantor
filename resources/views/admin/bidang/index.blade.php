@@ -14,7 +14,7 @@
             <div>
                 <a href="{{ route('bidangExcel') }}" class="btn btn-success btn-sm">
                     <i class="fas fa-file-excel mr-2"></i>
-                    Excel
+                    Import Excel
                 </a>
                 <a href="{{ route('bidangPdf') }}" class="btn btn-danger btn-sm" target="_blank">
                     <i class="fas fa-file-pdf mr-2"></i>
