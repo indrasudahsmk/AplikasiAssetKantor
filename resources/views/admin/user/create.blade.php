@@ -42,6 +42,16 @@
                 <div class="row mb-3">
                     <div class="col-xl-6 mb-1">
                         <label class="form-label">
+                            <span class="text-danger">*</span> Email :
+                        </label>
+                        <input type="email" name="email" class="form-control @error('email') is-invalid @enderror"
+                            value="{{ old('email') }}" autocomplete="off">
+                        @error('email')
+                            <small class="text-danger">{{ $message }}</small>
+                        @enderror
+                    </div>
+                    <div class="col-xl-6 mb-1">
+                        <label class="form-label">
                             <span class="text-danger">*</span> NIP/NIK :
                         </label>
                         <input type="number" name="nip_nik" class="form-control @error('nip_nik') is-invalid @enderror"
@@ -50,7 +60,9 @@
                             <small class="text-danger">{{ $message }}</small>
                         @enderror
                     </div>
+                </div>
 
+                <div class="row mb-3">
                     <div class="col-xl-6 mb-1 @error('status_pegawai') is-invalid @enderror">
                         <label class="form-label">
                             <span class="text-danger">*</span> Status Pegawai :
@@ -69,7 +81,19 @@
                         @enderror
                     </div>
 
-
+                    <div class="col-xl-6 mb-1">
+                        <label class="form-label">
+                            <span class="text-danger">*</span> Role :
+                        </label>
+                        <select class="form-control @error('id_role') is-invalid @enderror" name="id_role">
+                            <option disabled {{ old('id_role') ? '' : 'selected' }}>-- PILIH ROLE --</option>
+                            <option value="1" {{ old('id_role') == 1 ? 'selected' : '' }}>Admin</option>
+                            <option value="0" {{ old('id_role') == 0 ? 'selected' : '' }}>Pegawai</option>
+                        </select>
+                        @error('id_role')
+                            <small class="text-danger">{{ $message }}</small>
+                        @enderror
+                    </div>
                 </div>
 
                 <div class="row mb-3">
@@ -77,16 +101,16 @@
                         <label class="form-label">
                             <span class="text-danger">*</span> Jabatan :
                         </label>
-                        <select class="form-control @error('jabatan') is-invalid @enderror" name="jabatan">
-                            <option disabled {{ old('jabatan') ? '' : 'selected' }}>-- PILIH JABATAN --</option>
+                        <select class="form-control @error('id_jabatan') is-invalid @enderror" name="id_jabatan"
+                            size="3" style="max-height:200px; overflow-y:auto;">
                             @foreach ($jabatan as $item)
                                 <option value="{{ $item->id_jabatan }}"
-                                    {{ old('jabatan') == $item->id_jabatan ? 'selected' : '' }}>
+                                    {{ old('id_jabatan') == $item->id_jabatan ? 'selected' : '' }}>
                                     {{ $item->jabatan }}
                                 </option>
                             @endforeach
                         </select>
-                        @error('jabatan')
+                        @error('id_jabatan')
                             <small class="text-danger">{{ $message }}</small>
                         @enderror
                     </div>
@@ -95,7 +119,7 @@
                         <label class="form-label">
                             <span class="text-danger">*</span> Bidang :
                         </label>
-                        <select name="id_bidang" class="form-control w-100 @error('bidang') is-invalid @enderror">
+                        <select name="id_bidang" class="form-control w-100 @error('id_bidang') is-invalid @enderror">
                             <option disabled {{ old('id_bidang') ? '' : 'selected' }}>-- PILIH BIDANG --</option>
                             @foreach ($bidang as $item)
                                 <option value="{{ $item->id_bidang }}"
@@ -104,7 +128,7 @@
                                 </option>
                             @endforeach
                         </select>
-                        @error('bidang')
+                        @error('id_bidang')
                             <small class="text-danger">{{ $message }}</small>
                         @enderror
                     </div>

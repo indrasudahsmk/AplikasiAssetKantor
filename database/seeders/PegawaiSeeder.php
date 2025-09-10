@@ -21,6 +21,7 @@ class PegawaiSeeder extends Seeder
                 'nama' => 'Saka Tatal',
                 'id_jabatan' => 1,
                 'id_bidang' => 1, 
+                'id_role'   => 1,
                 'status_pegawai' => 'ASN',
                 'created_id' => 1,
                 'updated_id' => null,

@@ -10,15 +10,21 @@
             </div>
             <div class="modal-body text-left">
                 <div class="row">
+                    <div class="col-6">Nama Pegawai</div>
+                    <div class="col-6">
+                        : <span>{{ $item->pegawai->nama }}</span>
+                    </div>
+                </div>
+                <div class="row">
                     <div class="col-6">Barang</div>
                     <div class="col-6">
-                        : <span class="badge badge-dark">{{ $item->barang->nama_barang }}</span>
+                        : <span>{{ $item->barang->nama_barang }}</span>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-6">Status</div>
                     <div class="col-6">
-                        : <span class="badge badge-dark">{{ $item->status }}</span>
+                        : <span >{{ $item->status }}</span>
                     </div>        
             </div>
             <div class="modal-footer">

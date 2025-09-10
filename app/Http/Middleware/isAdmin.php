@@ -16,7 +16,7 @@ class isAdmin
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if(Auth::user()->id_jabatan === 1){
+        if(Auth::user()->id_role === 1){
             return $next($request);
         }
         return redirect()->route('dashboard')->with('error','Fitur ini khusus Admin');

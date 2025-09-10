@@ -36,7 +36,7 @@
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="userDropdown">
                                 <a class="dropdown-item text-center" href="#">
-                                    @if (auth()->user()->id_jabatan === 1)
+                                    @if (auth()->user()->id_role === 1)
                                         <span class="bagde  badge-primary badge-pill">
                                             Admin
                                         </span>

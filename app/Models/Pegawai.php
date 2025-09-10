@@ -23,6 +23,7 @@ class Pegawai extends Authenticatable
         'email',
         'nama',
         'id_jabatan',
+        'id_role',
         'id_bidang',
         'status_pegawai',
         'created_id',

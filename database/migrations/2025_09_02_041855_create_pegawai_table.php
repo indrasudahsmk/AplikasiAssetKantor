@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('nama', 35);
             $table->unsignedBigInteger('id_jabatan');
             $table->unsignedBigInteger('id_bidang');
+            $table->unsignedBigInteger('id_role')->default(0);
             $table->string('status_pegawai', 10);
             $table->timestamp('created_at')->useCurrent();
             $table->integer('created_id')->nullable();

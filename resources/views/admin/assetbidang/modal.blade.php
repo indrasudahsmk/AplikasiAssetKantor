@@ -1,6 +1,6 @@
 <div class="modal fade" id="ModalHapus{{ $item->id_aset }}" tabindex="-1" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
-    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
         <div class="modal-content">
             <div class="modal-header bg-danger text-white">
                 <h5 class="modal-title" id="exampleModalLabel">Hapus {{ $title }}</h5>
@@ -10,21 +10,21 @@
             </div>
             <div class="modal-body text-left">
                 <div class="row">
-                    <div class="col-4">Barang</div>
-                    <div class="col-8">
-                        <p class="mb-0">: {{ $item->barang->nama_barang ?? '-' }}</p>
+                    <div class="col-6">Barang</div>
+                    <div class="col-6">
+                        : <span>{{ $item->barang->nama_barang ?? '-' }}</span>
                     </div>
                 </div>
-                <div class="row mt-2">
-                    <div class="col-4">Bidang</div>
-                    <div class="col-8">
-                        <p class="mb-0">: {{ $item->bidang->nama_bidang ?? '-' }}</p>
+                <div class="row">
+                    <div class="col-6">Bidang</div>
+                    <div class="col-6">
+                        : <span>{{ $item->bidang->nama_bidang ?? '-' }}</span>
                     </div>
                 </div>
-                <div class="row mt-2">
-                    <div class="col-4">Status</div>
-                    <div class="col-8">
-                        <p class="mb-0">: {{ $item->status ?? '-' }}</p>
+                <div class="row">
+                    <div class="col-6">Status</div>
+                    <div class="col-6">
+                        : <span>{{ $item->status ?? '-' }}</span>
                     </div>
                 </div>
             </div>
@@ -32,7 +32,7 @@
                 <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">
                     <i class="fas fa-times mr-2"></i>Tutup
                 </button>
-                <form action="{{ route('assetBidangDelete', $item->id_aset) }}" method="post" class="d-inline">
+                <form action="{{ route('assetBidangDelete', $item->id_aset) }}" method="post">
                     @csrf
                     @method('DELETE')
                     <button type="submit" class="btn btn-danger btn-sm">

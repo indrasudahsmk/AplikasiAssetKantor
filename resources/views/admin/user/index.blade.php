@@ -35,6 +35,7 @@
                             <th>Nama</th>
                             <th>Username</th>
                             <th>Jabatan</th>
+                            <th>Role</th>
                             <th>Bidang</th>
                             <th>Status Pegawai</th>
                             <th>
@@ -54,7 +55,10 @@
                                 <td>{{ $item->nama }}</td>
                                 <td>{{ $item->username }}</td>
                                 <td class="text-center">
-                                    @if ($item->id_jabatan === 1)
+                                    {{ $item->jabatan->jabatan }}
+                                </td>
+                                <td class="text-center">
+                                    @if ($item->id_role === 1)
                                         <span class="badge badge-primary badge-pill">
                                             Admin
                                         </span>

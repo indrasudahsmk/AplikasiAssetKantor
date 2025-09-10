@@ -40,46 +40,51 @@ class UserController extends Controller
         return view('admin/user/create', $data);
     }
 
-
     public function store(Request $request)
     {
         $request->validate([
             'nama'           => 'required',
             'username'       => 'required|unique:pegawai,username',
-            'status_pegawai' => 'required',
+            'email'          => 'required|email|unique:pegawai,email',
             'nip_nik'        => 'required|unique:pegawai,nip_nik',
-            'jabatan'        => 'required',
+            'status_pegawai' => 'required',
+            'id_role'        => 'required',
+            'id_jabatan'     => 'required',
             'id_bidang'      => 'required',
             'password'       => 'required|confirmed|min:8',
         ], [
             'nama.required'           => 'Nama Wajib Diisi',
             'username.required'       => 'Username Wajib Diisi',
             'username.unique'         => 'Username Sudah Terdaftar',
-            'status_pegawai.required' => 'Status Pegawai Wajib Di Pilih',
+            'email.required'          => 'Email Wajib Diisi',
+            'email.email'             => 'Format Email Tidak Valid',
+            'email.unique'            => 'Email Sudah Terdaftar',
             'nip_nik.required'        => 'NIP/NIK Wajib Diisi',
             'nip_nik.unique'          => 'NIP/NIK Sudah Terdaftar',
-            'jabatan.required'        => 'Jabatan Wajib Di Pilih',
-            'id_bidang.required'      => 'Bidang Wajib Di Pilih',
+            'status_pegawai.required' => 'Status Pegawai Wajib Dipilih',
+            'id_role.required'        => 'Role Wajib Dipilih',
+            'id_jabatan.required'     => 'Jabatan Wajib Dipilih',
+            'id_bidang.required'      => 'Bidang Wajib Dipilih',
             'password.required'       => 'Password Wajib Diisi',
-            'password.confirmed'      => 'Password Konfirmasi Tidak Sama',
+            'password.confirmed'      => 'Konfirmasi Password Tidak Sama',
             'password.min'            => 'Password Minimal 8 Karakter',
         ]);
 
         $user = new Pegawai();
         $user->nama           = $request->nama;
         $user->username       = $request->username;
-        $user->status_pegawai = $request->status_pegawai;
+        $user->email          = $request->email;
         $user->nip_nik        = $request->nip_nik;
-        $user->id_jabatan     = $request->jabatan;
+        $user->status_pegawai = $request->status_pegawai;
+        $user->id_role        = $request->id_role;
+        $user->id_jabatan     = $request->id_jabatan;
         $user->id_bidang      = $request->id_bidang;
         $user->password       = Hash::make($request->password);
         $user->created_id     = Auth::user()->id_pegawai;
         $user->save();
 
-
         return redirect()->route('pegawaiIndex')->with('success', 'Data Berhasil Ditambahkan');
     }
-
 
 
     public function edit($id)
