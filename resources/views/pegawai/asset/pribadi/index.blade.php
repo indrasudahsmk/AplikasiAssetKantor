@@ -8,12 +8,6 @@
     </h1>
     <div class="card">
         <div class="card-header d-flex flex-wrap justify-content-center justify-content-xl-between">
-            <div class="mb-1 mr-2">
-                <a href="{{ route('assetsayaCreate') }}" class="btn btn-primary btn-sm">
-                    <i class="fas fa-plus mr-2"></i>
-                    Tambah Data Asset
-                </a>
-            </div>
             <div>
                 <a href="{{ route('userExcel') }}" class="btn btn-success btn-sm">
                     <i class="fas fa-file-excel mr-2"></i>
@@ -33,9 +27,6 @@
                             <th>No</th>
                             <th>Barang</th>
                             <th>Status</th>
-                            <th>
-                                <i class="fas fa-cog"></i>
-                            </th>
                         </tr>
                     </thead>
                     <tbody>
@@ -44,16 +35,6 @@
                                 <td align="center">{{  $loop->iteration }}</td>
                                 <td align="center">{{ $item->barang->nama_barang }}</td>
                                 <td align="center">{{ $item->status }}</td>
-                                <td class="text-center">
-                                    <a href="{{ route('assetsayaEdit', $item->id_aset) }}" class="btn btn-sm btn-primary">
-                                        <i class="fas fa-edit"></i>
-                                    </a>
-                                    <button class="btn btn-sm btn-danger" data-toggle="modal"
-                                        data-target="#ModalHapus{{ $item->id_aset }}">
-                                        <i class="fas fa-trash"></i>
-                                    </button>
-                                    @include('pegawai/asset/pribadi/modal')
-                                </td>
                             </tr>
                         @endforeach
                     </tbody>
