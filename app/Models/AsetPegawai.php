@@ -16,6 +16,7 @@ class AsetPegawai extends Model
     protected $fillable = [
         'id_barang',
         'status',
+        'id_pegawai',
         'created_id',
         'updated_id',
         'deleted_id',

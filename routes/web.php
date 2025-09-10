@@ -111,7 +111,7 @@ Route::middleware('checkLogin')->group(function () {
         Route::post('/assetpegawai/store', [AsetController::class, 'store'])->name('assetPegawaiStore');
         Route::get('/assetpegawai/edit/{id}', [AsetController::class, 'edit'])->name('assetPegawaiEdit');
         Route::post('/assetpegawai/update/{id}', [AsetController::class, 'update'])->name('assetPegawaiUpdate');
-        Route::delete('/assetpegawai/delete/{id}', [AsetController::class, 'destroy'])->name('assetPegawaiDestroy');
+        Route::post('/assetpegawai/delete/{id}', [AsetController::class, 'destroy'])->name('assetPegawaiDestroy');
         Route::get('/assetpegawai/excel', [AsetController::class, 'excel'])->name('assetPegawaiExcel');
         Route::get('/assetpegawai/pdf', [AsetController::class, 'pdf'])->name('assetPegawaiPdf');
     });

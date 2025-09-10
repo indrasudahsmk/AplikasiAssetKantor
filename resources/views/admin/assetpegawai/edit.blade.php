@@ -21,7 +21,7 @@
                         <label class="form-label"><span class="text-danger">*</span> Pegawai :</label>
                     <select class="form-control @error('id_pegawai') is-invalid @enderror" name="id_pegawai">
                         <option disabled {{ old('id_pegawai', $assetp->id_pegawai) ? '' : 'selected' }}>-- PILIH PEGAWAI --</option>
-                        @foreach ($pegawai as $item)d
+                        @foreach ($pegawai as $item)
                             <option value="{{ $item->id_pegawai }}" {{ old('id_pegawai', $assetp->id_pegawai) == $item->id_pegawai ? 'selected' : '' }}>
                                 {{ $item->nama }}
                             </option>
