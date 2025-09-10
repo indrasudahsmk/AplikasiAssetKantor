@@ -23,6 +23,9 @@ Route::get('/', function () {
 Route::middleware('isLogin')->group(function () {
     Route::get('/login', [AuthController::class, 'login'])->name('login');
     Route::post('/login', [AuthController::class, 'loginProses'])->name('loginProses');
+
+    Route::get('/register', [AuthController::class, 'register'])->name('register');
+    Route::post('/register', [AuthController::class, 'registerProses'])->name('registerProses');
 });
 
 Route::middleware('checkLogin')->group(function () {
@@ -30,7 +33,7 @@ Route::middleware('checkLogin')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
-    
+
     Route::get('/assetbidang', [AssetBidangController::class, 'index'])->name('assetBidangIndex');
     Route::get('/assetbidang/create', [AssetBidangController::class, 'create'])->name('assetBidangCreate');
     Route::post('/assetbidang/store', [AssetBidangController::class, 'store'])->name('assetBidangStore');
