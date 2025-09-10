@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\AssetBidang;
 use App\Models\Pegawai;
 use App\Models\User;
 use Illuminate\Database\Seeder;
@@ -23,6 +24,7 @@ class DatabaseSeeder extends Seeder
             BidangSeeder::class,
             PegawaiSeeder::class,
             BarangSeeder::class,
+            AssetBidangSeeder::class,
         ]);
     }
 }

@@ -13,6 +13,7 @@ use App\Http\Controllers\BidangController;
 use App\Http\Controllers\JenisBController;
 use App\Http\Controllers\KantorController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\AssetBidangController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -28,6 +29,16 @@ Route::middleware('checkLogin')->group(function () {
 
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
+
+    
+    Route::get('/assetbidang', [AssetBidangController::class, 'index'])->name('assetBidangIndex');
+    Route::get('/assetbidang/create', [AssetBidangController::class, 'create'])->name('assetBidangCreate');
+    Route::post('/assetbidang/store', [AssetBidangController::class, 'store'])->name('assetBidangStore');
+    Route::get('/assetbidang/edit/{id}', [AssetBidangController::class, 'edit'])->name('assetBidangEdit');
+    Route::post('/assetbidang/update/{id}', [AssetBidangController::class, 'update'])->name('assetBidangUpdate');
+    Route::delete('/assetbidang/delete/{id}', [AssetBidangController::class, 'destroy'])->name('assetBidangDelete');
+    Route::get('/assetbidang/excel', [AssetBidangController::class, 'excel'])->name('assetBidangExcel');
+    Route::get('/assetbidang/pdf', [AssetBidangController::class, 'pdf'])->name('assetBidangPdf');
 
     Route::get('/assetsaya', [AsetController::class, 'index'])->name('assetsaya');
         Route::get('/assetsaya/create', [AsetController::class, 'create'])->name('assetsayaCreate');
@@ -65,7 +76,7 @@ Route::middleware('checkLogin')->group(function () {
         Route::delete('/kantor/delete/{id}', [KantorController::class, 'destroy'])->name('kantorDelete');
         Route::get('/kantor/excel', [KantorController::class, 'excel'])->name('kantorExcel');
         Route::get('/kantor/pdf', [KantorController::class, 'pdf'])->name('kantorPdf');
-        
+
         Route::get('/tipe', [TipeController::class, 'index'])->name('tipe');
         Route::get('/tipe/create', [TipeController::class, 'create'])->name('tipeCreate');
         Route::post('/tipe/store', [TipeController::class, 'store'])->name('tipeStore');
@@ -95,7 +106,5 @@ Route::middleware('checkLogin')->group(function () {
         Route::post('/barang/delete/{id}', [BarangController::class, 'destroy'])->name('barangDestroy');
         Route::get('/barang/excel', [BarangController::class, 'excel'])->name('barangExcel');
         Route::get('/barang/pdf', [BarangController::class, 'pdf'])->name('barangPdf');
-
-        
     });
 });
