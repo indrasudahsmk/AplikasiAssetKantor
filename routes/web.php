@@ -33,22 +33,18 @@ Route::middleware('checkLogin')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
+    Route::get('/assetpegawai', [AsetController::class, 'index'])->name('assetPegawaiIndex');
+    Route::get('/assetsaya',[AsetController::class, 'indexpegawai'])->name('assetsayaIndex');
+       
+        Route::get('/assetBidang', [AssetBidangController::class, 'index'])->name('assetBidangIndex');
+        Route::get('/assetBidang/create', [AssetBidangController::class, 'create'])->name('assetBidangCreate');
+        Route::post('/assetBidang/store', [AssetBidangController::class, 'store'])->name('assetBidangStore');
+        Route::get('/assetBidang/edit/{id}', [AssetBidangController::class, 'edit'])->name('assetBidangEdit');
+        Route::post('/assetBidang/update/{id}', [AssetBidangController::class, 'update'])->name('assetBidangUpdate');
+        Route::delete('/assetBidang/delete/{id}', [AssetBidangController::class, 'destroy'])->name('assetBidangDelete');
+        Route::get('/assetBidang/excel', [AssetBidangController::class, 'excel'])->name('assetBidangExcel');
+        Route::get('/assetBidang/pdf', [AssetBidangController::class, 'pdf'])->name('assetBidangPdf');
 
-    Route::get('/assetbidang', [AssetBidangController::class, 'index'])->name('assetBidangIndex');
-    Route::get('/assetbidang/create', [AssetBidangController::class, 'create'])->name('assetBidangCreate');
-    Route::post('/assetbidang/store', [AssetBidangController::class, 'store'])->name('assetBidangStore');
-    Route::get('/assetbidang/edit/{id}', [AssetBidangController::class, 'edit'])->name('assetBidangEdit');
-    Route::post('/assetbidang/update/{id}', [AssetBidangController::class, 'update'])->name('assetBidangUpdate');
-    Route::delete('/assetbidang/delete/{id}', [AssetBidangController::class, 'destroy'])->name('assetBidangDelete');
-    Route::get('/assetbidang/excel', [AssetBidangController::class, 'excel'])->name('assetBidangExcel');
-    Route::get('/assetbidang/pdf', [AssetBidangController::class, 'pdf'])->name('assetBidangPdf');
-
-    Route::get('/assetsaya', [AsetController::class, 'index'])->name('assetsaya');
-        Route::get('/assetsaya/create', [AsetController::class, 'create'])->name('assetsayaCreate');
-        Route::post('/assetsaya/store', [AsetController::class, 'store'])->name('assetsayaStore');
-        Route::get('/assetsaya/edit/{id}', [AsetController::class, 'edit'])->name('assetsayaEdit');
-        Route::post('/assetsaya/update/{id}', [AsetController::class, 'update'])->name('assetsayaUpdate');
-        Route::post('/assetsaya/destroy/{id}', [AsetController::class, 'destroy'])->name('assetsayaDestroy');
 
     Route::middleware('isAdmin')->group(function () {
         Route::get('/user', [UserController::class, 'index'])->name('pegawaiIndex');
@@ -109,5 +105,14 @@ Route::middleware('checkLogin')->group(function () {
         Route::post('/barang/delete/{id}', [BarangController::class, 'destroy'])->name('barangDestroy');
         Route::get('/barang/excel', [BarangController::class, 'excel'])->name('barangExcel');
         Route::get('/barang/pdf', [BarangController::class, 'pdf'])->name('barangPdf');
+
+        Route::get('/assetpegawai', [AsetController::class, 'index'])->name('assetPegawaiIndex');
+        Route::get('/assetpegawai/create', [AsetController::class, 'create'])->name('assetPegawaiCreate');
+        Route::post('/assetpegawai/store', [AsetController::class, 'store'])->name('assetPegawaiStore');
+        Route::get('/assetpegawai/edit/{id}', [AsetController::class, 'edit'])->name('assetPegawaiEdit');
+        Route::post('/assetpegawai/update/{id}', [AsetController::class, 'update'])->name('assetPegawaiUpdate');
+        Route::delete('/assetpegawai/delete/{id}', [AsetController::class, 'destroy'])->name('assetPegawaiDestroy');
+        Route::get('/assetpegawai/excel', [AsetController::class, 'excel'])->name('assetPegawaiExcel');
+        Route::get('/assetpegawai/pdf', [AsetController::class, 'pdf'])->name('assetPegawaiPdf');
     });
 });

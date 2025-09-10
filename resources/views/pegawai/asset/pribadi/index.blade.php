@@ -8,16 +8,7 @@
     </h1>
     <div class="card">
         <div class="card-header d-flex flex-wrap justify-content-center justify-content-xl-between">
-            <div>
-                <a href="{{ route('userExcel') }}" class="btn btn-success btn-sm">
-                    <i class="fas fa-file-excel mr-2"></i>
-                    Excel
-                </a>
-                <a href="{{ route('userPdf') }}" class="btn btn-danger btn-sm">
-                    <i class="fas fa-file-pdf mr-2" target='__blank'></i>
-                    PDF
-                </a>
-            </div>
+            
         </div>
         <div class="card-body">
             <div class="table-responsive">

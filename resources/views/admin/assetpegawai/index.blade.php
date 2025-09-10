@@ -8,7 +8,7 @@
     </h1>
     <div class="card">
         <div class="card-header d-flex flex-wrap justify-content-center justify-content-xl-between">
-            <a href="{{ route('assetsayaCreate') }}" class="btn btn-primary btn-sm">
+            <a href="{{ route('assetPegawaiCreate') }}" class="btn btn-primary btn-sm">
                 <i class="fas fa-plus mr-2"></i>
                 Tambah Data
             </a>
@@ -44,6 +44,16 @@
                                 <td align="center">{{ $item->pegawai->nama }}</td>
                                 <td align="center">{{ $item->barang->nama_barang }}</td>
                                 <td align="center">{{ $item->status }}</td>
+                                <td class="text-center">
+                                    <a href="{{ route('assetPegawaiEdit', $item->id_aset) }}" class="btn btn-sm btn-primary">
+                                        <i class="fas fa-edit"></i>
+                                    </a>
+                                    <button class="btn btn-sm btn-danger" data-toggle="modal"
+                                        data-target="#ModalHapus{{ $item->id_aset }}">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                    @include('admin/assetpegawai/modal')
+                                </td>
                             </tr>
                         @endforeach
                     </tbody>
