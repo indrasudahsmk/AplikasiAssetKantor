@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\AsetPegawai;
 use App\Models\Barang;
+use App\Models\Pegawai;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -13,37 +14,41 @@ class AsetController extends Controller
     {
         $data = [
             'title' => 'Data Asset Barang',
-            'menuPegawaiAssetSaya' => 'active',
+            'menuAdminAssetSaya' => 'active',
             'assetp'          => AsetPegawai::where('id_pegawai', Auth::user()->id_pegawai)->get(),
+            'pegawai'         => Pegawai::all(),
         ];
-        return view('pegawai/asset/pribadi/index', $data);
+        return view('admin/assetpegawai/index', $data);
     }
 
     public function create()
     {
         $data = [
             'title' => 'Tambah Asset Saya',
-            'menuPegawaiAssetSaya' => 'active',
+            'menuAdminAssetSaya' => 'active',
             'assetp'          => AsetPegawai::all(),
             'barang'          => Barang::all(),
+            'pegawai'         => Pegawai::all(),
         ];
-        return view('pegawai/asset/pribadi/create', $data);
+        return view('admin/assetpegawai/create', $data);
     }
 
     public function store(Request $request)
     {
         $request->validate([
             'id_barang'    => 'required|exists:barang,id_barang',
+            'id_pegawai'  => 'required|exists:pegawai,id_pegawai',
             'status'       => 'required',
         ], [
             'id_barang.required'    => 'Barang harus dipilih.',
+            'id_pegawai.required'  => 'Pegawai harus dipilih.',
             'status.required'       => 'Status tidak boleh kosong.',
         ]);
 
         $assetp = new AsetPegawai();
         $assetp->id_barang          = $request->id_barang;
         $assetp->status             = $request->status;
-        $assetp->id_pegawai         = Auth::user()->id_pegawai;
+        $assetp->id_pegawai         = $request->id_pegawai;
         $assetp->created_id         = Auth::user()->id_pegawai;
         $assetp ->save();
 
@@ -67,10 +72,10 @@ class AsetController extends Controller
         $data = [
             'title' => 'Edit Data Barang',
             'assetp'    => AsetPegawai::findOrFail($id_aset),
-            'menuPegawaiAssetSaya' => 'active',
+            'menuAdminAssetSaya' => 'active',
             'barang'          => Barang::all(),
         ];
-        return view('pegawai/asset/pribadi/edit', $data);
+        return view('admin/assetpegawai/edit', $data);
     }
 
     public function update(Request $request, $id_aset)
@@ -84,5 +89,15 @@ class AsetController extends Controller
         ]);
 
         return redirect()->route('assetsaya')->with('success', 'Data berhasil diperbarui');
+    }
+
+    public function indexpegawai()
+    {
+        $data = [
+            'title' => 'Data Asset Barang',
+            'menuAdminAssetSaya' => 'active',
+            'assetp'          => AsetPegawai::where('id_pegawai', Auth::user()->id_pegawai)->get(),
+        ];
+        return view('admin/assetpegawai/index', $data);
     }
 }

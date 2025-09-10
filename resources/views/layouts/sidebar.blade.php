@@ -50,7 +50,7 @@
 
         <!-- Nav Item - Tables -->
         <li class="nav-item {{ $menuAdminAssetPegawai ?? '' }}">
-            <a class="nav-link" href="{{ route('assetPegawaiIndex') }}">
+            <a class="nav-link" href="{{ route('assetsaya') }}">
                 <i class="fas fa-fw fa-boxes"></i>
                 <span>Asset Pegawai</span></a>
         </li>
