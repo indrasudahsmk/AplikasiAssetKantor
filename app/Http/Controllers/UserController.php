@@ -70,7 +70,7 @@ class UserController extends Controller
             'password.confirmed'      => 'Konfirmasi Password Tidak Sama',
             'password.min'            => 'Password Minimal 8 Karakter',
         ]);
-        
+
         $user = new Pegawai();
         $user->nama           = $request->nama;
         $user->username       = $request->username;
@@ -103,10 +103,23 @@ class UserController extends Controller
 
     public function update(Request $request, $id)
     {
+        $user = Pegawai::findOrFail($id);
+
         $request->validate([
             'nama' => 'required',
-            'username' => 'required|unique:pegawai,username,' . $id . ',id_pegawai',
-            'nip_nik' => 'required',
+            'username' => [
+                'required',
+                Rule::unique('pegawai')->ignore($user->id_pegawai, 'id_pegawai')->whereNull('deleted_at')
+            ],
+            'nip_nik' => [
+                'required',
+                Rule::unique('pegawai')->ignore($user->id_pegawai, 'id_pegawai')->whereNull('deleted_at')
+            ],
+            'email' => [
+                'required',
+                'email',
+                Rule::unique('pegawai')->ignore($user->id_pegawai, 'id_pegawai')->whereNull('deleted_at')
+            ],
             'status_pegawai' => 'required',
             'id_jabatan' => 'required',
             'id_bidang' => 'required',
@@ -116,6 +129,10 @@ class UserController extends Controller
             'username.required' => 'Username Wajib Diisi',
             'username.unique' => 'Username Sudah Terdaftar',
             'nip_nik.required' => 'NIP/NIK Wajib Diisi',
+            'nip_nik.unique' => 'NIP/NIK Sudah Terdaftar',
+            'email.required' => 'Email Wajib Diisi',
+            'email.email' => 'Format Email Tidak Valid',
+            'email.unique' => 'Email Sudah Digunakan',
             'status_pegawai.required' => 'Status Pegawai Wajib Dipilih',
             'id_jabatan.required' => 'Jabatan Wajib Dipilih',
             'id_bidang.required' => 'Bidang Wajib Dipilih',
@@ -123,10 +140,10 @@ class UserController extends Controller
             'password.min' => 'Password Minimal 8 Karakter',
         ]);
 
-        $user = Pegawai::findOrFail($id);
         $user->nama = $request->nama;
         $user->username = $request->username;
         $user->nip_nik = $request->nip_nik;
+        $user->email = $request->email;
         $user->status_pegawai = $request->status_pegawai;
         $user->id_jabatan = $request->id_jabatan;
         $user->id_bidang = $request->id_bidang;
@@ -141,8 +158,6 @@ class UserController extends Controller
         return redirect()->route('pegawaiIndex')->with('success', 'Data Berhasil Diupdate');
     }
 
-
-
     public function destroy($id)
     {
         $pegawai = Pegawai::findOrFail($id);
@@ -151,22 +166,5 @@ class UserController extends Controller
         $pegawai->delete();
 
         return redirect()->route('pegawaiIndex')->with('success', 'Data berhasil dihapus.');
-    }
-
-    public function excel()
-    {
-        $filename = now()->format('d-m-Y H.i.s');
-        return Excel::download(new UserExport, 'DataUser_' . $filename . '.xlsx');
-    }
-
-    public function pdf()
-    {
-        $filename = now()->format('d-m-Y H.i.s');
-        $data = [
-            'user' => Pegawai::get(),
-            'date' => now()->format('d-m-Y'),
-        ];
-        $pdf = Pdf::loadView('admin/user/pdf', $data);
-        return $pdf->download('DataUser_' . $filename . '.pdf');
     }
 }

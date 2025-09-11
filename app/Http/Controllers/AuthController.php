@@ -56,28 +56,32 @@ class AuthController extends Controller
 
     public function registerProses(Request $request)
     {
+        // Validasi input
         $request->validate([
-            'nip_nik'    => ['required', Rule::unique('pegawai')->whereNull('deleted_at')],
-            'username'   => ['required', Rule::unique('pegawai')->whereNull('deleted_at')],
-            'email'      => ['required', 'email', Rule::unique('pegawai')->whereNull('deleted_at')],
-            'nama'       => 'required',
-            'id_jabatan' => 'required|exists:jabatan,id_jabatan',
-            'id_bidang'  => 'required|exists:bidang,id_bidang',
-            'password'   => 'required|min:8|confirmed',
+            'nip_nik'        => ['required', Rule::unique('pegawai')->whereNull('deleted_at')],
+            'username'       => ['required', Rule::unique('pegawai')->whereNull('deleted_at')],
+            'email'          => ['required', 'email', Rule::unique('pegawai')->whereNull('deleted_at')],
+            'nama'           => 'required',
+            'id_jabatan'     => 'required|exists:jabatan,id_jabatan',
+            'id_bidang'      => 'required|exists:bidang,id_bidang',
+            'password'       => 'required|min:8|confirmed',
+            'status_pegawai' => 'required|in:ASN,NON ASN',
         ], [
-            'nip_nik.required'    => 'NIP/NIK tidak boleh kosong',
-            'nip_nik.unique'      => 'NIP/NIK sudah terdaftar',
-            'username.required'   => 'Username tidak boleh kosong',
-            'username.unique'     => 'Username sudah digunakan',
-            'email.required'      => 'Email tidak boleh kosong',
-            'email.email'         => 'Format email tidak valid',
-            'email.unique'        => 'Email sudah digunakan',
-            'nama.required'       => 'Nama lengkap tidak boleh kosong',
-            'id_jabatan.required' => 'Pilih jabatan',
-            'id_bidang.required'  => 'Pilih bidang',
-            'password.required'   => 'Password tidak boleh kosong',
-            'password.min'        => 'Password minimal 8 karakter',
-            'password.confirmed'  => 'Konfirmasi password tidak cocok',
+            'nip_nik.required'        => 'NIP/NIK tidak boleh kosong',
+            'nip_nik.unique'          => 'NIP/NIK sudah terdaftar',
+            'username.required'       => 'Username tidak boleh kosong',
+            'username.unique'         => 'Username sudah digunakan',
+            'email.required'          => 'Email tidak boleh kosong',
+            'email.email'             => 'Format email tidak valid',
+            'email.unique'            => 'Email sudah digunakan',
+            'nama.required'           => 'Nama lengkap tidak boleh kosong',
+            'id_jabatan.required'     => 'Pilih jabatan',
+            'id_bidang.required'      => 'Pilih bidang',
+            'password.required'       => 'Password tidak boleh kosong',
+            'password.min'            => 'Password minimal 8 karakter',
+            'password.confirmed'      => 'Konfirmasi password tidak cocok',
+            'status_pegawai.required' => 'Pilih status pegawai',
+            'status_pegawai.in'       => 'Status pegawai tidak valid',
         ]);
 
         Pegawai::create([
@@ -88,7 +92,7 @@ class AuthController extends Controller
             'id_jabatan'     => $request->id_jabatan,
             'id_bidang'      => $request->id_bidang,
             'password'       => Hash::make($request->password),
-            'status_pegawai' => 'aktif',
+            'status_pegawai' => $request->status_pegawai,
         ]);
 
         return redirect()->route('login')->with('success', 'Registrasi berhasil, silahkan login');
