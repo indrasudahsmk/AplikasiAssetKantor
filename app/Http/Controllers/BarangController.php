@@ -7,6 +7,7 @@ use App\Models\Tipe;
 use App\Models\Barang;
 use App\Models\JenisBarang;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Auth;
 
 class BarangController extends Controller
@@ -35,7 +36,7 @@ class BarangController extends Controller
     {
         $request->validate([
             'kode_barang' => 'required|max:35',
-            'nama_barang' => 'required|max:50|unique:barang,nama_barang',
+            'nama_barang' => ['required', Rule::unique('barang','nama_barang')->whereNull('deleted_at')],
             'id_jenis'    => 'required|exists:jenis_barang,id',
             'id_merk'     => 'required|exists:merk,id',
             'id_tipe'     => 'required|exists:tipe,id',
@@ -94,6 +95,31 @@ class BarangController extends Controller
 
     public function update(Request $request, $id)
     {
+
+        $request->validate([
+            'kode_barang' => 'required|max:35',
+            'nama_barang' => ['required', Rule::unique('barang','nama_barang')->whereNull('deleted_at')],
+            'id_jenis'    => 'required|exists:jenis_barang,id',
+            'id_merk'     => 'required|exists:merk,id',
+            'id_tipe'     => 'required|exists:tipe,id',
+            'tahun_pembelian' => 'nullable|integer',
+            'harga'           => 'nullable|numeric',
+            'nomor_register'  => 'nullable|max:50',
+            'no_pabrik'       => 'nullable|max:50',
+            'no_rangka'       => 'nullable|max:50',
+            'no_mesin'        => 'nullable|max:50',
+            'keterangan'      => 'nullable|string',
+        ], [
+            'kode_barang.required' => 'Kode barang tidak boleh kosong.',
+            'kode_barang.max'      => 'Panjang maksimal kode barang adalah 35 karakter.',
+            'nama_barang.required' => 'Nama barang tidak boleh kosong.',
+            'nama_barang.max'      => 'Panjang maksimal nama barang adalah 50 karakter.',
+            'nama_barang.unique'   => 'Nama barang sudah terdaftar.',
+            'id_jenis.required'    => 'Jenis barang harus dipilih.',
+            'id_merk.required'     => 'Merk harus dipilih.',
+            'id_tipe.required'     => 'Tipe harus dipilih.',
+        ]);
+
         $barang = Barang::findOrFail($id);
 
         $barang->update([

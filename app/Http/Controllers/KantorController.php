@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Kantor;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Auth;
 
 class KantorController extends Controller
@@ -30,7 +31,7 @@ class KantorController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'kantor' => 'required|unique:kantor,kantor',
+            'kantor' => ['required', Rule::unique('kantor','kantor')->whereNull('deleted_at')],
             'alamat' => 'required',
         ], [
             'kantor.required' => 'Nama kantor tidak boleh kosong.',
@@ -64,7 +65,7 @@ class KantorController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'kantor' => 'required|unique:kantor,kantor',
+            'kantor' => ['required', Rule::unique('kantor','kantor')->whereNull('deleted_at')],
             'alamat' => 'required',
         ], [
             'kantor.required' => 'Nama kantor tidak boleh kosong.',

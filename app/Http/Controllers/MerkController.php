@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Merk;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Auth;
 
 class MerkController extends Controller
@@ -30,7 +31,7 @@ class MerkController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'merk'           => 'required|unique:merk,merk',
+            'merk'           => ['required', Rule::unique('merk','merk')->whereNull('deleted_at')],
         ], [
             'merk.required'  => 'Nama Wajib Diisi',
             'merk.unique'    => 'Merk Sudah Terdaftar',
@@ -67,7 +68,7 @@ class MerkController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'merk' => 'required|unique:merk,merk',
+            'merk' => ['required', Rule::unique('merk','merk')->whereNull('deleted_at')],
         ], [
             'merk.required' => 'Nama Wajib Diisi',
             'merk.unique'   => 'Merk Sudah Terdaftar',

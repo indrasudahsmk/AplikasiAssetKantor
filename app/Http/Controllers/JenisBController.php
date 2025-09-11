@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\JenisBarang;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Auth;
 
 class JenisBController extends Controller
@@ -30,7 +31,7 @@ class JenisBController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'jenis_barang'           => 'required|unique:jenis_barang,jenis_barang',
+            'jenis_barang'           => ['required', Rule::unique('jenis_barang','jenis_barang')->whereNull('deleted_at')],
         ], [
             'jenis_barang.required'  => 'Nama Wajib Diisi',
             'jenis_barang.unique'    => 'Jenis Barang Ini Sudah Terdaftar',
@@ -67,7 +68,7 @@ class JenisBController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'jenis_barang' => 'required|unique:jenis_barang,jenis_barang',
+            'jenis_barang' => ['required', Rule::unique('jenis_barang','jenis_barang')->whereNull('deleted_at')],
         ], [
             'jenis_barang.required' => 'Nama Wajib Diisi',
             'jenis_barang.unique'   => 'Jenis Barang Ini Sudah Terdaftar',

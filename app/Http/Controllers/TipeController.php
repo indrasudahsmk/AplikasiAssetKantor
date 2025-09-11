@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Tipe;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
@@ -31,7 +32,7 @@ class TipeController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'tipe'           => 'required|unique:tipe,tipe',
+            'tipe'           => ['required', Rule::unique('tipe','tipe')->whereNull('deleted_at')],
         ], [
             'tipe.required'  => 'Nama Wajib Diisi',
             'tipe.unique'    => 'Nama Sudah Terdaftar',
@@ -68,7 +69,7 @@ class TipeController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'tipe' => 'required|unique:tipe,tipe',
+            'tipe' => ['required', Rule::unique('tipe','tipe')->whereNull('deleted_at')],
         ], [
             'tipe.required' => 'Nama Wajib Diisi',
             'tipe.unique'   => 'Nama Sudah Terdaftar',

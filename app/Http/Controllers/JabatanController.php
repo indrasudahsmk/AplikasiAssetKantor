@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Jabatan;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Auth;
 
 class JabatanController extends Controller
@@ -29,7 +30,7 @@ class JabatanController extends Controller
     {
         // Validasi dengan tabel 'jabatan' agar tidak duplikat
         $validated = $request->validate([
-            'jabatan' => 'required|string|max:100|unique:jabatan,jabatan',
+            'jabatan' => ['required', Rule::unique('jabatan','jabatan')->whereNull('deleted_at')],
         ], [
             'jabatan.required' => 'Nama Jabatan wajib diisi.',
             'jabatan.unique' => 'Nama Jabatan sudah ada, tidak boleh duplikat.',
@@ -56,7 +57,11 @@ class JabatanController extends Controller
     {
         // Validasi unique kecuali record sendiri
         $validated = $request->validate([
-            'jabatan' => 'required|string|max:100|unique:jabatan,jabatan,' . $id_jabatan . ',id_jabatan',
+            'jabatan' =>  ['required','string','max:100',
+            Rule::unique('jabatan', 'jabatan')
+            ->whereNull('deleted_at')
+            ->ignore($id_jabatan, 'id_jabatan'),
+        ],  
         ], [
             'jabatan.required' => 'Nama Jabatan wajib diisi.',
             'jabatan.unique' => 'Nama Jabatan sudah ada, tidak boleh duplikat.',

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Bidang;
 use App\Models\Kantor;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Auth;
 
 class BidangController extends Controller
@@ -32,7 +33,7 @@ class BidangController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'nama_bidang' => 'required|unique:bidang,nama_bidang',
+            'nama_bidang' => ['required', Rule::unique('bidang','nama_bidang')->whereNull('deleted_at')],
             'kantor' => 'required',
         ], [
             'nama_bidang.required' => 'Nama kantor tidak boleh kosong.',
@@ -66,7 +67,7 @@ class BidangController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'nama_bidang' => 'required|unique:bidang,nama_bidang',
+            'nama_bidang' => ['required', Rule::unique('bidang','nama_bidang')->whereNull('deleted_at')],
             'kantor' => 'required',
         ], [
             'nama_bidang.required' => 'Nama kantor tidak boleh kosong.',
