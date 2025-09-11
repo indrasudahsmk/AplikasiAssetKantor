@@ -33,12 +33,18 @@ class BidangController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'nama_bidang' => ['required', Rule::unique('bidang','nama_bidang')->whereNull('deleted_at')],
+            'nama_bidang' => [
+                'required',
+                Rule::unique('bidang')->where(function ($query) use ($request) {
+                    return $query->where('id_kantor', $request->kantor)
+                        ->whereNull('deleted_at');
+                }),
+            ],
             'kantor' => 'required',
         ], [
-            'nama_bidang.required' => 'Nama kantor tidak boleh kosong.',
-            'nama_bidang.unique'   => 'Nama bidang sudah terdaftar.',
-            'kantor.required' => 'Alamat tidak boleh kosong.',
+            'nama_bidang.required' => 'Nama bidang tidak boleh kosong.',
+            'nama_bidang.unique'   => 'Nama bidang pada kantor tersebut sudah terdaftar.',
+            'kantor.required' => 'Kantor tidak boleh kosong.',
         ]);
 
         $bidang = new Bidang();
@@ -49,8 +55,6 @@ class BidangController extends Controller
 
         return redirect()->route('bidangIndex')->with('success', 'Data berhasil ditambahkan');
     }
-
-
 
     public function edit($id)
     {
@@ -67,12 +71,20 @@ class BidangController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'nama_bidang' => ['required', Rule::unique('bidang','nama_bidang')->whereNull('deleted_at')],
+            'nama_bidang' => [
+                'required',
+                Rule::unique('bidang', 'nama_bidang')
+                    ->ignore($id, 'id_bidang') // abaikan data yang sedang diedit
+                    ->where(function ($query) use ($request) {
+                        return $query->where('id_kantor', $request->kantor)
+                            ->whereNull('deleted_at');
+                    }),
+            ],
             'kantor' => 'required',
         ], [
-            'nama_bidang.required' => 'Nama kantor tidak boleh kosong.',
-            'nama_bidang.unique'   => 'Nama bidang sudah terdaftar.',
-            'kantor.required' => 'Alamat tidak boleh kosong.',
+            'nama_bidang.required' => 'Nama bidang tidak boleh kosong.',
+            'nama_bidang.unique'   => 'Nama bidang pada kantor ini sudah terdaftar.',
+            'kantor.required' => 'Kantor tidak boleh kosong.',
         ]);
 
         $bidang = Bidang::findOrFail($id);
@@ -83,8 +95,6 @@ class BidangController extends Controller
 
         return redirect()->route('bidangIndex')->with('success', 'Data berhasil diperbarui');
     }
-
-
 
     public function destroy($id)
     {
