@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Hash;
 use App\Models\Pegawai;
 use App\Models\Jabatan;
 use App\Models\Bidang;
+use Illuminate\Validation\Rule;
 
 class AuthController extends Controller
 {
@@ -32,37 +33,37 @@ class AuthController extends Controller
             'password' => $request->password,
         ];
 
-        if(Auth::attempt($data)){
-            return redirect()->route('dashboard')->with('success','Anda Berhasil Login');
-        }else{
-            return redirect()->back()->with('error','Username atau password salah');
+        if (Auth::attempt($data)) {
+            return redirect()->route('dashboard')->with('success', 'Anda Berhasil Login');
+        } else {
+            return redirect()->back()->with('error', 'Username atau password salah');
         }
     }
 
     public function logout()
     {
         Auth::logout();
-        return redirect()->route('login')->with('success','Anda Berhasil Logout');
+        return redirect()->route('login')->with('success', 'Anda Berhasil Logout');
     }
 
     public function register()
     {
-        $jabatans = Jabatan::all(); 
-        $bidangs = Bidang::all();   
+        $jabatans = Jabatan::all();
+        $bidangs = Bidang::all();
 
-        return view('auth.register', compact('jabatans','bidangs'));
+        return view('auth.register', compact('jabatans', 'bidangs'));
     }
 
     public function registerProses(Request $request)
     {
         $request->validate([
-            'nip_nik'    => 'required|unique:pegawai,nip_nik',
-            'username'   => 'required|unique:pegawai,username',
-            'email'      => 'required|email|unique:pegawai,email',
+            'nip_nik'    => ['required', Rule::unique('pegawai')->whereNull('deleted_at')],
+            'username'   => ['required', Rule::unique('pegawai')->whereNull('deleted_at')],
+            'email'      => ['required', 'email', Rule::unique('pegawai')->whereNull('deleted_at')],
             'nama'       => 'required',
             'id_jabatan' => 'required|exists:jabatan,id_jabatan',
             'id_bidang'  => 'required|exists:bidang,id_bidang',
-            'password'   => 'required|min:8|confirmed', 
+            'password'   => 'required|min:8|confirmed',
         ], [
             'nip_nik.required'    => 'NIP/NIK tidak boleh kosong',
             'nip_nik.unique'      => 'NIP/NIK sudah terdaftar',
@@ -80,16 +81,16 @@ class AuthController extends Controller
         ]);
 
         Pegawai::create([
-            'nip_nik'    => $request->nip_nik,
-            'username'   => $request->username,
-            'email'      => $request->email,
-            'nama'       => $request->nama,
-            'id_jabatan' => $request->id_jabatan,
-            'id_bidang'  => $request->id_bidang,
-            'password'   => Hash::make($request->password),
-            'status_pegawai' => 'aktif', // default status
+            'nip_nik'        => $request->nip_nik,
+            'username'       => $request->username,
+            'email'          => $request->email,
+            'nama'           => $request->nama,
+            'id_jabatan'     => $request->id_jabatan,
+            'id_bidang'      => $request->id_bidang,
+            'password'       => Hash::make($request->password),
+            'status_pegawai' => 'aktif',
         ]);
 
-        return redirect()->route('login')->with('success','Registrasi berhasil, silahkan login');
+        return redirect()->route('login')->with('success', 'Registrasi berhasil, silahkan login');
     }
 }

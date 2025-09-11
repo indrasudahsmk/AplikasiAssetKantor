@@ -34,6 +34,7 @@
                             <th>NIP / NIK</th>
                             <th>Nama</th>
                             <th>Username</th>
+                            <th>Email</th>
                             <th>Jabatan</th>
                             <th>Role</th>
                             <th>Bidang</th>
@@ -54,6 +55,7 @@
                                 </td>
                                 <td>{{ $item->nama }}</td>
                                 <td>{{ $item->username }}</td>
+                                <td>{{ $item->email}}</td>
                                 <td class="text-center">
                                     {{ $item->jabatan->jabatan }}
                                 </td>

@@ -48,6 +48,12 @@
                 <span>Data Kantor</span></a>
         </li>
 
+        <li class="nav-item {{ $menuAdminJabatan ?? '' }}">
+            <a class="nav-link" href="{{ route('jabatan') }}">
+                <i class="fas fa-fw fa-user-tie"></i>
+                <span>Data Jabatan</span></a>
+        </li>
+
         <!-- Nav Item - Tables -->
         <li class="nav-item {{ $menuAdminAssetPegawai ?? '' }}">
             <a class="nav-link" href="{{ route('assetPegawaiIndex') }}">

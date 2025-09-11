@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('pegawai', function (Blueprint $table) {
             $table->id('id_pegawai');
             $table->string('nip_nik', 18)->nullable();
-            $table->string('username')->unique();
-            $table->string('email')->unique();
+            $table->string('username');
+            $table->string('email');
             $table->string('password');
             $table->string('nama', 35);
             $table->unsignedBigInteger('id_jabatan');
@@ -26,13 +26,12 @@ return new class extends Migration
             $table->integer('created_id')->nullable();
             $table->timestamp('updated_at')->nullable()->useCurrentOnUpdate();
             $table->integer('updated_id')->nullable();
-            $table->timestamp('deleted_at')->nullable();
+            $table->softDeletes();
             $table->integer('deleted_id')->nullable();
 
             $table->foreign('id_jabatan')->references('id_jabatan')->on('jabatan');
             $table->foreign('id_bidang')->references('id_bidang')->on('bidang');
         });
-
     }
 
     /**

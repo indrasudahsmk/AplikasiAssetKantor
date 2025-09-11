@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Maatwebsite\Excel\Facades\Excel;
 use function Laravel\Prompts\password;
+use Illuminate\Validation\Rule;
 
 class UserController extends Controller
 {
@@ -44,9 +45,9 @@ class UserController extends Controller
     {
         $request->validate([
             'nama'           => 'required',
-            'username'       => 'required|unique:pegawai,username',
-            'email'          => 'required|email|unique:pegawai,email',
-            'nip_nik'        => 'required|unique:pegawai,nip_nik',
+            'username'       => ['required', Rule::unique('pegawai')->whereNull('deleted_at')],
+            'email'          => ['required', 'email', Rule::unique('pegawai')->whereNull('deleted_at')],
+            'nip_nik'        => ['required', Rule::unique('pegawai')->whereNull('deleted_at')],
             'status_pegawai' => 'required',
             'id_role'        => 'required',
             'id_jabatan'     => 'required',
@@ -69,7 +70,7 @@ class UserController extends Controller
             'password.confirmed'      => 'Konfirmasi Password Tidak Sama',
             'password.min'            => 'Password Minimal 8 Karakter',
         ]);
-
+        
         $user = new Pegawai();
         $user->nama           = $request->nama;
         $user->username       = $request->username;

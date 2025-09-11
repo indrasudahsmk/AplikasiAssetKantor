@@ -1,8 +1,8 @@
 <?php
 
-use App\Http\Controllers\AsetController;
 use App\Models\Asset;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AsetController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\MerkController;
 use App\Http\Controllers\TipeController;
@@ -12,6 +12,7 @@ use App\Http\Controllers\BarangController;
 use App\Http\Controllers\BidangController;
 use App\Http\Controllers\JenisBController;
 use App\Http\Controllers\KantorController;
+use App\Http\Controllers\JabatanController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\AssetBidangController;
 
@@ -34,16 +35,16 @@ Route::middleware('checkLogin')->group(function () {
     Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
     Route::get('/assetpegawai', [AsetController::class, 'index'])->name('assetPegawaiIndex');
-    Route::get('/assetsaya',[AsetController::class, 'indexpegawai'])->name('assetsayaIndex');
-       
-        Route::get('/assetBidang', [AssetBidangController::class, 'index'])->name('assetBidangIndex');
-        Route::get('/assetBidang/create', [AssetBidangController::class, 'create'])->name('assetBidangCreate');
-        Route::post('/assetBidang/store', [AssetBidangController::class, 'store'])->name('assetBidangStore');
-        Route::get('/assetBidang/edit/{id}', [AssetBidangController::class, 'edit'])->name('assetBidangEdit');
-        Route::post('/assetBidang/update/{id}', [AssetBidangController::class, 'update'])->name('assetBidangUpdate');
-        Route::delete('/assetBidang/delete/{id}', [AssetBidangController::class, 'destroy'])->name('assetBidangDelete');
-        Route::get('/assetBidang/excel', [AssetBidangController::class, 'excel'])->name('assetBidangExcel');
-        Route::get('/assetBidang/pdf', [AssetBidangController::class, 'pdf'])->name('assetBidangPdf');
+    Route::get('/assetsaya', [AsetController::class, 'indexpegawai'])->name('assetsayaIndex');
+
+    Route::get('/assetBidang', [AssetBidangController::class, 'index'])->name('assetBidangIndex');
+    Route::get('/assetBidang/create', [AssetBidangController::class, 'create'])->name('assetBidangCreate');
+    Route::post('/assetBidang/store', [AssetBidangController::class, 'store'])->name('assetBidangStore');
+    Route::get('/assetBidang/edit/{id}', [AssetBidangController::class, 'edit'])->name('assetBidangEdit');
+    Route::post('/assetBidang/update/{id}', [AssetBidangController::class, 'update'])->name('assetBidangUpdate');
+    Route::post('/assetBidang/delete/{id}', [AssetBidangController::class, 'destroy'])->name('assetBidangDelete');
+    Route::get('/assetBidang/excel', [AssetBidangController::class, 'excel'])->name('assetBidangExcel');
+    Route::get('/assetBidang/pdf', [AssetBidangController::class, 'pdf'])->name('assetBidangPdf');
 
 
     Route::middleware('isAdmin')->group(function () {
@@ -114,5 +115,12 @@ Route::middleware('checkLogin')->group(function () {
         Route::post('/assetpegawai/delete/{id}', [AsetController::class, 'destroy'])->name('assetPegawaiDestroy');
         Route::get('/assetpegawai/excel', [AsetController::class, 'excel'])->name('assetPegawaiExcel');
         Route::get('/assetpegawai/pdf', [AsetController::class, 'pdf'])->name('assetPegawaiPdf');
+
+        Route::get('/jabatan', [JabatanController::class, 'index'])->name('jabatan');
+        Route::get('/jabatan/create', [JabatanController::class, 'create'])->name('jabatanCreate');
+        Route::post('/jabatan/store', [JabatanController::class, 'store'])->name('jabatanStore');
+        Route::get('/jabatan/edit/{id_jabatan}', [JabatanController::class, 'edit'])->name('jabatanEdit');
+        Route::post('/jabatan/update/{id_jabatan}', [JabatanController::class, 'update'])->name('jabatanUpdate');
+        Route::delete('/jabatan/destroy/{id_jabatan}', [JabatanController::class, 'destroy'])->name('jabatanDestroy');
     });
 });
