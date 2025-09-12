@@ -41,12 +41,12 @@
                                             Admin
                                         </span>
                                     @else
-                                        <span class="bagde  badge-danger badge-pill">
+                                        <span class="bagde  badge-success badge-pill">
                                             Pegawai
                                         </span>
                                     @endif
                                 </a>
-                                <a class="dropdown-item" href="#">
+                                <a class="dropdown-item" href="{{ route('profil.edit') }}">
                                     <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Pengaturan
                                 </a>

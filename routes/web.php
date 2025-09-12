@@ -12,6 +12,7 @@ use App\Http\Controllers\BarangController;
 use App\Http\Controllers\BidangController;
 use App\Http\Controllers\JenisBController;
 use App\Http\Controllers\KantorController;
+use App\Http\Controllers\ProfilController;
 use App\Http\Controllers\JabatanController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\AssetBidangController;
@@ -46,6 +47,8 @@ Route::middleware('checkLogin')->group(function () {
     Route::get('/assetBidang/excel', [AssetBidangController::class, 'excel'])->name('assetBidangExcel');
     Route::get('/assetBidang/pdf', [AssetBidangController::class, 'pdf'])->name('assetBidangPdf');
 
+    Route::get('/profil', [ProfilController::class, 'edit'])->name('profil.edit');
+    Route::put('/profil/{id}', [ProfilController::class, 'update'])->name('profil.update');
 
     Route::middleware('isAdmin')->group(function () {
         Route::get('/user', [UserController::class, 'index'])->name('pegawaiIndex');
