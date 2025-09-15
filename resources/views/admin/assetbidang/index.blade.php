@@ -30,7 +30,10 @@
                     <thead class="text-center bg-primary text-white">
                         <tr>
                             <th>No</th>
+                            <th>Kode Barang</th>
                             <th>Barang</th>
+                            <th>No Mesin</th>
+                            <th>No Registrasi</th>
                             <th>Bidang</th>
                             <th>Status</th>
                             <th>Aksi</th>
@@ -40,7 +43,10 @@
                         @foreach ($assetbidang as $item)
                             <tr>
                                 <td class="text-center">{{ $loop->iteration }}</td>
-                                <td>{{ $item->barang->nama_barang ?? '-' }}</td>
+                                <td>{{ $item->barang->kode_barang ?? '-'}}</td>
+                                <td>{{ $item->barang->nama_barang ?? '-' }} </td>
+                                <td>{{ $item->barang->no_mesin ?? '-' }} </td>
+                                <td>{{ $item->barang->nomor_register ?? '-' }} </td>
                                 <td>{{ $item->bidang->nama_bidang ?? '-' }}</td>
                                 <td class="text-center">
                                     <span class="badge badge-{{ $item->status == 'aktif' ? 'success' : 'secondary' }}">

@@ -24,7 +24,6 @@ class DatabaseSeeder extends Seeder
             BidangSeeder::class,
             PegawaiSeeder::class,
             BarangSeeder::class,
-            AssetBidangSeeder::class,
         ]);
     }
 }

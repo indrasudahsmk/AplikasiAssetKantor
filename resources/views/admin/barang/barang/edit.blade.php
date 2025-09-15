@@ -16,7 +16,7 @@
         <div class="card-body">
             <form action="{{ route('barangUpdate', $barang->id_barang) }}" method="post">
                 @csrf
-                
+                @method('PUT')
                 <div class="mb-3">
                     <label class="form-label"><span class="text-danger">*</span> Kode Barang :</label>
                     <input type="text" name="kode_barang" class="form-control @error('kode_barang') is-invalid @enderror"

@@ -16,6 +16,7 @@
         <div class="card-body">
             <form action="{{ route('jenisUpdate',$jenis->id) }}" method="post">
                 @csrf
+                @method('PUT')
                 <div class="row mb-3">
                     <div class="col-xl-12 mb-1">
                         <label for="" class="form-label">

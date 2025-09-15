@@ -15,6 +15,7 @@
     <div class="card-body">
         <form action="{{ route('kantorUpdate', $kantor->id) }}" method="post">
             @csrf
+            @method('PUT')
             <div class="row mb-3">
                 <div class="col-xl-12 mb-1">
                     <label class="form-label">

@@ -21,6 +21,7 @@
                         class="fas fa-times mr-2"></i>Tutup</button>
                 <form action="{{ route('jenisDestroy', $item->id) }}" method="post">
                     @csrf
+                    @method('DELETE')
                     <button type="submit" class="btn btn-danger btn-sm"><i class="fas fa-trash mr-2"></i>Hapus</button>
                 </form>
             </div>

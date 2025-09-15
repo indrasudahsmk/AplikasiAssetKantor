@@ -24,10 +24,10 @@
                     <select name="id_barang" 
                             class="form-control @error('id_barang') is-invalid @enderror">
                         <option disabled {{ old('id_barang') ? '' : 'selected' }}>-- PILIH BARANG --</option>
-                        @foreach ($barang as $b)
-                            <option value="{{ $b->id_barang }}" 
-                                {{ old('id_barang') == $b->id_barang ? 'selected' : '' }}>
-                                {{ $b->nama_barang }}
+                        @foreach ($barang as $barang)
+                            <option value="{{ $barang->id_barang }}" 
+                                {{ old('id_barang') == $barang->id_barang ? 'selected' : '' }}>
+                                {{ $barang->nama_barang }} ({{ $barang->kode_barang }})
                             </option>
                         @endforeach
                     </select>
@@ -43,10 +43,10 @@
                     <select name="id_bidang" 
                             class="form-control @error('id_bidang') is-invalid @enderror">
                         <option disabled {{ old('id_bidang') ? '' : 'selected' }}>-- PILIH BIDANG --</option>
-                        @foreach ($bidang as $bd)
-                            <option value="{{ $bd->id_bidang }}" 
-                                {{ old('id_bidang') == $bd->id_bidang ? 'selected' : '' }}>
-                                {{ $bd->nama_bidang }}
+                        @foreach ($bidang as $bidang)
+                            <option value="{{ $bidang->id_bidang }}" 
+                                {{ old('id_bidang') == $bidang->id_bidang ? 'selected' : '' }}>
+                                {{ $bidang->nama_bidang }}
                             </option>
                         @endforeach
                     </select>
@@ -62,8 +62,8 @@
                     <select name="status" 
                             class="form-control @error('status') is-invalid @enderror">
                         <option disabled {{ old('status') ? '' : 'selected' }}>-- PILIH STATUS --</option>
-                        <option value="aktif" {{ old('status') == 'aktif' ? 'selected' : '' }}>Aktif</option>
-                        <option value="nonaktif" {{ old('status') == 'nonaktif' ? 'selected' : '' }}>Nonaktif</option>
+                        <option value="Aktif" {{ old('status') == 'Aktif' ? 'selected' : '' }}>Aktif</option>
+                        <option value="Mutasi" {{ old('status') == 'Mutasi' ? 'selected' : '' }}>Mutasi</option>
                     </select>
                     @error('status')
                         <small class="text-danger">{{ $message }}</small>

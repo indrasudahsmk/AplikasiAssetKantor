@@ -25,7 +25,7 @@ class AssetBidangController extends Controller
         $data = [
             'title' => 'Tambah Asset Bidang',
             'menuAdminAssetBidang' => 'active',
-            'barang' => Barang::all(),
+            'barang' => Barang::where('status_ketersediaan', 'Tersedia')->get(),
             'bidang' => Bidang::all(),
         ];
         return view('admin.assetbidang.create', $data);
@@ -36,7 +36,7 @@ class AssetBidangController extends Controller
         $request->validate([
             'id_barang' => 'required|exists:barang,id_barang',
             'id_bidang' => 'required|exists:bidang,id_bidang',
-            'status'    => 'required|in:aktif,nonaktif',
+            'status'    => 'required|in:Aktif,Mutasi',
         ]);
 
         AssetBidang::create([
@@ -46,16 +46,24 @@ class AssetBidangController extends Controller
             'created_id' => Auth::user()->id_pegawai ?? null,
         ]);
 
+        $barang = Barang::findOrFail($request->id_barang);
+
+        $barang->status_ketersediaan = 'Tidak Tersedia';
+        $barang->updated_id = Auth::user()->id_pegawai;
+        $barang->save();
+
         return redirect()->route('assetBidangIndex')->with('success', 'Data berhasil ditambahkan');
     }
 
     public function edit($id)
     {
+        $assetbidang = AssetBidang::findOrFail($id);
+        $id_barang = $assetbidang->id_barang;
         $data = [
             'title' => 'Edit Asset Bidang',
             'menuAdminAssetBidang' => 'active',
             'assetbidang' => AssetBidang::findOrFail($id),
-            'barang' => Barang::all(),
+            'barang' => Barang::where('id_barang', $id_barang)->first(),
             'bidang' => Bidang::all(),
         ];
         return view('admin.assetbidang.edit', $data);
@@ -66,7 +74,7 @@ class AssetBidangController extends Controller
         $request->validate([
             'id_barang' => 'required|exists:barang,id_barang',
             'id_bidang' => 'required|exists:bidang,id_bidang',
-            'status'    => 'required|in:aktif,nonaktif',
+            'status'    => 'required|in:Aktif,Mutasi',
         ]);
 
         $assetbidang = AssetBidang::findOrFail($id);
@@ -84,8 +92,12 @@ class AssetBidangController extends Controller
         $assetbidang = AssetBidang::findOrFail($id);
         $assetbidang->deleted_id = Auth::user()->id_pegawai ?? null;
         $assetbidang->save();
-        $assetbidang->delete();
+        $id_barang = $assetbidang->barang->id_barang;
 
+        $barang = Barang::findOrFail($id_barang);
+        $barang->status_ketersediaan = 'Tersedia';
+        $barang->save();
+        $assetbidang->delete();
         return redirect()->route('assetBidangIndex')->with('success', 'Data berhasil dihapus');
     }
 

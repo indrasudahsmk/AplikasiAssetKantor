@@ -55,7 +55,6 @@ class JabatanController extends Controller
 
     public function update(Request $request, $id_jabatan)
     {
-        // Validasi unique kecuali record sendiri
         $validated = $request->validate([
             'jabatan' =>  ['required','string','max:100',
             Rule::unique('jabatan', 'jabatan')

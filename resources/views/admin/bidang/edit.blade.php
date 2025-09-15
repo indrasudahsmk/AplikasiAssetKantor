@@ -16,7 +16,8 @@
         <div class="card-body">
             <form action="{{ route('bidangUpdate', $bidang->id_bidang) }}" method="post">
                 @csrf
-
+                @method('PUT')
+                
                 <div class="mb-3">
                     <label class="form-label">
                         <span class="text-danger">*</span> Nama Bidang :

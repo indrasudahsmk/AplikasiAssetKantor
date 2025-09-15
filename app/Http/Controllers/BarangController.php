@@ -98,7 +98,7 @@ class BarangController extends Controller
 
         $request->validate([
             'kode_barang' => 'required|max:35',
-            'nama_barang' => ['required', Rule::unique('barang','nama_barang')->whereNull('deleted_at')],
+            'nama_barang' => ['required', Rule::unique('barang','nama_barang')->whereNull('deleted_at')->ignore($id, 'id_barang')],
             'id_jenis'    => 'required|exists:jenis_barang,id',
             'id_merk'     => 'required|exists:merk,id',
             'id_tipe'     => 'required|exists:tipe,id',

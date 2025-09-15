@@ -16,35 +16,28 @@
         <div class="card-body">
             <form action="{{ route('assetBidangUpdate', $assetbidang->id_aset) }}" method="post">
                 @csrf
-
+                @method('PUT')
                 <div class="mb-3">
                     <label class="form-label">
                         <span class="text-danger">*</span> Barang :
                     </label>
-                    <select name="id_barang" 
-                            class="form-control @error('id_barang') is-invalid @enderror">
-                        <option disabled>-- PILIH BARANG --</option>
-                        @foreach ($barang as $b)
-                            <option value="{{ $b->id_barang }}" 
-                                {{ old('id_barang', $assetbidang->id_barang) == $b->id_barang ? 'selected' : '' }}>
-                                {{ $b->nama_barang }}
+                    <select class="form-control" disabled>
+                            <option>
+                                {{ $barang->nama_barang }} ({{ $barang->kode_barang }})
                             </option>
-                        @endforeach
                     </select>
-                    @error('id_barang')
-                        <small class="text-danger">{{ $message }}</small>
-                    @enderror
+                    <input type="hidden" name="id_barang" value="{{ $assetbidang->id_barang }}">
                 </div>
+
 
                 <div class="mb-3">
                     <label class="form-label">
                         <span class="text-danger">*</span> Bidang :
                     </label>
-                    <select name="id_bidang" 
-                            class="form-control @error('id_bidang') is-invalid @enderror">
+                    <select name="id_bidang" class="form-control @error('id_bidang') is-invalid @enderror">
                         <option disabled>-- PILIH BIDANG --</option>
                         @foreach ($bidang as $bd)
-                            <option value="{{ $bd->id_bidang }}" 
+                            <option value="{{ $bd->id_bidang }}"
                                 {{ old('id_bidang', $assetbidang->id_bidang) == $bd->id_bidang ? 'selected' : '' }}>
                                 {{ $bd->nama_bidang }}
                             </option>
@@ -59,11 +52,12 @@
                     <label class="form-label">
                         <span class="text-danger">*</span> Status :
                     </label>
-                    <select name="status" 
-                            class="form-control @error('status') is-invalid @enderror">
+                    <select name="status" class="form-control @error('status') is-invalid @enderror">
                         <option disabled>-- PILIH STATUS --</option>
-                        <option value="aktif" {{ old('status', $assetbidang->status) == 'aktif' ? 'selected' : '' }}>Aktif</option>
-                        <option value="nonaktif" {{ old('status', $assetbidang->status) == 'nonaktif' ? 'selected' : '' }}>Nonaktif</option>
+                        <option value="Aktif" {{ old('status', $assetbidang->status) == 'Aktif' ? 'selected' : '' }}>Aktif
+                        </option>
+                        <option value="Mutasi" {{ old('status', $assetbidang->status) == 'Mutasi' ? 'selected' : '' }}>
+                            Mutasi</option>
                     </select>
                     @error('status')
                         <small class="text-danger">{{ $message }}</small>

@@ -30,7 +30,7 @@
                             <th>No</th>
                             <th>Kantor</th>
                             <th>Alamat</th>
-                            <th>Aksi</th>
+                            <th><i class="fas fa-cog"></i></th>
                         </tr>
                     </thead>
                     <tbody>

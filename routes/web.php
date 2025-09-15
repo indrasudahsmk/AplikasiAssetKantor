@@ -42,8 +42,8 @@ Route::middleware('checkLogin')->group(function () {
     Route::get('/assetBidang/create', [AssetBidangController::class, 'create'])->name('assetBidangCreate');
     Route::post('/assetBidang/store', [AssetBidangController::class, 'store'])->name('assetBidangStore');
     Route::get('/assetBidang/edit/{id}', [AssetBidangController::class, 'edit'])->name('assetBidangEdit');
-    Route::post('/assetBidang/update/{id}', [AssetBidangController::class, 'update'])->name('assetBidangUpdate');
-    Route::post('/assetBidang/delete/{id}', [AssetBidangController::class, 'destroy'])->name('assetBidangDelete');
+    Route::put('/assetBidang/update/{id}', [AssetBidangController::class, 'update'])->name('assetBidangUpdate');
+    Route::delete('/assetBidang/delete/{id}', [AssetBidangController::class, 'destroy'])->name('assetBidangDelete');
     Route::get('/assetBidang/excel', [AssetBidangController::class, 'excel'])->name('assetBidangExcel');
     Route::get('/assetBidang/pdf', [AssetBidangController::class, 'pdf'])->name('assetBidangPdf');
 
@@ -56,7 +56,7 @@ Route::middleware('checkLogin')->group(function () {
         Route::post('/user/store', [UserController::class, 'store'])->name('userStore');
 
         Route::get('/user/edit/{id}', [UserController::class, 'edit'])->name('userEdit');
-        Route::post('/user/update/{id}', [UserController::class, 'update'])->name('userUpdate');
+        Route::put('/user/update/{id}', [UserController::class, 'update'])->name('userUpdate');
         Route::post('/user/destroy/{id}', [UserController::class, 'destroy'])->name('userDestroy');
 
         Route::get('/user/excel', [UserController::class, 'excel'])->name('userExcel');
@@ -66,7 +66,7 @@ Route::middleware('checkLogin')->group(function () {
         Route::get('/bidang/create', [BidangController::class, 'create'])->name('bidangCreate');
         Route::post('/bidang/store', [BidangController::class, 'store'])->name('bidangStore');
         Route::get('/bidang/edit/{id}', [BidangController::class, 'edit'])->name('bidangEdit');
-        Route::post('/bidang/update/{id}', [BidangController::class, 'update'])->name('bidangUpdate');
+        Route::put('/bidang/update/{id}', [BidangController::class, 'update'])->name('bidangUpdate');
         Route::delete('/bidang/delete/{id}', [BidangController::class, 'destroy'])->name('bidangDelete');
         Route::get('/bidang/excel', [BidangController::class, 'excel'])->name('bidangExcel');
         Route::get('/bidang/pdf', [BidangController::class, 'pdf'])->name('bidangPdf');
@@ -75,7 +75,7 @@ Route::middleware('checkLogin')->group(function () {
         Route::get('/kantor/create', [KantorController::class, 'create'])->name('kantorCreate');
         Route::post('/kantor/store', [KantorController::class, 'store'])->name('kantorStore');
         Route::get('/kantor/edit/{id}', [KantorController::class, 'edit'])->name('kantorEdit');
-        Route::post('/kantor/update/{id}', [KantorController::class, 'update'])->name('kantorUpdate');
+        Route::put('/kantor/update/{id}', [KantorController::class, 'update'])->name('kantorUpdate');
         Route::delete('/kantor/delete/{id}', [KantorController::class, 'destroy'])->name('kantorDelete');
         Route::get('/kantor/excel', [KantorController::class, 'excel'])->name('kantorExcel');
         Route::get('/kantor/pdf', [KantorController::class, 'pdf'])->name('kantorPdf');
@@ -83,30 +83,30 @@ Route::middleware('checkLogin')->group(function () {
         Route::get('/tipe', [TipeController::class, 'index'])->name('tipe');
         Route::get('/tipe/create', [TipeController::class, 'create'])->name('tipeCreate');
         Route::post('/tipe/store', [TipeController::class, 'store'])->name('tipeStore');
-        Route::post('/tipe/destroy/{id}', [TipeController::class, 'destroy'])->name('tipeDestroy');
+        Route::delete('/tipe/destroy/{id}', [TipeController::class, 'destroy'])->name('tipeDestroy');
         Route::get('/tipe/edit/{id}', [TipeController::class, 'edit'])->name('tipeEdit');
-        Route::post('/tipe/update/{id}', [TipeController::class, 'update'])->name('tipeUpdate');
+        Route::put('/tipe/update/{id}', [TipeController::class, 'update'])->name('tipeUpdate');
 
         Route::get('/merk', [MerkController::class, 'index'])->name('merk');
         Route::get('/merk/create', [MerkController::class, 'create'])->name('merkCreate');
         Route::post('/merk/store', [MerkController::class, 'store'])->name('merkStore');
-        Route::post('/merk/destroy/{id}', [MerkController::class, 'destroy'])->name('merkDestroy');
+        Route::delete('/merk/destroy/{id}', [MerkController::class, 'destroy'])->name('merkDestroy');
         Route::get('/merk/edit/{id}', [MerkController::class, 'edit'])->name('merkEdit');
-        Route::post('/merk/update/{id}', [MerkController::class, 'update'])->name('merkUpdate');
+        Route::put('/merk/update/{id}', [MerkController::class, 'update'])->name('merkUpdate');
 
         Route::get('/jenis', [JenisBController::class, 'index'])->name('jenis');
         Route::get('/jenis/create', [JenisBController::class, 'create'])->name('jenisCreate');
         Route::post('/jenis/store', [JenisBController::class, 'store'])->name('jenisStore');
-        Route::post('/jenis/destroy/{id}', [JenisBController::class, 'destroy'])->name('jenisDestroy');
+        Route::delete('/jenis/destroy/{id}', [JenisBController::class, 'destroy'])->name('jenisDestroy');
         Route::get('/jenis/edit/{id}', [JenisBController::class, 'edit'])->name('jenisEdit');
-        Route::post('/jenis/update/{id}', [JenisBController::class, 'update'])->name('jenisUpdate');
+        Route::put('/jenis/update/{id}', [JenisBController::class, 'update'])->name('jenisUpdate');
 
         Route::get('/barang', [BarangController::class, 'index'])->name('barang');
         Route::get('/barang/create', [BarangController::class, 'create'])->name('barangCreate');
         Route::post('/barang/store', [BarangController::class, 'store'])->name('barangStore');
         Route::get('/barang/edit/{id}', [BarangController::class, 'edit'])->name('barangEdit');
-        Route::post('/barang/update/{id}', [BarangController::class, 'update'])->name('barangUpdate');
-        Route::post('/barang/delete/{id}', [BarangController::class, 'destroy'])->name('barangDestroy');
+        Route::put('/barang/update/{id}', [BarangController::class, 'update'])->name('barangUpdate');
+        Route::delete('/barang/delete/{id}', [BarangController::class, 'destroy'])->name('barangDestroy');
         Route::get('/barang/excel', [BarangController::class, 'excel'])->name('barangExcel');
         Route::get('/barang/pdf', [BarangController::class, 'pdf'])->name('barangPdf');
 
@@ -114,8 +114,8 @@ Route::middleware('checkLogin')->group(function () {
         Route::get('/assetpegawai/create', [AsetController::class, 'create'])->name('assetPegawaiCreate');
         Route::post('/assetpegawai/store', [AsetController::class, 'store'])->name('assetPegawaiStore');
         Route::get('/assetpegawai/edit/{id}', [AsetController::class, 'edit'])->name('assetPegawaiEdit');
-        Route::post('/assetpegawai/update/{id}', [AsetController::class, 'update'])->name('assetPegawaiUpdate');
-        Route::post('/assetpegawai/delete/{id}', [AsetController::class, 'destroy'])->name('assetPegawaiDestroy');
+        Route::put('/assetpegawai/update/{id}', [AsetController::class, 'update'])->name('assetPegawaiUpdate');
+        Route::delete('/assetpegawai/delete/{id}', [AsetController::class, 'destroy'])->name('assetPegawaiDestroy');
         Route::get('/assetpegawai/excel', [AsetController::class, 'excel'])->name('assetPegawaiExcel');
         Route::get('/assetpegawai/pdf', [AsetController::class, 'pdf'])->name('assetPegawaiPdf');
 
@@ -123,7 +123,7 @@ Route::middleware('checkLogin')->group(function () {
         Route::get('/jabatan/create', [JabatanController::class, 'create'])->name('jabatanCreate');
         Route::post('/jabatan/store', [JabatanController::class, 'store'])->name('jabatanStore');
         Route::get('/jabatan/edit/{id_jabatan}', [JabatanController::class, 'edit'])->name('jabatanEdit');
-        Route::post('/jabatan/update/{id_jabatan}', [JabatanController::class, 'update'])->name('jabatanUpdate');
+        Route::put('/jabatan/update/{id_jabatan}', [JabatanController::class, 'update'])->name('jabatanUpdate');
         Route::delete('/jabatan/destroy/{id_jabatan}', [JabatanController::class, 'destroy'])->name('jabatanDestroy');
     });
 });

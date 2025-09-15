@@ -35,9 +35,7 @@
                             <th>Tipe</th>
                             <th>Tahun</th>
                             <th>Harga</th>
-                            <th>No. Register</th>
-                            <th>Keterangan</th>
-                            <th>Aksi</th>
+                            <th><i class="fas fa-cog"></i></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -49,11 +47,15 @@
                                 <td>{{ $item->jenis->jenis_barang ?? '-' }}</td>
                                 <td>{{ $item->merk->merk ?? '-' }}</td>
                                 <td>{{ $item->tipe->tipe ?? '-' }}</td>
-                                <td class="text-center">{{ $item->tahun_pembelian }}</td>
+                                <td class="text-center">{{ $item->status_ketersediaan }}</td>
                                 <td class="text-right">{{ number_format($item->harga, 0, ',', '.') }}</td>
-                                <td>{{ $item->nomor_register }}</td>
-                                <td>{{ $item->keterangan }}</td>
                                 <td class="text-center">
+
+                                    <button class="btn btn-sm btn-warning" data-toggle="modal"
+                                        data-target="#ModalView{{ $item->id_barang }}">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+
                                     <a href="{{ route('barangEdit', $item->id_barang) }}" class="btn btn-sm btn-primary">
                                         <i class="fas fa-edit"></i>
                                     </a>
