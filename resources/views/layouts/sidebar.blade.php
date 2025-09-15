@@ -68,6 +68,13 @@
                 <span>Asset Bidang</span></a>
         </li>
 
+        <!-- Nav Item - Tables -->
+        <li class="nav-item {{ $menuAdminMutasi ?? '' }}">
+            <a class="nav-link" href="{{ route('mutasiIndex') }}">
+                <i class="fas fa-fw fa-boxes"></i>
+                <span>Mutasi Asset Bidang</span></a>
+        </li>
+
         <!-- Nav Item - Barang (Dropdown) -->
         <li class="nav-item {{ $menuAdminBarang ?? '' }}">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseBarang"
@@ -77,18 +84,26 @@
             </a>
             <div id="collapseBarang" class="collapse" aria-labelledby="headingBarang" data-parent="#accordionSidebar">
                 <div class="bg-primary py-2 collapse-inner rounded">
-                    <a class="dropdown-item bg-primary text-white" href="{{ route('barang') }}">
+                    <a class="dropdown-item {{ request()->routeIs('barang') ? 'active' : '' }}"
+                        href="{{ route('barang') }}">
                         <i class="fas fa-fw fa-box"></i> Data Barang
                     </a>
-                    <a class="dropdown-item bg-primary text-white" href="{{ route('tipe') }}">
+
+                    <a class="dropdown-item {{ request()->routeIs('tipe') ? 'active' : '' }}"
+                        href="{{ route('tipe') }}">
                         <i class="fas fa-fw fa-boxes"></i> Data Tipe
                     </a>
-                    <a class="dropdown-item bg-primary text-white" href="{{ route('merk') }}">
+
+                    <a class="dropdown-item {{ request()->routeIs('merk') ? 'active' : '' }}"
+                        href="{{ route('merk') }}">
                         <i class="fas fa-fw fa-tags"></i> Data Merk
                     </a>
-                    <a class="dropdown-item bg-primary text-white" href="{{ route('jenis') }}">
+
+                    <a class="dropdown-item {{ request()->routeIs('jenis') ? 'active' : '' }}"
+                        href="{{ route('jenis') }}">
                         <i class="fas fa-fw fa-th-large"></i> Data Jenis
                     </a>
+
                 </div>
             </div>
         </li>

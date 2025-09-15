@@ -16,6 +16,7 @@ use App\Http\Controllers\ProfilController;
 use App\Http\Controllers\JabatanController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\AssetBidangController;
+use App\Http\Controllers\MutasiAssetController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -125,5 +126,12 @@ Route::middleware('checkLogin')->group(function () {
         Route::get('/jabatan/edit/{id_jabatan}', [JabatanController::class, 'edit'])->name('jabatanEdit');
         Route::put('/jabatan/update/{id_jabatan}', [JabatanController::class, 'update'])->name('jabatanUpdate');
         Route::delete('/jabatan/destroy/{id_jabatan}', [JabatanController::class, 'destroy'])->name('jabatanDestroy');
+
+        Route::get('/mutasi', [MutasiAssetController::class, 'index'])->name('mutasiIndex');
+        Route::get('/mutasi/create', [MutasiAssetController::class, 'create'])->name('mutasiCreate');
+        Route::post('/mutasi/store', [MutasiAssetController::class, 'store'])->name('mutasiStore');
+        Route::get('/mutasi/edit/{id_mutasi}', [MutasiAssetController::class, 'edit'])->name('mutasiEdit');
+        Route::put('/mutasi/update/{id_mutasi}', [MutasiAssetController::class, 'update'])->name('mutasiUpdate');
+        Route::delete('/mutasi/destroy/{id_mutasi}', [MutasiAssetController::class, 'destroy'])->name('mutasiDestroy');
     });
 });

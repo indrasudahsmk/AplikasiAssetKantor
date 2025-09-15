@@ -16,6 +16,7 @@ class BarangController extends Controller
     {
         $data = [
             'title' => 'Data Barang',
+            'menuAdminBarang'   => 'active',
             'barang' => Barang::all(),
         ];
         return view('admin.barang.barang.index', $data);
