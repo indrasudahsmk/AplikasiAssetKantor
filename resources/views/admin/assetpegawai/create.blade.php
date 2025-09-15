@@ -37,9 +37,10 @@
                         <label class="form-label"><span class="text-danger">*</span> Barang :</label>
                     <select class="form-control @error('id_barang') is-invalid @enderror" name="id_barang">
                         <option disabled {{ old('id_barang') ? '' : 'selected' }}>-- PILIH BARANG --</option>
-                        @foreach ($barang as $item)
-                        <option value="{{ $item->id_barang }}">
-                         {{ $item->nama_barang }}
+                        @foreach ($barang as $barang)
+                            <option value="{{ $barang->id_barang }}" 
+                                {{ old('id_barang') == $barang->id_barang ? 'selected' : '' }}>
+                                {{ $barang->nama_barang }} ({{ $barang->kode_barang }})
                         </option>
                     @endforeach
                     </select>
