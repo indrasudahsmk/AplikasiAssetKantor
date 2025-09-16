@@ -40,18 +40,18 @@
                     <tbody>
                         @foreach ($assetp as $item)
                             <tr>
-                                <td align="center">{{  $loop->iteration }}</td>
+                                <td align="center">{{ $loop->iteration }}</td>
                                 <td align="center">{{ $item->pegawai->nama }}</td>
                                 <td align="center">{{ $item->barang->nama_barang }}</td>
                                 <td align="center">{{ $item->status }}</td>
                                 <td class="text-center">
-                                    <a href="{{ route('assetPegawaiEdit', $item->id_aset) }}" class="btn btn-sm btn-primary">
-                                        <i class="fas fa-edit"></i>
-                                    </a>
-                                    <button class="btn btn-sm btn-danger" data-toggle="modal"
-                                        data-target="#ModalHapus{{ $item->id_aset }}">
-                                        <i class="fas fa-trash"></i>
-                                    </button>
+                                    @if ($item->status == 'Digunakan')
+                                        <button class="btn btn-sm btn-success" data-toggle="modal" title="Kembalikan Barang"
+                                            data-target="#ModalEdit{{ $item->id_aset }}">
+                                            <i class="fas fa-undo-alt"></i>
+                                        </button>
+                                    @endif
+
                                     @include('admin/assetpegawai/modal')
                                 </td>
                             </tr>

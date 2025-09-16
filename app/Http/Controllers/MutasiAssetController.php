@@ -13,7 +13,7 @@ class MutasiAssetController extends Controller
     public function index()
     {
         return view('admin.mutasi_asset.index', [
-            'title' => 'Data Mutasi Aset',
+            'title' => 'Mutasi Asset Bidang',
             'menuAdminMutasi' => 'active',
             'mutasi' => MutasiAsset::with(['barang', 'dariBidang', 'keBidang'])
                 ->latest('id_mutasi')

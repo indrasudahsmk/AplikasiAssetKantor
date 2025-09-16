@@ -71,7 +71,7 @@
         <!-- Nav Item - Tables -->
         <li class="nav-item {{ $menuAdminMutasi ?? '' }}">
             <a class="nav-link" href="{{ route('mutasiIndex') }}">
-                <i class="fas fa-fw fa-boxes"></i>
+                <i class="fas fa-fw fa-exchange-alt"></i>
                 <span>Mutasi Asset Bidang</span></a>
         </li>
 
@@ -106,6 +106,13 @@
 
                 </div>
             </div>
+        </li>
+
+        <!-- Nav Item - Tables -->
+        <li class="nav-item {{ $menuAdminMutasi ?? '' }}">
+            <a class="nav-link" href="{{ route('mutasiIndex') }}">
+                <i class="fas fa-fw fa-history"></i>
+                <span>History Log</span></a>
         </li>
     @else
         <!-- Divider -->

@@ -57,8 +57,8 @@
                     </label>
                     <select name="status" class="form-control @error('status') is-invalid @enderror">
                         <option value="" disabled selected>-- PILIH STATUS --</option>
-                        <option value="Dipinjam" {{ old('status', $assetp->status) == 'Dipinjam' ? 'selected' : '' }}>
-                            Dipinjam</option>
+                        <option value="Digunakan" {{ old('status', $assetp->status) == 'Digunakan' ? 'selected' : '' }}>
+                            Digunakan</option>
                         <option value="Dikembalikan"
                             {{ old('status', $assetp->status) == 'Dikembalikan' ? 'selected' : '' }}>Dikembalikan</option>
                     </select>

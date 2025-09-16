@@ -23,6 +23,7 @@ Route::get('/', function () {
 });
 
 
+
 Route::middleware('isLogin')->group(function () {
     Route::get('/login', [AuthController::class, 'login'])->name('login');
     Route::post('/login', [AuthController::class, 'loginProses'])->name('loginProses');

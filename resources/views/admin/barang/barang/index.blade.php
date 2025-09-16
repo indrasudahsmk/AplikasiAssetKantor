@@ -33,7 +33,7 @@
                             <th>Jenis</th>
                             <th>Merk</th>
                             <th>Tipe</th>
-                            <th>Tahun</th>
+                            <th>Status Ketersediaan</th>
                             <th>Harga</th>
                             <th><i class="fas fa-cog"></i></th>
                         </tr>

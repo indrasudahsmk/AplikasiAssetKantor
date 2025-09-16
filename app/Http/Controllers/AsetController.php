@@ -80,7 +80,7 @@ class AsetController extends Controller
         $request->validate([
             'id_barang'  => 'required|exists:barang,id_barang',
             'id_pegawai' => 'required|exists:pegawai,id_pegawai',
-            'status'     => 'required|in:Dipinjam,Dikembalikan',
+            'status'     => 'required|in:Digunakan,Dikembalikan',
         ]);
 
         $assetpegawai = AsetPegawai::findOrFail($id);

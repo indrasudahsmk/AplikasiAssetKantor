@@ -16,6 +16,8 @@ return new class extends Migration
             $table->string('kode_barang', 35)->nullable();
             $table->string('nama_barang', 50)->nullable();
             $table->string('status_ketersediaan')->default('Tersedia');
+            $table->string('kondisi_barang')->default('Baik');
+            $table->string('gambar')->nullable();
             $table->unsignedBigInteger('id_jenis')->nullable();
             $table->string('nomor_register', 50)->nullable();
             $table->unsignedBigInteger('id_merk')->nullable();

@@ -31,9 +31,10 @@
                                 <td align="center">{{ $loop->iteration }}</td>
                                 <td align="center">{{ $item->jabatan }}</td>
                                 <td class="text-center">
-                                    <a href="{{ route('jabatanEdit', ['id_jabatan' => $item->id_jabatan]) }}" class="btn btn-sm btn-primary">
-    <i class="fas fa-edit"></i>
-</a>
+                                    <a href="{{ route('jabatanEdit', ['id_jabatan' => $item->id_jabatan]) }}"
+                                        class="btn btn-sm btn-primary">
+                                        <i class="fas fa-edit"></i>
+                                    </a>
                                     </a>
                                     <button class="btn btn-sm btn-danger" data-toggle="modal"
                                         data-target="#ModalHapus{{ $item->id_jabatan }}">
