@@ -117,7 +117,7 @@ class AsetController extends Controller
         $barang->save();
 
         $assetpegawai->delete();
-        return redirect()->route('assetPegawaiIndex')->with('success', 'Data berhasil dihapus');
+        return redirect()->route('assetPegawaiIndex')->with('success', 'Asset Telah Dikembalikan');
     }
 
     public function excel()
