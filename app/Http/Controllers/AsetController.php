@@ -16,6 +16,7 @@ class AsetController extends Controller
             'title' => 'Asset Pegawai',
             'menuAdminAssetPegawai' => 'active',
             'assetp' => AsetPegawai::with(['barang', 'pegawai'])->get(),
+            'pegawai' => Pegawai::all(),
         ];
         return view('admin.assetpegawai.index', $data);
     }
@@ -36,7 +37,7 @@ class AsetController extends Controller
         $request->validate([
             'id_barang'  => 'required|exists:barang,id_barang',
             'id_pegawai' => 'required|exists:pegawai,id_pegawai',
-            'status'     => 'required|in:Dipinjam, Dikembalikan',
+            'status'     => 'required|in:Digunakan,Dikembalikan',
         ]);
 
         AsetPegawai::create([
@@ -48,7 +49,7 @@ class AsetController extends Controller
 
         $barang = Barang::findOrFail($request->id_barang);
 
-        if ($request->status == 'Dipinjam') {
+        if ($request->status == 'Digunakan') {
         $barang->status_ketersediaan = 'Tidak Tersedia';
         } elseif ($request->status == 'Dikembalikan') {
             $barang->status_ketersediaan = 'Tersedia';
@@ -84,6 +85,17 @@ class AsetController extends Controller
         ]);
 
         $assetpegawai = AsetPegawai::findOrFail($id);
+        $barang = Barang::findOrFail($request->id_barang);
+
+        if ($request->status == 'Digunakan') {
+        $barang->status_ketersediaan = 'Tidak Tersedia';
+        } elseif ($request->status == 'Dikembalikan') {
+            $barang->status_ketersediaan = 'Tersedia';
+        }
+
+        $barang->updated_id = Auth::user()->id_pegawai ?? null;
+        $barang->save();
+
         $assetpegawai->id_barang  = $request->id_barang;
         $assetpegawai->id_pegawai = $request->id_pegawai;
         $assetpegawai->status     = $request->status;
@@ -117,4 +129,16 @@ class AsetController extends Controller
     {
         return 'Export PDF asset pegawai belum diimplementasikan';
     }
+
+    public function indexpegawai()
+    {
+        $data = [
+            'title' => 'Asset Saya',
+            'menuAdminAssetPegawai' => 'active',
+            'assetp' => AsetPegawai::with(['barang', 'pegawai'])
+                     ->where('id_pegawai', Auth::user()->id_pegawai)->get(),
+        ];
+        return view('pegawai.asset.pribadi.index', $data);
+    }
+
 }
