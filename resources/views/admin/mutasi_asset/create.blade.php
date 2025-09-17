@@ -18,7 +18,6 @@
             <form action="{{ route('mutasiStore') }}" method="post">
                 @csrf
 
-                {{-- Barang --}}
                 <div class="row mb-3">
                     <div class="col-xl-12 mb-1">
                         <label class="form-label">
@@ -26,9 +25,9 @@
                         </label>
                         <select name="id_barang" class="form-control @error('id_barang') is-invalid @enderror">
                             <option value="">-- Pilih Barang --</option>
-                            @foreach ($barang as $b)
-                                <option value="{{ $b->id_barang }}" {{ old('id_barang') == $b->id_barang ? 'selected' : '' }}>
-                                    {{ $b->nama_barang }}
+                            @foreach ($assetbidang as $assetbidang)
+                                <option value="{{ $assetbidang->barang->id_barang }}" {{ old('id_barang') == $assetbidang->barang->id_barang ? 'selected' : '' }}>
+                                    {{ $assetbidang->barang->nama_barang }} ({{  $assetbidang->barang->kode_barang}})
                                 </option>
                             @endforeach
                         </select>
@@ -38,7 +37,6 @@
                     </div>
                 </div>
 
-                {{-- Dari Bidang --}}
                 <div class="row mb-3">
                     <div class="col-xl-12 mb-1">
                         <label class="form-label">
@@ -58,7 +56,6 @@
                     </div>
                 </div>
 
-                {{-- Ke Bidang --}}
                 <div class="row mb-3">
                     <div class="col-xl-12 mb-1">
                         <label class="form-label">
@@ -78,9 +75,8 @@
                     </div>
                 </div>
 
-                {{-- Tanggal Mutasi --}}
                 <div class="row mb-3">
-                    <div class="col-xl-12 mb-1">
+                    <div class="col-xl-3 mb-1">
                         <label class="form-label">
                             <span class="text-danger">*</span> Tanggal Mutasi :
                         </label>
@@ -93,7 +89,6 @@
                     </div>
                 </div>
 
-                {{-- Tombol --}}
                 <div>
                     <button type="submit" class="btn btn-success btn-sm">
                         <i class="fas fa-save mr-2"></i> Simpan

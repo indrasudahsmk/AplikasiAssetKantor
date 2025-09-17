@@ -16,6 +16,7 @@ use App\Http\Controllers\ProfilController;
 use App\Http\Controllers\JabatanController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\AssetBidangController;
+use App\Http\Controllers\HistoryController;
 use App\Http\Controllers\MutasiAssetController;
 
 Route::get('/', function () {
@@ -56,6 +57,8 @@ Route::middleware('checkLogin')->group(function () {
         Route::get('/user', [UserController::class, 'index'])->name('pegawaiIndex');
         Route::get('/user/create', [UserController::class, 'create'])->name('userCreate');
         Route::post('/user/store', [UserController::class, 'store'])->name('userStore');
+
+        Route::get('/history', [HistoryController::class, 'index'])->name('historyIndex');
 
         Route::get('/user/edit/{id}', [UserController::class, 'edit'])->name('userEdit');
         Route::put('/user/update/{id}', [UserController::class, 'update'])->name('userUpdate');

@@ -20,6 +20,7 @@
                     <thead class="text-center bg-primary text-white">
                         <tr>
                             <th>No</th>
+                            <th>Kode Barang</th>
                             <th>Barang</th>
                             <th>Dari Bidang</th>
                             <th>Ke Bidang</th>
@@ -33,6 +34,7 @@
                         @foreach ($mutasi as $item)
                             <tr>
                                 <td align="center">{{ $loop->iteration }}</td>
+                                <td align="center">{{ $item->barang->kode_barang ?? '-' }}</td>
                                 <td align="center">{{ $item->barang->nama_barang ?? '-' }}</td>
                                 <td align="center">{{ $item->dariBidang->nama_bidang ?? '-' }}</td>
                                 <td align="center">{{ $item->keBidang->nama_bidang ?? '-' }}</td>
@@ -42,9 +44,9 @@
                                         class="btn btn-sm btn-primary">
                                         <i class="fas fa-edit"></i>
                                     </a>
-                                    <button class="btn btn-sm btn-danger" data-toggle="modal"
+                                    <button class="btn btn-sm btn-success" data-toggle="modal"
                                         data-target="#ModalHapus{{ $item->id_mutasi }}">
-                                        <i class="fas fa-trash"></i>
+                                        <i class="fas fa-undo-alt"></i>
                                     </button>
                                     @include('admin.mutasi_asset.modal')
                                 </td>

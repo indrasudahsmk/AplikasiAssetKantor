@@ -109,8 +109,8 @@
         </li>
 
         <!-- Nav Item - Tables -->
-        <li class="nav-item {{ $menuAdminMutasi ?? '' }}">
-            <a class="nav-link" href="{{ route('mutasiIndex') }}">
+        <li class="nav-item {{ $menuAdminHistory ?? '' }}">
+            <a class="nav-link" href="{{ route('historyIndex') }}">
                 <i class="fas fa-fw fa-history"></i>
                 <span>History Log</span></a>
         </li>

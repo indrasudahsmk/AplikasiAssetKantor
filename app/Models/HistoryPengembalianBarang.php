@@ -9,7 +9,7 @@ class HistoryPengembalianBarang extends Model
 {
     use SoftDeletes;
 
-    protected $table = 'table_history_pengembalian_barang';
+    protected $table = 'history_pengembalian_barang';
     protected $primaryKey = 'id';
 
     protected $fillable = [

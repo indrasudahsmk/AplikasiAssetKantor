@@ -11,15 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('table_history_pengembalian_barang', function (Blueprint $table) {
+        Schema::create('history_pengembalian_barang', function (Blueprint $table) {
             $table->id();
-            $table->date('tanggal');
-            $table->unsignedBigInteger('id_pegawai');
-            $table->unsignedBigInteger('id_aset');
-            $table->unsignedBigInteger('id_bidang');
-            $table->unsignedBigInteger('id_barang');
-            $table->string('status_barang');
-            $table->string('keterangan');
+            $table->timestamp('tanggal');
+            $table->unsignedBigInteger('id_pegawai')->nullable();
+            $table->unsignedBigInteger('id_aset')->nullable();
+            $table->unsignedBigInteger('id_bidang')->nullable();
+            $table->unsignedBigInteger('id_barang')->nullable();
+            $table->string('status_barang')->nullable();
+            $table->string('keterangan')->default('-');
             $table->string('keterangan_aksi'); // dilakuin dimana store,update,delete
             $table->string('jenis_aset'); // jenis aset : aset bidang, aset pegawai kalo dia aset bidang id_asetnya ke aset bidang, klo dia aset pegawai id_asetnya ke aset pegawai
             $table->timestamp('created_at')->nullable();
@@ -36,6 +36,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('table_history_pengembalian_barang');
+        Schema::dropIfExists('history_pengembalian_barang');
     }
 };

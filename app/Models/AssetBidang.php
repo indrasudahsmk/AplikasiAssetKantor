@@ -2,22 +2,17 @@
 
 namespace App\Models;
 
+use App\Traits\HistoryLoggable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class AssetBidang extends Model
 {
     use SoftDeletes;
+    use HistoryLoggable;
 
     protected $table = 'aset_bidang';
-
     protected $primaryKey = 'id_aset';
-
-    public $incrementing = true;
-    protected $keyType = 'int';
-
-    public $timestamps = false;
-
     protected $fillable = [
         'id_barang',
         'id_bidang',
@@ -25,6 +20,13 @@ class AssetBidang extends Model
         'created_id',
         'updated_id',
         'deleted_id',
+    ];
+
+    protected $historyMapping = [
+        'id_aset'       => 'id_aset',
+        'id_barang'     => 'id_barang',
+        'id_bidang'     => 'id_bidang',
+        'status_barang' => 'status',
     ];
 
     public function barang()

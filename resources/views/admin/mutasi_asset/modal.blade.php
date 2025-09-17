@@ -2,7 +2,7 @@
     aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
         <div class="modal-content">
-            <div class="modal-header bg-danger text-white">
+            <div class="modal-header bg-primary text-white">
                 <h5 class="modal-title" id="exampleModalLabel">Hapus {{ $title }}</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true" class="text-white">&times;</span>
@@ -33,8 +33,8 @@
                 <form action="{{ route('mutasiDestroy', $item->id_mutasi) }}" method="post">
                     @csrf
                     @method('DELETE')
-                    <button type="submit" class="btn btn-danger btn-sm">
-                        <i class="fas fa-trash mr-2"></i>Hapus
+                    <button type="submit" class="btn btn-success btn-sm">
+                        <i class="fas fa-undo-alt mr-2"></i>Kembalikan
                     </button>
                 </form>
             </div>

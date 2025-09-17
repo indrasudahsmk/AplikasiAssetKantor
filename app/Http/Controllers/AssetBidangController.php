@@ -98,7 +98,7 @@ class AssetBidangController extends Controller
         $barang->status_ketersediaan = 'Tersedia';
         $barang->save();
         $assetbidang->delete();
-        return redirect()->route('assetBidangIndex')->with('success', 'Data berhasil dihapus');
+        return redirect()->route('assetBidangIndex')->with('success', 'Asset Berhasil Dikembalikan');
     }
 
     public function excel()

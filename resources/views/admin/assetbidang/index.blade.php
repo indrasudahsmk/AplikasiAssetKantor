@@ -43,25 +43,34 @@
                         @foreach ($assetbidang as $item)
                             <tr>
                                 <td class="text-center">{{ $loop->iteration }}</td>
-                                <td>{{ $item->barang->kode_barang ?? '-'}}</td>
+                                <td>{{ $item->barang->kode_barang ?? '-' }}</td>
                                 <td>{{ $item->barang->nama_barang ?? '-' }} </td>
                                 <td>{{ $item->barang->no_mesin ?? '-' }} </td>
                                 <td>{{ $item->barang->nomor_register ?? '-' }} </td>
                                 <td>{{ $item->bidang->nama_bidang ?? '-' }}</td>
                                 <td class="text-center">
-                                    <span class="badge badge-{{ $item->status == 'aktif' ? 'success' : 'secondary' }}">
+                                    <span class="badge badge-{{ $item->status == 'Aktif' ? 'success' : 'secondary' }}">
                                         {{ $item->status ?? '-' }}
                                     </span>
                                 </td>
                                 <td class="text-center">
-                                    <a href="{{ route('assetBidangEdit', $item->id_aset) }}" class="btn btn-sm btn-primary">
+                                    <a href="{{ route('assetBidangEdit', $item->id_aset) }}"
+                                        class="btn btn-sm btn-primary">
                                         <i class="fas fa-edit"></i>
                                     </a>
 
-                                    <button class="btn btn-sm btn-danger" data-toggle="modal"
-                                        data-target="#ModalHapus{{ $item->id_aset }}">
-                                        <i class="fas fa-trash"></i>
-                                    </button>
+                                    @if ($item->status == 'Aktif')
+                                        <button class="btn btn-sm btn-success" data-toggle="modal"
+                                            data-target="#ModalHapus{{ $item->id_aset }}">
+                                            <i class="fas fa-undo-alt"></i>
+                                        </button>
+                                    @else
+                                        <button class="btn btn-sm btn-primary">
+                                            <a href="{{ route('mutasiIndex') }}">
+                                                <i class="fas fa-exchange-alt text-white"></i>
+                                            </a>
+                                        </button>
+                                    @endif
 
                                     @include('admin.assetbidang.modal', ['item' => $item])
                                 </td>

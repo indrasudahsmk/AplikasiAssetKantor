@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AssetBidang;
 use App\Models\Barang;
 use App\Models\Bidang;
 use App\Models\MutasiAsset;
@@ -28,6 +29,7 @@ class MutasiAssetController extends Controller
             'menuAdminMutasi' => 'active',
             'barang' => Barang::all(),
             'bidang' => Bidang::all(),
+            'assetbidang'   =>  AssetBidang::where('status', 'Aktif')->get()
         ]);
     }
 
@@ -39,23 +41,30 @@ class MutasiAssetController extends Controller
             'ke_bidang'      => 'required|exists:bidang,id_bidang|different:dari_bidang',
             'tanggal_mutasi' => 'required|date',
         ], [
-            'id_barang.required' => 'Barang wajib dipilih.',
-            'dari_bidang.required' => 'Bidang asal wajib dipilih.',
-            'ke_bidang.required' => 'Bidang tujuan wajib dipilih.',
-            'ke_bidang.different' => 'Bidang tujuan tidak boleh sama dengan bidang asal.',
+            'id_barang.required'      => 'Barang wajib dipilih.',
+            'dari_bidang.required'    => 'Bidang asal wajib dipilih.',
+            'ke_bidang.required'      => 'Bidang tujuan wajib dipilih.',
+            'ke_bidang.different'     => 'Bidang tujuan tidak boleh sama dengan bidang asal.',
             'tanggal_mutasi.required' => 'Tanggal mutasi wajib diisi.',
         ]);
 
-        MutasiAsset::create([
-            'id_barang'      => $validated['id_barang'],
-            'dari_bidang'    => $validated['dari_bidang'],
-            'ke_bidang'      => $validated['ke_bidang'],
-            'tanggal_mutasi' => $validated['tanggal_mutasi'],
-            'created_id'     => Auth::user()->id_pegawai,
-        ]);
+        $mutasi = new MutasiAsset();
+        $mutasi->id_barang      = $validated['id_barang'];
+        $mutasi->dari_bidang    = $validated['dari_bidang'];
+        $mutasi->ke_bidang      = $validated['ke_bidang'];
+        $mutasi->tanggal_mutasi = $validated['tanggal_mutasi'];
+        $mutasi->created_id     = Auth::user()->id_pegawai;
+        $mutasi->save();
+
+        $assetbidang = AssetBidang::where('id_barang', $validated['id_barang'])->first();
+        if ($assetbidang) {
+            $assetbidang->status = 'Mutasi'; 
+            $assetbidang->save();
+        }
 
         return redirect()->route('mutasiIndex')->with('success', 'Data mutasi aset berhasil ditambahkan.');
     }
+
 
     public function edit($id_mutasi)
     {
@@ -95,8 +104,13 @@ class MutasiAssetController extends Controller
 
         $mutasi->deleted_id = Auth::user()->id_pegawai;
         $mutasi->save();
+        $assetbidang = AssetBidang::where('id_barang', $mutasi->id_barang)->first();
+        if ($assetbidang) {
+            $assetbidang->status = 'Aktif'; 
+            $assetbidang->save();
+        }
         $mutasi->delete();
-
-        return redirect()->route('mutasiIndex')->with('success', 'Data mutasi aset berhasil dihapus');
+        
+        return redirect()->route('mutasiIndex')->with('success', 'Asset Berhasil Dikembalikan');
     }
 }
