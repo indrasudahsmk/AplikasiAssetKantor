@@ -47,7 +47,7 @@
                                 <td class="text-center">
                                     @if ($item->status == 'Digunakan')
                                         <button class="btn btn-sm btn-success" data-toggle="modal" title="Kembalikan Barang"
-                                            data-target="#ModalEdit{{ $item->id_aset }}">
+                                            data-target="#ModalHapus{{ $item->id_aset }}">
                                             <i class="fas fa-undo-alt"></i>
                                         </button>
                                     @endif

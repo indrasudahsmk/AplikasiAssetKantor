@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('peminjaman_barang_antarinstansi', function (Blueprint $table) {
+        Schema::create('peminjaman_barang_antar_instansi', function (Blueprint $table) {
             $table->id();
             $table->string('nomor_surat');
             $table->date('tanggal_surat_masuk');

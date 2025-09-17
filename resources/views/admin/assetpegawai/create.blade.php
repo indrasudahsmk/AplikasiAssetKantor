@@ -55,7 +55,7 @@
                         <label class="form-label">Status :</label>
                     <select name="status" class="form-control @error('status') is-invalid @enderror">
                         <option selected disabled>-- PILIH STATUS --</option>
-                        <option value="Dipinjam">Dipinjam</option>
+                        <option value="Digunakan">Digunakan</option>
                         <option value="Dikembalikan">Dikembalikan</option>
                     </select>
                     @error('status')
