@@ -24,24 +24,30 @@ class ProfilController extends Controller
         $request->validate([
             'username' => [
                 'required',
-                Rule::unique('pegawai', 'username')->ignore($user->id_pegawai, 'id_pegawai')->whereNull('deleted_at'),
+                Rule::unique('pegawai', 'username')
+                    ->ignore($user->id_pegawai, 'id_pegawai')
+                    ->whereNull('deleted_at'),
             ],
             'nama'     => 'required|string|max:255',
             'email'    => [
                 'required',
                 'email',
-                Rule::unique('pegawai', 'email')->ignore($user->id_pegawai, 'id_pegawai')->whereNull('deleted_at'),
+                Rule::unique('pegawai', 'email')
+                    ->ignore($user->id_pegawai, 'id_pegawai')
+                    ->whereNull('deleted_at'),
             ],
+            'current_password' => 'nullable|required_with:password|string',
             'password' => 'nullable|confirmed|min:8',
         ], [
-            'username.required' => 'Username tidak boleh kosong.',
-            'username.unique'   => 'Username sudah digunakan.',
-            'nama.required'     => 'Nama tidak boleh kosong.',
-            'email.required'    => 'Email tidak boleh kosong.',
-            'email.email'       => 'Format email tidak valid.',
-            'email.unique'      => 'Email sudah digunakan.',
-            'password.confirmed'=> 'Konfirmasi password tidak cocok.',
-            'password.min'      => 'Password minimal 8 karakter.',
+            'username.required'      => 'Username tidak boleh kosong.',
+            'username.unique'        => 'Username sudah digunakan.',
+            'nama.required'          => 'Nama tidak boleh kosong.',
+            'email.required'         => 'Email tidak boleh kosong.',
+            'email.email'            => 'Format email tidak valid.',
+            'email.unique'           => 'Email sudah digunakan.',
+            'current_password.required_with' => 'Password lama harus diisi jika ingin mengganti password.',
+            'password.confirmed'     => 'Konfirmasi password tidak cocok.',
+            'password.min'           => 'Password minimal 8 karakter.',
         ]);
 
         $user->username = $request->username;
@@ -49,6 +55,10 @@ class ProfilController extends Controller
         $user->email    = $request->email;
 
         if ($request->filled('password')) {
+            if (!Hash::check($request->current_password, $user->password)) {
+                return back()->withErrors(['current_password' => 'Password lama tidak sesuai'])->withInput();
+            }
+
             $user->password = Hash::make($request->password);
         }
 

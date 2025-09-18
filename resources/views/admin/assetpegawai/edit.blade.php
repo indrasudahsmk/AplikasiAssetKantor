@@ -18,7 +18,6 @@
                 @csrf
                 @method('PUT')
 
-                {{-- Barang (dibuat readonly seperti AssetBidang) --}}
                 <div class="mb-3">
                     <label class="form-label">
                         <span class="text-danger">*</span> Barang :
@@ -31,7 +30,6 @@
                     <input type="hidden" name="id_barang" value="{{ $assetp->id_barang }}">
                 </div>
 
-                {{-- Pegawai --}}
                 <div class="mb-3">
                     <label class="form-label">
                         <span class="text-danger">*</span> Pegawai :
@@ -46,23 +44,6 @@
                         @endforeach
                     </select>
                     @error('id_pegawai')
-                        <small class="text-danger">{{ $message }}</small>
-                    @enderror
-                </div>
-
-                {{-- Status --}}
-                <div class="mb-3">
-                    <label class="form-label">
-                        <span class="text-danger">*</span> Status :
-                    </label>
-                    <select name="status" class="form-control @error('status') is-invalid @enderror">
-                        <option value="" disabled selected>-- PILIH STATUS --</option>
-                        <option value="Digunakan" {{ old('status', $assetp->status) == 'Digunakan' ? 'selected' : '' }}>
-                            Digunakan</option>
-                        <option value="Dikembalikan"
-                            {{ old('status', $assetp->status) == 'Dikembalikan' ? 'selected' : '' }}>Dikembalikan</option>
-                    </select>
-                    @error('status')
                         <small class="text-danger">{{ $message }}</small>
                     @enderror
                 </div>

@@ -48,22 +48,6 @@
                     @enderror
                 </div>
 
-                <div class="mb-3">
-                    <label class="form-label">
-                        <span class="text-danger">*</span> Status :
-                    </label>
-                    <select name="status" class="form-control @error('status') is-invalid @enderror">
-                        <option disabled>-- PILIH STATUS --</option>
-                        <option value="Aktif" {{ old('status', $assetbidang->status) == 'Aktif' ? 'selected' : '' }}>Aktif
-                        </option>
-                        <option value="Mutasi" {{ old('status', $assetbidang->status) == 'Mutasi' ? 'selected' : '' }}>
-                            Mutasi</option>
-                    </select>
-                    @error('status')
-                        <small class="text-danger">{{ $message }}</small>
-                    @enderror
-                </div>
-
                 <div class="text-end">
                     <button type="submit" class="btn btn-success">
                         <i class="fas fa-save mr-1"></i> Update

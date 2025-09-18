@@ -36,13 +36,11 @@ class AssetBidangController extends Controller
         $request->validate([
             'id_barang' => 'required|exists:barang,id_barang',
             'id_bidang' => 'required|exists:bidang,id_bidang',
-            'status'    => 'required|in:Aktif,Mutasi',
         ]);
 
         AssetBidang::create([
             'id_barang'  => $request->id_barang,
             'id_bidang'  => $request->id_bidang,
-            'status'     => $request->status,
             'created_id' => Auth::user()->id_pegawai ?? null,
         ]);
 
@@ -74,13 +72,11 @@ class AssetBidangController extends Controller
         $request->validate([
             'id_barang' => 'required|exists:barang,id_barang',
             'id_bidang' => 'required|exists:bidang,id_bidang',
-            'status'    => 'required|in:Aktif,Mutasi',
         ]);
 
         $assetbidang = AssetBidang::findOrFail($id);
         $assetbidang->id_barang  = $request->id_barang;
         $assetbidang->id_bidang  = $request->id_bidang;
-        $assetbidang->status     = $request->status;
         $assetbidang->updated_id = Auth::user()->id_pegawai ?? null;
         $assetbidang->save();
 

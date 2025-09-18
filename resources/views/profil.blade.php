@@ -48,17 +48,31 @@
                     @enderror
                 </div>
 
+                {{-- Password Lama --}}
+                <div class="col-md-6 mb-3">
+                    <label class="form-label">Password Lama</label>
+                    <input type="password" name="current_password"
+                        class="form-control @error('current_password') is-invalid @enderror">
+                    @error('current_password')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
+                    <small class="text-muted">Wajib diisi jika ingin mengganti password</small>
+                </div>
+
+                {{-- Password Baru --}}
                 <div class="col-md-6 mb-3">
                     <label class="form-label">Password Baru</label>
-                    <input type="password" name="password" class="form-control @error('password') is-invalid @enderror">
+                    <input type="password" name="password"
+                        class="form-control @error('password') is-invalid @enderror">
                     @error('password')
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                     <small class="text-muted">Kosongkan jika tidak ingin mengganti password</small>
                 </div>
 
+                {{-- Konfirmasi Password Baru --}}
                 <div class="col-md-6 mb-3">
-                    <label class="form-label">Konfirmasi Password</label>
+                    <label class="form-label">Konfirmasi Password Baru</label>
                     <input type="password" name="password_confirmation" class="form-control">
                 </div>
 
@@ -80,7 +94,7 @@
                         value="{{ Auth::user()->status_pegawai }}" readonly>
                 </div>
 
-                <div class="col-md-6 mb-3">
+                <div class="col-md-12 mb-3">
                     <label class="form-label">Role</label>
                     <input type="text" class="form-control"
                         value="{{ Auth::user()->id_role === 1 ? 'Admin' : 'Pegawai' }}" readonly>

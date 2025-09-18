@@ -2,12 +2,14 @@
 
 namespace App\Models;
 
+use App\Traits\HistoryLoggable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class AsetPegawai extends Model
 {
     use SoftDeletes;
+    use HistoryLoggable;
 
     protected $table = 'aset_pegawai';
     protected $primaryKey = 'id_aset';
@@ -20,6 +22,11 @@ class AsetPegawai extends Model
         'created_id',
         'updated_id',
         'deleted_id',
+    ];
+
+    protected $historyMapping = [
+        'id_barang'     => 'id_barang',
+        'status_barang' => 'status',
     ];
 
     public function barang()

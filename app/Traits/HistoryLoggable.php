@@ -42,7 +42,6 @@ trait HistoryLoggable
             $value = $this->{$modelColumn} ?? null;
 
             if (in_array($targetColumn, [
-                'id_aset',
                 'id_barang',
                 'id_bidang',
                 'id_pegawai',

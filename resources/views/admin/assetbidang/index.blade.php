@@ -32,6 +32,7 @@
                             <th>No</th>
                             <th>Kode Barang</th>
                             <th>Barang</th>
+                            <th>Kondisi Brg</th>
                             <th>No Mesin</th>
                             <th>No Registrasi</th>
                             <th>Bidang</th>
@@ -45,6 +46,7 @@
                                 <td class="text-center">{{ $loop->iteration }}</td>
                                 <td>{{ $item->barang->kode_barang ?? '-' }}</td>
                                 <td>{{ $item->barang->nama_barang ?? '-' }} </td>
+                                <td>{{ $item->barang->kondisi_barang ?? '-' }} </td>
                                 <td>{{ $item->barang->no_mesin ?? '-' }} </td>
                                 <td>{{ $item->barang->nomor_register ?? '-' }} </td>
                                 <td>{{ $item->bidang->nama_bidang ?? '-' }}</td>

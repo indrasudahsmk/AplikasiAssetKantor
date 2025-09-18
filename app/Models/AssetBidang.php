@@ -23,7 +23,6 @@ class AssetBidang extends Model
     ];
 
     protected $historyMapping = [
-        'id_aset'       => 'id_aset',
         'id_barang'     => 'id_barang',
         'id_bidang'     => 'id_bidang',
         'status_barang' => 'status',

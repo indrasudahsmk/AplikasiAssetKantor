@@ -16,10 +16,10 @@
                             <th>Tanggal</th>
                             <th>Username</th>
                             <th>Bidang</th>
-                            <th>Kode Barang</th>
+                            <th>Kode Brg</th>
                             <th>Barang</th>
                             <th>Jenis Aset</th>
-                            <th>Status</th>
+                            <th>Kondisi Brg</th>
                             <th>Aksi</th>
                             <th>Keterangan</th>
                         </tr>

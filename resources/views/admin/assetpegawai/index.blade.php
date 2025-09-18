@@ -30,7 +30,9 @@
                         <tr>
                             <th>No</th>
                             <th>Nama Pegawai</th>
+                            <th>Kode Barang</th>
                             <th>Barang</th>
+                            <th>Kondisi Barang</th>
                             <th>Status</th>
                             <th>
                                 <i class="fas fa-cog"></i>
@@ -42,9 +44,16 @@
                             <tr>
                                 <td align="center">{{ $loop->iteration }}</td>
                                 <td align="center">{{ $item->pegawai->nama }}</td>
+                                <td align="center">{{ $item->barang->kode_barang }}</td>
                                 <td align="center">{{ $item->barang->nama_barang }}</td>
+                                <td align="center">{{ $item->barang->kondisi_barang }}</td>
                                 <td align="center">{{ $item->status }}</td>
                                 <td class="text-center">
+                                    <a href="{{ route('assetPegawaiEdit', $item->id_aset) }}"
+                                        class="btn btn-sm btn-primary">
+                                        <i class="fas fa-edit"></i>
+                                    </a>
+
                                     @if ($item->status == 'Digunakan')
                                         <button class="btn btn-sm btn-success" data-toggle="modal" title="Kembalikan Barang"
                                             data-target="#ModalHapus{{ $item->id_aset }}">

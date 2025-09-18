@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id();
             $table->timestamp('tanggal');
             $table->unsignedBigInteger('id_pegawai')->nullable();
-            $table->unsignedBigInteger('id_aset')->nullable();
             $table->unsignedBigInteger('id_bidang')->nullable();
             $table->unsignedBigInteger('id_barang')->nullable();
             $table->string('status_barang')->nullable();

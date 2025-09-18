@@ -37,13 +37,11 @@ class AsetController extends Controller
         $request->validate([
             'id_barang'  => 'required|exists:barang,id_barang',
             'id_pegawai' => 'required|exists:pegawai,id_pegawai',
-            'status'     => 'required|in:Digunakan,Dikembalikan',
         ]);
 
         AsetPegawai::create([
             'id_barang'  => $request->id_barang,
             'id_pegawai' => $request->id_pegawai,
-            'status'     => $request->status,
             'created_id' => Auth::user()->id_pegawai ?? null,
         ]);
 
@@ -81,7 +79,6 @@ class AsetController extends Controller
         $request->validate([
             'id_barang'  => 'required|exists:barang,id_barang',
             'id_pegawai' => 'required|exists:pegawai,id_pegawai',
-            'status'     => 'required|in:Digunakan,Dikembalikan',
         ]);
 
         $assetpegawai = AsetPegawai::findOrFail($id);
@@ -98,7 +95,6 @@ class AsetController extends Controller
 
         $assetpegawai->id_barang  = $request->id_barang;
         $assetpegawai->id_pegawai = $request->id_pegawai;
-        $assetpegawai->status     = $request->status;
         $assetpegawai->updated_id = Auth::user()->id_pegawai ?? null;
         $assetpegawai->save();
 

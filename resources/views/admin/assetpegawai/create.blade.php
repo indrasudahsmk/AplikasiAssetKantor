@@ -48,24 +48,7 @@
                         <small class="text-danger">{{ $message }}</small>
                     @enderror
                     </div>
-                    </div>
-
-                <div class="row mb-3">
-                    <div class="col-xl-12 mb-1">
-                        <label class="form-label">Status :</label>
-                    <select name="status" class="form-control @error('status') is-invalid @enderror">
-                        <option selected disabled>-- PILIH STATUS --</option>
-                        <option value="Digunakan">Digunakan</option>
-                        <option value="Dikembalikan">Dikembalikan</option>
-                    </select>
-                    @error('status')
-                        <small class="text-danger">
-                            {{ $message }}
-                        </small>    
-                    @enderror
-                    </div>
-                </div>    
-                
+                    </div>   
 
                 <div>
                     <button type="submit" class="btn btn-success btn-sm">

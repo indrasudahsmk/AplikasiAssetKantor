@@ -16,7 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger('id_barang')->nullable();
             $table->unsignedBigInteger('id_pegawai')->nullable();
             $table->unsignedBigInteger('id_petugas_aset')->nullable();
-            $table->string('status', 20)->nullable();
+            $table->string('status', 20)->nullable()->default('Digunakan');
             $table->timestamp('created_at')->nullable();
             $table->integer('created_id')->nullable();
             $table->timestamp('updated_at')->nullable();
