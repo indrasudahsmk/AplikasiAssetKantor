@@ -8,16 +8,16 @@
     </h1>
     <div class="card">
         <div class="card-header d-flex flex-wrap justify-content-center justify-content-xl-between">
-            <a href="{{ route('assetPegawaiCreate') }}" class="btn btn-primary btn-sm">
+            <a href="{{ route('assetPegawaiCreate') }}" class="btn btn-primary btn-sm" title="Tambah Aset Pegawai">
                 <i class="fas fa-plus mr-2"></i>
                 Tambah Data
             </a>
             <div>
-                <a href="{{ route('userExcel') }}" class="btn btn-success btn-sm">
+                <a href="{{ route('userExcel') }}" class="btn btn-success btn-sm" title="Export Excel">
                     <i class="fas fa-file-excel mr-2"></i>
                     Excel
                 </a>
-                <a href="{{ route('userPdf') }}" class="btn btn-danger btn-sm">
+                <a href="{{ route('userPdf') }}" class="btn btn-danger btn-sm" title="Export PDF">
                     <i class="fas fa-file-pdf mr-2" target='__blank'></i>
                     PDF
                 </a>
@@ -50,7 +50,7 @@
                                 <td align="center">{{ $item->status }}</td>
                                 <td class="text-center">
                                     <a href="{{ route('assetPegawaiEdit', $item->id_aset) }}"
-                                        class="btn btn-sm btn-primary">
+                                        class="btn btn-sm btn-primary" title="Ubah Aset Pegawai">
                                         <i class="fas fa-edit"></i>
                                     </a>
 

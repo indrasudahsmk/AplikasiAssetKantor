@@ -9,7 +9,7 @@
 
     <div class="card">
         <div class="card-header d-flex justify-content-between">
-            <a href="{{ route('mutasiCreate') }}" class="btn btn-primary btn-sm">
+            <a href="{{ route('mutasiCreate') }}" class="btn btn-primary btn-sm" title="Tambah Data Mutasi">
                 <i class="fas fa-plus mr-2"></i>
                 Tambah Data
             </a>
@@ -41,10 +41,10 @@
                                 <td align="center">{{ $item->tanggal_mutasi ? \Carbon\Carbon::parse($item->tanggal_mutasi)->format('d-m-Y') : '-' }}</td>
                                 <td class="text-center">
                                     <a href="{{ route('mutasiEdit', ['id_mutasi' => $item->id_mutasi]) }}"
-                                        class="btn btn-sm btn-primary">
+                                        class="btn btn-sm btn-primary" title="Ubah Data Mutasi">
                                         <i class="fas fa-edit"></i>
                                     </a>
-                                    <button class="btn btn-sm btn-success" data-toggle="modal"
+                                    <button class="btn btn-sm btn-success" data-toggle="modal" title="Kembalikan Barang"
                                         data-target="#ModalHapus{{ $item->id_mutasi }}">
                                         <i class="fas fa-undo-alt"></i>
                                     </button>

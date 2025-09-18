@@ -7,16 +7,17 @@
     </h1>
     <div class="card">
         <div class="card-header d-flex flex-wrap justify-content-between">
-            <a href="{{ route('kantorCreate') }}" class="btn btn-primary btn-sm">
+            <a href="{{ route('kantorCreate') }}" class="btn btn-primary btn-sm" title="Tambah Kantor">
                 <i class="fas fa-plus mr-2"></i>
                 Tambah Data
             </a>
             <div>
-                <a href="{{ route('kantorExcel') }}" class="btn btn-success btn-sm">
+                <a href="{{ route('kantorExcel') }}" class="btn btn-success btn-sm" title="Export Excel">
                     <i class="fas fa-file-excel mr-2"></i>
                     Excel
                 </a>
-                <a href="{{ route('kantorPdf') }}" class="btn btn-danger btn-sm" target="_blank">
+                <a href="{{ route('kantorPdf') }}" class="btn btn-danger btn-sm" target="_blank"
+                    title="Export PDF">
                     <i class="fas fa-file-pdf mr-2"></i>
                     PDF
                 </a>
@@ -40,12 +41,13 @@
                                 <td>{{ $item->kantor }}</td>
                                 <td>{{ $item->alamat }}</td>
                                 <td class="text-center">
-                                    <a href="{{ route('kantorEdit', $item->id) }}" class="btn btn-sm btn-primary">
+                                    <a href="{{ route('kantorEdit', $item->id) }}" class="btn btn-sm btn-primary"
+                                        title="Ubah Kantor">
                                         <i class="fas fa-edit"></i>
                                     </a>
 
                                     <!-- Tombol buka modal -->
-                                    <button class="btn btn-sm btn-danger" data-toggle="modal"
+                                    <button class="btn btn-sm btn-danger" data-toggle="modal" title="Hapus Kantor"
                                         data-target="#ModalHapus{{ $item->id }}">
                                         <i class="fas fa-trash"></i>
                                     </button>

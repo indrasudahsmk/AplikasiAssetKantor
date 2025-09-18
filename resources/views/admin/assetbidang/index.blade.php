@@ -8,16 +8,16 @@
 
     <div class="card">
         <div class="card-header d-flex flex-wrap justify-content-between">
-            <a href="{{ route('assetBidangCreate') }}" class="btn btn-primary btn-sm">
+            <a href="{{ route('assetBidangCreate') }}" class="btn btn-primary btn-sm" title="Tambah Aset Bidang">
                 <i class="fas fa-plus mr-2"></i>
                 Tambah Data
             </a>
             <div>
-                <a href="{{ route('assetBidangExcel') }}" class="btn btn-success btn-sm">
+                <a href="{{ route('assetBidangExcel') }}" class="btn btn-success btn-sm" title="Export Excel">
                     <i class="fas fa-file-excel mr-2"></i>
                     Excel
                 </a>
-                <a href="{{ route('assetBidangPdf') }}" class="btn btn-danger btn-sm" target="_blank">
+                <a href="{{ route('assetBidangPdf') }}" class="btn btn-danger btn-sm" target="_blank" title="Export PDF">
                     <i class="fas fa-file-pdf mr-2"></i>
                     PDF
                 </a>
@@ -57,21 +57,19 @@
                                 </td>
                                 <td class="text-center">
                                     <a href="{{ route('assetBidangEdit', $item->id_aset) }}"
-                                        class="btn btn-sm btn-primary">
+                                        class="btn btn-sm btn-primary" title="Ubah Aset Bidang">
                                         <i class="fas fa-edit"></i>
                                     </a>
 
                                     @if ($item->status == 'Aktif')
-                                        <button class="btn btn-sm btn-success" data-toggle="modal"
+                                        <button class="btn btn-sm btn-success" data-toggle="modal" title="Kembalikan Barang"
                                             data-target="#ModalHapus{{ $item->id_aset }}">
                                             <i class="fas fa-undo-alt"></i>
                                         </button>
                                     @else
-                                        <button class="btn btn-sm btn-primary">
-                                            <a href="{{ route('mutasiIndex') }}">
-                                                <i class="fas fa-exchange-alt text-white"></i>
+                                            <a href="{{ route('mutasiIndex') }}" class="btn btn-sm btn-primary" title="Ubah Status Barang">
+                                                <i class="fas fa-exchange-alt text-white" ></i>
                                             </a>
-                                        </button>
                                     @endif
 
                                     @include('admin.assetbidang.modal', ['item' => $item])

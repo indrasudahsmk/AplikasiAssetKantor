@@ -7,16 +7,16 @@
     </h1>
     <div class="card">
         <div class="card-header d-flex flex-wrap justify-content-between">
-            <a href="{{ route('barangCreate') }}" class="btn btn-primary btn-sm">
+            <a href="{{ route('barangCreate') }}" class="btn btn-primary btn-sm" title="Tambah Barang"> 
                 <i class="fas fa-plus mr-2"></i>
                 Tambah Data
             </a>
             <div>
-                <a href="{{ route('barangExcel') }}" class="btn btn-success btn-sm">
+                <a href="{{ route('barangExcel') }}" class="btn btn-success btn-sm" title="Export Excel">
                     <i class="fas fa-file-excel mr-2"></i>
                     Excel
                 </a>
-                <a href="{{ route('barangPdf') }}" class="btn btn-danger btn-sm" target="_blank">
+                <a href="{{ route('barangPdf') }}" class="btn btn-danger btn-sm" target="_blank" title="Export PDF">
                     <i class="fas fa-file-pdf mr-2"></i>
                     PDF
                 </a>
@@ -51,16 +51,17 @@
                                 <td class="text-right">{{ number_format($item->harga, 0, ',', '.') }}</td>
                                 <td class="text-center">
 
-                                    <button class="btn btn-sm btn-warning" data-toggle="modal"
+                                    <button class="btn btn-sm btn-warning" data-toggle="modal" title="Detail Barang"
                                         data-target="#ModalView{{ $item->id_barang }}">
                                         <i class="fas fa-eye"></i>
                                     </button>
 
-                                    <a href="{{ route('barangEdit', $item->id_barang) }}" class="btn btn-sm btn-primary">
+                                    <a href="{{ route('barangEdit', $item->id_barang) }}" class="btn btn-sm btn-primary"
+                                        title="Ubah Barang">
                                         <i class="fas fa-edit"></i>
                                     </a>
 
-                                    <button class="btn btn-sm btn-danger" data-toggle="modal"
+                                    <button class="btn btn-sm btn-danger" data-toggle="modal" title="Hapus Barang"
                                         data-target="#ModalHapus{{ $item->id_barang }}">
                                         <i class="fas fa-trash"></i>
                                     </button>
