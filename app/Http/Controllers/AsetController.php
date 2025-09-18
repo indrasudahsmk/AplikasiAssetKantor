@@ -130,7 +130,7 @@ class AsetController extends Controller
     {
         $data = [
             'title' => 'Asset Saya',
-            'menuAdminAssetPegawai' => 'active',
+            'menuPegawaiAssetSaya' => 'active',
             'assetp' => AsetPegawai::with(['barang', 'pegawai'])
                      ->where('id_pegawai', Auth::user()->id_pegawai)->get(),
         ];

@@ -18,8 +18,7 @@
             <span>Dashboard</span></a>
     </li>
 
-
-    @if (auth()->user()->id_jabatan === 1)
+    @can('isAdmin')
         <!-- Divider -->
         <hr class="sidebar-divider">
         <!-- Heading -->
@@ -89,13 +88,11 @@
                         <i class="fas fa-fw fa-box"></i> Data Barang
                     </a>
 
-                    <a class="dropdown-item {{ request()->routeIs('tipe') ? 'active' : '' }}"
-                        href="{{ route('tipe') }}">
+                    <a class="dropdown-item {{ request()->routeIs('tipe') ? 'active' : '' }}" href="{{ route('tipe') }}">
                         <i class="fas fa-fw fa-boxes"></i> Data Tipe
                     </a>
 
-                    <a class="dropdown-item {{ request()->routeIs('merk') ? 'active' : '' }}"
-                        href="{{ route('merk') }}">
+                    <a class="dropdown-item {{ request()->routeIs('merk') ? 'active' : '' }}" href="{{ route('merk') }}">
                         <i class="fas fa-fw fa-tags"></i> Data Merk
                     </a>
 
@@ -114,35 +111,33 @@
                 <i class="fas fa-fw fa-history"></i>
                 <span>History Log</span></a>
         </li>
-    @else
-        <!-- Divider -->
-        <hr class="sidebar-divider">
+    @endcan
 
-        <!-- Heading -->
-        <div class="sidebar-heading">
-            MENU KARYAWAN
-        </div>
+    <!-- Divider -->
+    <hr class="sidebar-divider">
 
-
-        <!-- Nav Item - Tables -->
-        <li class="nav-item {{ $menuPegawaiAssetSaya ?? '' }}">
-            <a class="nav-link" href="{{ route('assetsayaIndex') }}">
-                <i class="fas fa-fw fa-box"></i>
-                <span>Asset Saya</span></a>
-        </li>
-
-        <!-- Nav Item - Tables -->
-        <li class="nav-item {{ $menuPegawaiAssetBidang ?? '' }}">
-            <a class="nav-link" href="{{ route('assetBidangIndex') }}">
-                <i class="fas fa-fw fa-boxes"></i>
-                <span>Asset Bidang</span></a>
-        </li>
-
-        <!-- Divider -->
-        <hr class="sidebar-divider d-none d-md-block">
-    @endif
+    <!-- Heading -->
+    <div class="sidebar-heading">
+        MENU KARYAWAN
+    </div>
 
 
+    <!-- Nav Item - Tables -->
+    <li class="nav-item {{ $menuPegawaiAssetSaya ?? '' }}">
+        <a class="nav-link" href="{{ route('assetsayaIndex') }}">
+            <i class="fas fa-fw fa-box"></i>
+            <span>Asset Saya</span></a>
+    </li>
+
+    <!-- Nav Item - Tables -->
+    <li class="nav-item {{ $menuPegawaiAssetBidang ?? '' }}">
+        <a class="nav-link" href="{{ route('assetBidangIndex') }}">
+            <i class="fas fa-fw fa-boxes"></i>
+            <span>Asset Bidang</span></a>
+    </li>
+
+    <!-- Divider -->
+    <hr class="sidebar-divider d-none d-md-block">
 
 
     <!-- Sidebar Toggler (Sidebar) -->

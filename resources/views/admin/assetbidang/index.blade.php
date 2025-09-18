@@ -67,7 +67,7 @@
                                             <i class="fas fa-undo-alt"></i>
                                         </button>
                                     @else
-                                            <a href="{{ route('mutasiIndex') }}" class="btn btn-sm btn-primary" title="Ubah Status Barang">
+                                            <a href="{{ route('mutasiIndex') }}" class="btn btn-sm btn-primary" title="Lihat Mutasi Asset">
                                                 <i class="fas fa-exchange-alt text-white" ></i>
                                             </a>
                                     @endif
